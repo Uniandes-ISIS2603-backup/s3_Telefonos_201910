@@ -10,5 +10,5 @@ package co.edu.uniandes.csw.telefonos.dtos;
  * @author estudiante
  */
 public class CompradorDTO {
-    
+    //ssd
 }
