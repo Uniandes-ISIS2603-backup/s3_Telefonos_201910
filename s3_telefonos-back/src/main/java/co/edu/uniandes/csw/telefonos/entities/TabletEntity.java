@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author Andres Felipe Daza Diaz
  */
 @Entity
 public class TabletEntity extends BaseEntity implements Serializable{
@@ -34,6 +34,10 @@ public class TabletEntity extends BaseEntity implements Serializable{
     * Boolean que representa si la Tableta esta registrada o no por un Proveedor
     */
     private boolean registrado;
+    
+    public TabletEntity(){
+        
+    }
 
     /**
      * @return the marca
