@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author estudiante
+ * @author Laura Valentina Prieto Jimenez
  */
 public class CompradorDTO implements Serializable {
     

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Laura Valentina Prieto Jimenez
  */
 public class CompradorDetailDTO extends CompradorDTO implements Serializable{
     

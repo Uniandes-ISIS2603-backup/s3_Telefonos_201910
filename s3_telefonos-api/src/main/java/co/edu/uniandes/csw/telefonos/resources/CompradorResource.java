@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author estudiante
+ * @author Laura Valentina Prieto Jimenez
  */
 
 @Path("compradores")
