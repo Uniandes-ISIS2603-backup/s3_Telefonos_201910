@@ -72,14 +72,14 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
 /**
  * Actualiza un comprador con identificador id
  * @param id Identificador del comprador
+ * @param comprador Nueva informacion del comprador
  * @return Comprador actualizado
  */ 
 @PUT
 @Path("{id: \\d+}")
- public CompradorDTO  actualizarCompradorID(@PathParam("id") int id){
-     CompradorDTO c =new CompradorDTO();
-     c.setId(id);
-     return c;
+ public CompradorDTO  actualizarCompradorID(@PathParam("id") int id, CompradorDTO comprador){
+     comprador.setId(id);
+     return comprador;
  }
   
  /**
