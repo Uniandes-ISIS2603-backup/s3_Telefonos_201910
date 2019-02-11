@@ -28,7 +28,9 @@ public class TabletResource {
     
     @POST
     public TabletDTO createTablet(TabletDTO tablet){
-        
+      
         return tablet;
     }
+    
+    
 }

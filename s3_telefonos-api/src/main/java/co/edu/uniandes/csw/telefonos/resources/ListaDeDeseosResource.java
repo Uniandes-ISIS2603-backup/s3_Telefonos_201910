@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.telefonos.resources;
 
 import co.edu.uniandes.csw.telefonos.dtos.ListaDeDeseosDTO;
+import co.edu.uniandes.csw.telefonos.dtos.TabletDTO;
+import co.edu.uniandes.csw.telefonos.dtos.ListaDeDeseosDetailDTO;
 import java.util.logging.Logger;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -30,6 +33,16 @@ public class ListaDeDeseosResource {
     @POST
     public ListaDeDeseosDTO createListaDeDeseos(ListaDeDeseosDTO listaDeDeseos){
         
+        return listaDeDeseos;
+    }
+    
+
+    @POST
+    @PATH("tabletas")
+    public ListaDeDeseosDetailDTO agregarTableta (ListaDeDeseosDetailDTO listaDeDeseos, TabletDTO tableta){
+        List<TabletDTO> tabletas = listaDeDeseos.getTablets();
+        tabletas.add(tableta);
+        listaDeDeseos.setTablets(tabletas);
         return listaDeDeseos;
     }
     
