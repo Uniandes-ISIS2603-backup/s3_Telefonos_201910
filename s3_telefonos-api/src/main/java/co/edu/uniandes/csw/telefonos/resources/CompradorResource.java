@@ -11,8 +11,12 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
@@ -28,9 +32,17 @@ public class CompradorResource {
  
 private static final Logger LOGGER= Logger.getLogger(CompradorResource.class.getName());  
  
-
+/**
+ * Obtiene todos los compradores
+ * @return Lista de compradores
+ */
+@GET
 public List<CompradorDTO> obtenerCompradores (){
-    return new ArrayList<>();
+    List<CompradorDTO> result = new ArrayList();
+    CompradorDTO c = new CompradorDTO();
+    c.setApodo("Prueba");
+    result.add(c);
+    return result;
 }
 
 
@@ -44,8 +56,43 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
     return comprador;
 }
 
-
-    
-    
-    
+/**
+ * Obtiene el comprador con identificador id
+ * @param id Identificador del comprador
+ * @return Comprador con identificador id
+ */
+@GET
+@Path("{id: \\d+}")
+ public CompradorDTO obtenerCompradorID(@PathParam("id") int id) {
+     CompradorDTO c =new CompradorDTO();
+     c.setId(id);
+     return c;
+ }
+   
+/**
+ * Actualiza un comprador con identificador id
+ * @param id Identificador del comprador
+ * @return Comprador actualizado
+ */ 
+@PUT
+@Path("{id: \\d+}")
+ public CompradorDTO  actualizarCompradorID(@PathParam("id") int id){
+     CompradorDTO c =new CompradorDTO();
+     c.setId(id);
+     return c;
+ }
+  
+ /**
+  * Elimina un comprador con identificador id
+  * @param id Identificador del comprador
+  * @return Comprador eliminado
+  */
+ @DELETE
+ @Path("{id: \\d+}")
+ public CompradorDTO  eliminarCompradorID(@PathParam("id") int id){
+     CompradorDTO c =new CompradorDTO();
+     c.setId(id);
+     return c;
+ }
+ 
 }
