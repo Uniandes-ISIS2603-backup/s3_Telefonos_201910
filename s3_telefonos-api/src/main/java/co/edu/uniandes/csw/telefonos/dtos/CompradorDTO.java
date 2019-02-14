@@ -26,7 +26,7 @@ public class CompradorDTO implements Serializable {
     /*
     ID que se le asigna al comprador
     */
-    private int id;
+    private Long id;
     
     /*
     Apodo (nickname) con que se registra el comprador
@@ -86,14 +86,14 @@ public class CompradorDTO implements Serializable {
     /**
      * @return the id
      */
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

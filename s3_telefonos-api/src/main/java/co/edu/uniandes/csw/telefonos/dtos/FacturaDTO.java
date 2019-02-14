@@ -27,7 +27,7 @@ public class FacturaDTO implements Serializable {
     /*
     ID asignado a la factura
     */
-    private String id;
+    private Long id;
     
     /*
     Comprador relacionado con la factura
@@ -37,7 +37,12 @@ public class FacturaDTO implements Serializable {
     /*
     Proveedor relacionado con la factura
     */
-    //private ProveedorDTO proveedor;
+    //private ProveedorDTO proveedorDeCompra;
+    
+    /*
+    Publicacion asociada a la factura
+    */
+    //private PublicacionDTO publicacion
     
     /*
     Metodo constructor
@@ -78,14 +83,14 @@ public class FacturaDTO implements Serializable {
     /**
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

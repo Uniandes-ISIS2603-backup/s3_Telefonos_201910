@@ -62,8 +62,8 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
  * @return Comprador con identificador id
  */
 @GET
-@Path("{id: \\d+}")
- public CompradorDTO obtenerCompradorID(@PathParam("id") int id) {
+@Path("{compradorId: \\d+}")
+ public CompradorDTO obtenerCompradorID(@PathParam("compradorId") int id) {
      CompradorDTO c =new CompradorDTO();
      c.setId(id);
      return c;
@@ -76,8 +76,8 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
  * @return Comprador actualizado
  */ 
 @PUT
-@Path("{id: \\d+}")
- public CompradorDTO  actualizarCompradorID(@PathParam("id") int id, CompradorDTO comprador){
+@Path("{compradorId: \\d+}")
+ public CompradorDTO  actualizarCompradorID(@PathParam("compradorId") int id, CompradorDTO comprador){
      comprador.setId(id);
      return comprador;
  }
@@ -88,11 +88,16 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
   * @return Comprador eliminado
   */
  @DELETE
- @Path("{id: \\d+}")
- public CompradorDTO  eliminarCompradorID(@PathParam("id") int id){
+ @Path("{compradorId: \\d+}")
+ public CompradorDTO  eliminarCompradorID(@PathParam("compradorId") int id){
      CompradorDTO c =new CompradorDTO();
      c.setId(id);
      return c;
  }
+ 
+ @Path("{compradorId: \\d+}/facturas")
+    public Class<CompradorFacturaResource> getAuthorBooksResource(@PathParam("compradorId") Long authorsId) {
+        return CompradorFacturaResource.class;
+    }
  
 }
