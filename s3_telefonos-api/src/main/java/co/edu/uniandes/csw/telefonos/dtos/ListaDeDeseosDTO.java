@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class ListaDeDeseosDTO implements Serializable{
     
-    private double costoEstimado;
+    private Double costoEstimado;
 
     public ListaDeDeseosDTO(){
         
@@ -21,7 +21,7 @@ public class ListaDeDeseosDTO implements Serializable{
     /**
      * @return the costoEstimado
      */
-    public double getCostoEstimado() {
+    public Double getCostoEstimado() {
         return costoEstimado;
     }
 
