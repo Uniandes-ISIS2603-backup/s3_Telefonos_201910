@@ -26,6 +26,8 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     //@PodamExclude
     //@OneToMany(mappedBy = "listaDeDeseos")
     //private List<CelularEntity> celulares = new ArrayList<CelularEntity>();
+    
+    private double costoEstimado;
 
     public ListaDeDeseosEntity(){
         
@@ -44,6 +46,20 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
      */
     public void setTablets(List<TabletEntity> tablets) {
         this.tablets = tablets;
+    }
+
+    /**
+     * @return the costoEstimado
+     */
+    public double getCostoEstimado() {
+        return costoEstimado;
+    }
+
+    /**
+     * @param costoEstimado the costoEstimado to set
+     */
+    public void setCostoEstimado(double costoEstimado) {
+        this.costoEstimado = costoEstimado;
     }
     
 }

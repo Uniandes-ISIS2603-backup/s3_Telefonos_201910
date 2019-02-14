@@ -12,7 +12,10 @@ import java.util.logging.Logger;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -30,6 +33,7 @@ public class ListaDeDeseosResource {
     
     private static final Logger LOGGER = Logger.getLogger(ListaDeDeseosResource.class.getName());
     
+    
     @POST
     public ListaDeDeseosDTO createListaDeDeseos(ListaDeDeseosDTO listaDeDeseos){
         
@@ -37,13 +41,19 @@ public class ListaDeDeseosResource {
     }
     
 
-    @POST
-    @PATH("tabletas")
-    public ListaDeDeseosDetailDTO agregarTableta (ListaDeDeseosDetailDTO listaDeDeseos, TabletDTO tableta){
-        List<TabletDTO> tabletas = listaDeDeseos.getTablets();
-        tabletas.add(tableta);
-        listaDeDeseos.setTablets(tabletas);
+    @GET
+    public ListaDeDeseosDTO getListaDeDeseos (ListaDeDeseosDTO listaDeDeseos){
+        
         return listaDeDeseos;
     }
     
+    @DELETE
+    public ListaDeDeseosDTO deleteListaDeDeseos (ListaDeDeseosDTO listaDeDeseos){
+        return listaDeDeseos;
+    }
+    
+    @PUT
+    public ListaDeDeseosDTO updateListaDeDeseos (ListaDeDeseosDTO listaDeDeseos){
+        return listaDeDeseos;
+    }
 }
