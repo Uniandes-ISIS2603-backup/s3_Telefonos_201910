@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author estudiante
+ * @author Laura Valentina Prieto Jimenez
  */
 public class FacturaDTO implements Serializable {
     
