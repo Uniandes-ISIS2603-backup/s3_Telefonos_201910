@@ -31,7 +31,7 @@ public class TabletDTO implements Serializable{
     /*
     * Boolean que representa si la Tableta esta registrada o no por un Proveedor
     */
-    private boolean registrado;
+    private Boolean registrado;
     
     /*
     * Constructor por defecto
@@ -85,7 +85,7 @@ public class TabletDTO implements Serializable{
     /**
      * @return the registrado
      */
-    public boolean isRegistrado() {
+    public Boolean isRegistrado() {
         return registrado;
     }
 
