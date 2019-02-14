@@ -19,9 +19,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     
-    @PodamExclude
-    @OneToMany(mappedBy = "listaDeDeseos")
-    private List<TabletEntity> tablets = new ArrayList<TabletEntity>();
+    //@PodamExclude
+    //@OneToMany(mappedBy = "listaDeDeseos")
+    //private List<TabletEntity> tablets = new ArrayList<TabletEntity>();
     
     //@PodamExclude
     //@OneToMany(mappedBy = "listaDeDeseos")
@@ -37,16 +37,16 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     /**
      * @return the tablets
      */
-    public List<TabletEntity> getTablets() {
-        return tablets;
-    }
+    //public List<TabletEntity> getTablets() {
+      //  return tablets;
+    //}
 
     /**
      * @param tablets the tablets to set
      */
-    public void setTablets(List<TabletEntity> tablets) {
-        this.tablets = tablets;
-    }
+    //public void setTablets(List<TabletEntity> tablets) {
+      //  this.tablets = tablets;
+    //}
 
     /**
      * @return the costoEstimado

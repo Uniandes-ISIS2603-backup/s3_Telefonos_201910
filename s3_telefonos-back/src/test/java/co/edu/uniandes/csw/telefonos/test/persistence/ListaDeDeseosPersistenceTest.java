@@ -133,7 +133,7 @@ public class ListaDeDeseosPersistenceTest {
 
         ListaDeDeseosEntity entity = em.find(ListaDeDeseosEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getTablets(), entity.getTablets());
+        Assert.assertEquals(newEntity, entity);
         //Assert.assertEquals(newEntity.getCelulares(), entity.getCelulares());
         
 }
