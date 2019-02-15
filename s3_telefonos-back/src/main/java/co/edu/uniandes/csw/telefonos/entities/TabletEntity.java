@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.telefonos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -14,6 +18,11 @@ import javax.persistence.Entity;
  */
 @Entity
 public class TabletEntity extends BaseEntity implements Serializable{
+    
+    @PodamExclude
+    @ManyToMany
+    private List<ListaDeDeseosEntity> listasDeDeseos = new ArrayList<>();
+    
     
     /*
     * String que representa la marca de la Tablet

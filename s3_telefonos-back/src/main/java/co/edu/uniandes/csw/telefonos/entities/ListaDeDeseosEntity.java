@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -19,12 +20,12 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     
-    //@PodamExclude
-    //@OneToMany(mappedBy = "listaDeDeseos")
-    //private List<TabletEntity> tablets = new ArrayList<TabletEntity>();
+    @PodamExclude
+    @ManyToMany(mappedBy = "listasDeDeseos")
+    private List<TabletEntity> tablets = new ArrayList<TabletEntity>();
     
     //@PodamExclude
-    //@OneToMany(mappedBy = "listaDeDeseos")
+    //@ManyToMany(mappedBy = "listasDeDeseos")
     //private List<CelularEntity> celulares = new ArrayList<CelularEntity>();
     
     private double costoEstimado;
@@ -34,19 +35,7 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     }
     
     
-    /**
-     * @return the tablets
-     */
-    //public List<TabletEntity> getTablets() {
-      //  return tablets;
-    //}
-
-    /**
-     * @param tablets the tablets to set
-     */
-    //public void setTablets(List<TabletEntity> tablets) {
-      //  this.tablets = tablets;
-    //}
+   
 
     /**
      * @return the costoEstimado

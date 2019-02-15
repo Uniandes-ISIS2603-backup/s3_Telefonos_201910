@@ -47,6 +47,7 @@ public class TabletResource {
         return tablet;
     }
     
+
     @DELETE
     public TabletDTO deleteTablet(TabletDTO tablet){
       
