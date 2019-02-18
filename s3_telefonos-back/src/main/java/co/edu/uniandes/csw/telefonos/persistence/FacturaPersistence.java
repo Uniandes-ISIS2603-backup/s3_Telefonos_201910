@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.telefonos.persistence;
 
-import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
+import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,22 +17,22 @@ import javax.persistence.TypedQuery;
  * @author Laura Valentina Prieto Jimenez
  */
 @Stateless
-public class CompradorPersistence {
+public class FacturaPersistence {
 
     @PersistenceContext(unitName = "telefonosPU")
     protected EntityManager em;
 
-    public CompradorEntity create(CompradorEntity compradorEntity) {
-        em.persist(compradorEntity);
-        return compradorEntity;
+    public FacturaEntity create(FacturaEntity facturaEntity) {
+        em.persist(facturaEntity);
+        return facturaEntity;
     }
 
-    public CompradorEntity find(Long compradorId) {
-        return em.find(CompradorEntity.class, compradorId);
+    public FacturaEntity find(Long facturaId) {
+        return em.find(FacturaEntity.class, facturaId);
     }
 
-    public List<CompradorEntity> findAll() {
-        TypedQuery<CompradorEntity> query = em.createQuery("select u from CompradorEntity u", CompradorEntity.class);
+    public List< FacturaEntity> findAll() {
+        TypedQuery< FacturaEntity> query = em.createQuery("select u from  FacturaEntity u", FacturaEntity.class);
         return query.getResultList();
     }
 }

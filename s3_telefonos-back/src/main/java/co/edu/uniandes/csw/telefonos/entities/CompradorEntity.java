@@ -34,5 +34,66 @@ public class CompradorEntity extends BaseEntity implements Serializable{
     Correo con que se registra el comprador
     */
     private String correoElectronico;
+
+    public CompradorEntity(){
+        
+    }
+    
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the contrasenia
+     */
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    /**
+     * @param contrasenia the contrasenia to set
+     */
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    /**
+     * @return the apodo
+     */
+    public String getApodo() {
+        return apodo;
+    }
+
+    /**
+     * @param apodo the apodo to set
+     */
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
+    }
+
+    /**
+     * @return the correoElectronico
+     */
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    /**
+     * @param correoElectronico the correoElectronico to set
+     */
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+    
     
 }
