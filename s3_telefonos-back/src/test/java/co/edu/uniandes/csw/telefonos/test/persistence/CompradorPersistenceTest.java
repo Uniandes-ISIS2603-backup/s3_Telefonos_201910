@@ -42,6 +42,10 @@ public class CompradorPersistenceTest {
 
     private List<CompradorEntity> data = new ArrayList<CompradorEntity>();
 
+    /**
+     * 
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -89,12 +93,15 @@ public class CompradorPersistenceTest {
 
             CompradorEntity entity = factory.manufacturePojo(CompradorEntity.class);
 
-            em.persist(entity);
-
             data.add(entity);
+
+            em.persist(entity);
         }
     }
 
+    /**
+     * Prueba para crear un comprador
+     */
     @Test
     public void createCompradorTest() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -108,6 +115,9 @@ public class CompradorPersistenceTest {
         Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
     }
 
+    /**
+     * Prueba para obtener una lista de compradores
+     */
     @Test
     public void getCompradoresTest() {
         List<CompradorEntity> list = compradorPersistence.findAll();
@@ -123,12 +133,44 @@ public class CompradorPersistenceTest {
         }
     }
 
+    /**
+     * Prueba para obtener un comprador
+     */
     @Test
     public void getCompradorTest() {
         CompradorEntity entity = data.get(0);
         CompradorEntity newEntity = compradorPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
+    }
+    
+    /**
+     * Prueba para actualizar un comprador
+     */
+    @Test
+    public void updateCompradorTest() {
+        CompradorEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        CompradorEntity newEntity = factory.manufacturePojo(CompradorEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        compradorPersistence.update(newEntity);
+
+        CompradorEntity resp = em.find(CompradorEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getUsuario(), resp.getUsuario());
+    }
+    
+    /**
+     * Prueba para eliminar un comprador
+     */
+    @Test
+    public void deleteCompradorTest() {
+        CompradorEntity entity = data.get(0);
+        compradorPersistence.delete(entity.getId());
+        CompradorEntity deleted = em.find(CompradorEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 
 }
