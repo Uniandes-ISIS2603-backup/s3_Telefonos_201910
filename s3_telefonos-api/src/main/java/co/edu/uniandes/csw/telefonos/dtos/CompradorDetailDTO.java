@@ -23,7 +23,7 @@ public class CompradorDetailDTO extends CompradorDTO implements Serializable{
     /*
     Metodos de pago asociados con un comprador
     */
-    //private List<MetodoDePago> metodosDePago;
+    private List<MetodoDePagoDTO> metodosDePago;
     
     /*
     Metodo constructor
@@ -45,6 +45,20 @@ public class CompradorDetailDTO extends CompradorDTO implements Serializable{
      */
     public void setFacturasDeCompra(List<FacturaDTO> facturasDeCompra) {
         this.facturasDeCompra = facturasDeCompra;
+    }
+
+    /**
+     * @return the metodosDePago
+     */
+    public List<MetodoDePagoDTO> getMetodosDePago() {
+        return metodosDePago;
+    }
+
+    /**
+     * @param metodosDePago the metodosDePago to set
+     */
+    public void setMetodosDePago(List<MetodoDePagoDTO> metodosDePago) {
+        this.metodosDePago = metodosDePago;
     }
     
 }

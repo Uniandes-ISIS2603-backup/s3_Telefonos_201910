@@ -37,12 +37,12 @@ public class FacturaDTO implements Serializable {
     /*
     Proveedor relacionado con la factura
     */
-    //private ProveedorDTO proveedorDeCompra;
+    //private ProveedorDTO proveedor;
     
     /*
     Publicacion asociada a la factura
     */
-    //private PublicacionDTO publicacion
+    private PublicacionDTO publicacion;
     
     /*
     Metodo constructor
@@ -106,6 +106,20 @@ public class FacturaDTO implements Serializable {
      */
     public void setComprador(CompradorDTO comprador) {
         this.comprador = comprador;
+    }
+
+    /**
+     * @return the publicacion
+     */
+    public PublicacionDTO getPublicacion() {
+        return publicacion;
+    }
+
+    /**
+     * @param publicacion the publicacion to set
+     */
+    public void setPublicacion(PublicacionDTO publicacion) {
+        this.publicacion = publicacion;
     }
     
     

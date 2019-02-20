@@ -41,12 +41,12 @@ public class CompradorDTO implements Serializable {
     /*
     Carrito de compras del comprador
     */
-    //private CarritoDeComprasDTO carritoDeCompras;
+    private CarritoDeComprasDTO carritoDeCompras;
     
     /*
     Lista de deseos del comprador
     */
-    //private ListaDeDeseosDTO listaDeDeseos;
+    private ListaDeDeseosDTO listaDeDeseos;
    
     /*
     Metodo constructor
@@ -125,5 +125,35 @@ public class CompradorDTO implements Serializable {
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
+
+    /**
+     * @return the carritoDeCompras
+     */
+    public CarritoDeComprasDTO getCarritoDeCompras() {
+        return carritoDeCompras;
+    }
+
+    /**
+     * @param carritoDeCompras the carritoDeCompras to set
+     */
+    public void setCarritoDeCompras(CarritoDeComprasDTO carritoDeCompras) {
+        this.carritoDeCompras = carritoDeCompras;
+    }
+
+    /**
+     * @return the listaDeDeseos
+     */
+    public ListaDeDeseosDTO getListaDeDeseos() {
+        return listaDeDeseos;
+    }
+
+    /**
+     * @param listaDeDeseos the listaDeDeseos to set
+     */
+    public void setListaDeDeseos(ListaDeDeseosDTO listaDeDeseos) {
+        this.listaDeDeseos = listaDeDeseos;
+    }
+    
+    
     
 }
