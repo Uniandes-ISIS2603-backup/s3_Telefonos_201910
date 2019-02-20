@@ -47,6 +47,7 @@ public class CompradorDTO implements Serializable {
     Lista de deseos del comprador
     */
     //private ListaDeDeseosDTO listaDeDeseos;
+   
     /*
     Metodo constructor
     */
