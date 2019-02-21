@@ -67,4 +67,28 @@ public class FacturaPersistence {
         FacturaEntity facturaEntity = em.find(FacturaEntity.class, facturaId);
         em.remove(facturaEntity);
     }
+    
+    /**
+     * Buscauna factura por su referencia
+     * @param referencia Referencia que se quiere buscar
+     * @return Comprador con el correo dado
+     */
+    public FacturaEntity findByReferencia(String referencia) {
+        TypedQuery query = em.createQuery("Select e From FacturaEntity e where e.referencia = :referencia", FacturaEntity.class);
+
+        query = query.setParameter("referencia", referencia);
+
+        List<FacturaEntity> sameReferencia = query.getResultList();
+        FacturaEntity result;
+        if (sameReferencia == null) {
+            result = null;
+        } else if (sameReferencia.isEmpty()) {
+            result = null;
+        } else {
+            result = sameReferencia.get(0);
+        }
+
+        return result;
+    }
+    
 }

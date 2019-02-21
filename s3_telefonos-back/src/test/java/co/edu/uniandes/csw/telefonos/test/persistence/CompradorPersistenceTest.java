@@ -173,4 +173,17 @@ public class CompradorPersistenceTest {
         Assert.assertNull(deleted);
     }
 
+    /**
+     * Prueba para encontrar un comprador por su usuario
+     */
+     @Test
+    public void findCompradorByUsuarioTest() {
+        CompradorEntity entity = data.get(0);
+        CompradorEntity newEntity = compradorPersistence.findByUsuario(entity.getUsuario());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
+
+        newEntity = compradorPersistence.findByUsuario(null);
+        Assert.assertNull(newEntity);
+    }
 }

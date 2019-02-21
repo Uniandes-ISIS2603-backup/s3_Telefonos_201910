@@ -74,10 +74,38 @@ public class CompradorPersistence {
         em.remove(compradorEntity);
     }
 
+    /**
+     * Busca un comprador por su usuario
+     * @param usuario Usuario que se quiere buscar
+     * @return Comprador con el usuario dado
+     */
     public CompradorEntity findByUsuario(String usuario) {
         TypedQuery query = em.createQuery("Select e From CompradorEntity e where e.usuario = :usuario", CompradorEntity.class);
 
         query = query.setParameter("usuario", usuario);
+
+        List<CompradorEntity> sameUsuario = query.getResultList();
+        CompradorEntity result;
+        if (sameUsuario == null) {
+            result = null;
+        } else if (sameUsuario.isEmpty()) {
+            result = null;
+        } else {
+            result = sameUsuario.get(0);
+        }
+
+        return result;
+    }
+    
+    /**
+     * Busca un comprador por su correo
+     * @param correo Correo que se quiere buscar
+     * @return Comprador con el correo dado
+     */
+    public CompradorEntity findByCorreo(String correo) {
+        TypedQuery query = em.createQuery("Select e From CompradorEntity e where e.correoElectronico = :correoElectronico", CompradorEntity.class);
+
+        query = query.setParameter("correoElectronico", correo);
 
         List<CompradorEntity> sameUsuario = query.getResultList();
         CompradorEntity result;
