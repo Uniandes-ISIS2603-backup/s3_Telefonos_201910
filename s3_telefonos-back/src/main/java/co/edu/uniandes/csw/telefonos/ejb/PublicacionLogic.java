@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.telefonos.ejb;
 
+import co.edu.uniandes.csw.telefonos.persistence.PublicacionPersistence;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
