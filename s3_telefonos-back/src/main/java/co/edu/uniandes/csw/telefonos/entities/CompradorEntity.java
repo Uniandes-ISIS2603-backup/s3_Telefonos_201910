@@ -6,7 +6,12 @@
 package co.edu.uniandes.csw.telefonos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -34,6 +39,34 @@ public class CompradorEntity extends BaseEntity implements Serializable{
     Correo con que se registra el comprador
     */
     private String correoElectronico;
+    
+     /*
+    Carrito de compras del comprador
+    */
+    //@PodamExclude
+    //@OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
+    //private CarritoDeComprasEntity carritoDeCompras;
+    
+    /*
+    Lista de deseos del comprador
+    */
+    //@PodamExclude
+    //@OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
+    //private ListaDeDeseosEntity listaDeDeseos;
+    
+    /*
+    Lista de facturas asociadas con un comprador
+    */ 
+    @PodamExclude
+    @OneToMany(mappedBy = "comprador",fetch = FetchType.LAZY )
+    private List<FacturaEntity> facturasDeCompra;
+    
+     /*
+    Metodos de pago asociados con un comprador
+    */
+    //@PodamExclude
+    //@OneToMany(mappedBy = "comprador",fetch = FetchType.EAGER )
+    //private List<MetodoDePagoEntity> metodosDePago;
 
     public CompradorEntity(){
         
@@ -94,6 +127,19 @@ public class CompradorEntity extends BaseEntity implements Serializable{
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
-    
-    
+
+    /**
+     * @return the facturasDeCompra
+     */
+    public List<FacturaEntity> getFacturasDeCompra() {
+        return facturasDeCompra;
+    }
+
+    /**
+     * @param facturasDeCompra the facturasDeCompra to set
+     */
+    public void setFacturasDeCompra(List<FacturaEntity> facturasDeCompra) {
+        this.facturasDeCompra = facturasDeCompra;
+    }
+
 }

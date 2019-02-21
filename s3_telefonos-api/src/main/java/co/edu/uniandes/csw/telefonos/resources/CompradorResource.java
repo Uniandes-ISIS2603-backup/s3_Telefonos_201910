@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.telefonos.resources;
 
 import co.edu.uniandes.csw.telefonos.dtos.CompradorDTO;
+import co.edu.uniandes.csw.telefonos.dtos.CompradorDetailDTO;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -63,9 +64,9 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
  */
 @GET
 @Path("{compradorId: \\d+}")
- public CompradorDTO obtenerCompradorID(@PathParam("compradorId") int id) {
-     CompradorDTO c =new CompradorDTO();
-     c.setId(id);
+ public CompradorDetailDTO obtenerCompradorID(@PathParam("compradorId") Long compradorId) {
+     CompradorDetailDTO c =new CompradorDetailDTO();
+     c.setId(compradorId);
      return c;
  }
    
@@ -77,8 +78,8 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
  */ 
 @PUT
 @Path("{compradorId: \\d+}")
- public CompradorDTO  actualizarCompradorID(@PathParam("compradorId") int id, CompradorDTO comprador){
-     comprador.setId(id);
+ public CompradorDetailDTO  actualizarCompradorID(@PathParam("compradorId") Long compradorId, CompradorDetailDTO comprador){
+     comprador.setId(compradorId);
      return comprador;
  }
   
@@ -89,14 +90,14 @@ public CompradorDTO crearComprador (CompradorDTO comprador){
   */
  @DELETE
  @Path("{compradorId: \\d+}")
- public CompradorDTO  eliminarCompradorID(@PathParam("compradorId") int id){
+ public CompradorDTO  eliminarCompradorID(@PathParam("compradorId") Long compradorId){
      CompradorDTO c =new CompradorDTO();
-     c.setId(id);
+     c.setId(compradorId);
      return c;
  }
  
  @Path("{compradorId: \\d+}/facturas")
-    public Class<CompradorFacturaResource> getAuthorBooksResource(@PathParam("compradorId") Long authorsId) {
+    public Class<CompradorFacturaResource> getCompradorFacturaResource(@PathParam("compradorId") Long compradorId) {
         return CompradorFacturaResource.class;
     }
  

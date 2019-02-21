@@ -31,7 +31,7 @@ import javax.ws.rs.Produces;
 public class FacturaResource {
     private static final Logger LOGGER= Logger.getLogger(FacturaResource.class.getName());
     
-    /**
+ /**
  * Obtiene todas las facturas
  * @return Lista de facturas
  */

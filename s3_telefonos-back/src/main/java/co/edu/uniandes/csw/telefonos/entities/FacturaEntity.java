@@ -8,8 +8,12 @@ package co.edu.uniandes.csw.telefonos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -28,6 +32,27 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     */
     private String referencia;
 
+    /*
+    Comprador relacionado con la factura
+    */
+    @PodamExclude 
+    @ManyToOne
+    private CompradorEntity comprador;
+    
+    /*
+    Proveedor relacionado con la factura
+    */
+    //@PodamExclude 
+    //@ManyToOne
+    //private ProveedorEntity proveedor;
+    
+    /*
+    Publicacion asociada a la factura
+    */
+    //@PodamExclude
+    //@OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    //private PublicacionEntity publicacion;
+    
     /**
      * Constructor
      */
@@ -62,6 +87,19 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
-    
+
+    /**
+     * @return the comprador
+     */
+    public CompradorEntity getComprador() {
+        return comprador;
+    }
+
+    /**
+     * @param comprador the comprador to set
+     */
+    public void setComprador(CompradorEntity comprador) {
+        this.comprador = comprador;
+    }
     
 }

@@ -95,6 +95,9 @@ public class FacturaPersistenceTest {
         }
     }
 
+    /**
+     * Prueba para crear una factura
+     */
     @Test
     public void createFacturaTest() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -108,6 +111,9 @@ public class FacturaPersistenceTest {
         Assert.assertEquals(newEntity.getReferencia(), entity.getReferencia());
     }
 
+    /**
+     * Prueba para obtener una lista de facturas
+     */
     @Test
     public void getFacturasTest() {
         List<FacturaEntity> list = facturaPersistence.findAll();
@@ -123,11 +129,43 @@ public class FacturaPersistenceTest {
         }
     }
 
+    /**
+     * Prueba para obtener una factura
+     */
     @Test
     public void getFacturaTest() {
         FacturaEntity entity = data.get(0);
         FacturaEntity newEntity = facturaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getReferencia(), newEntity.getReferencia());
+    }
+    
+    /**
+     * Prueba para actualizar una factura
+     */
+    @Test
+    public void updateFacturaTest() {
+        FacturaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        facturaPersistence.update(newEntity);
+
+        FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getReferencia(), resp.getReferencia());
+    }
+    
+    /**
+     * Prueba para eliminar una factura
+     */
+    @Test
+    public void deleteFacturaTest() {
+        FacturaEntity entity = data.get(0);
+        facturaPersistence.delete(entity.getId());
+        FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 }
