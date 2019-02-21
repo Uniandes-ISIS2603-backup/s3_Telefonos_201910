@@ -50,5 +50,33 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     public void setCostoEstimado(double costoEstimado) {
         this.costoEstimado = costoEstimado;
     }
+
+    /**
+     * @return the tablets
+     */
+    public List<TabletEntity> getTablets() {
+        return tablets;
+    }
+
+    /**
+     * @param tablets the tablets to set
+     */
+    public void setTablets(List<TabletEntity> tablets) {
+        this.tablets = tablets;
+    }
+    
+   /**
+   * @return the celulares
+   */
+   // public List<CelularEntity> getCelulares() {
+    //    return celulares;
+   // }
+
+   // /**
+   //  * @param celulares the celulares to set
+    // */
+   // public void setCelulares(List<CelularEntity> celulares) {
+    //    this.celulares = celulares;
+   // }
     
 }
