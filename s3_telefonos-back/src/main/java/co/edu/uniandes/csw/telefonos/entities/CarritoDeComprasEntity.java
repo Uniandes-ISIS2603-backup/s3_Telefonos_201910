@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.telefonos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -14,6 +15,10 @@ import javax.persistence.Entity;
  */
 @Entity
 public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
+    
+    //@PodamExclude
+    //@ManyToMany(mappedBy = "carritoDeCompras")
+    //private List<PublicacionEntity> publicaciones = new ArrayList<PublicacionEntity>();
     
     private Integer costoTotal;
     
@@ -35,4 +40,16 @@ public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
         this.costoTotal = costoTotal;
     }
     
+    /**
+     * public List<PublicacionEntity> getPublicaciones(){
+        return this.publicaciones;
+    }
+     */
+    
+    
+   /**
+    *  public void setPublicaciones(List<PublicacionEntity> publicaciones){
+        this.publicaciones = publicaciones;
+    }
+    */
 }
