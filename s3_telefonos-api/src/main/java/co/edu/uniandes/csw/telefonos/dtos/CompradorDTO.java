@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.telefonos.dtos;
 
+import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
 import java.io.Serializable;
 
 /**
@@ -53,7 +54,26 @@ public class CompradorDTO implements Serializable {
     */
     public CompradorDTO(){
         
-        
+    }
+    
+    /**
+     * Crea un objeto CompradorrDTO a partir de un objeto CompradorEntity.
+     *
+     * @param compradorEntity Entidad CompradorEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+    public CompradorDTO(CompradorEntity compradorEntity) {
+        if (compradorEntity != null) {
+            this.id = compradorEntity.getId();
+            this.usuario = compradorEntity.getUsuario();
+            this.contrasenia = compradorEntity.getContrasenia();
+            this.apodo = compradorEntity.getApodo();
+            this.correoElectronico = compradorEntity.getCorreoElectronico();
+            //this.carritoDeCompras =  compradorEntity.getCarritoDeCompras();
+            //this.listaDeDeseos =  compradorEntity.getListaDeDeseos();
+              
+        }
     }
 
     /**
@@ -154,6 +174,23 @@ public class CompradorDTO implements Serializable {
         this.listaDeDeseos = listaDeDeseos;
     }
     
+     /**
+     * Convierte un objeto CompradorDTO a CompradorEntity.
+     *
+     * @return Nueva objeto CompradorEntity.
+     *
+     */
+    public CompradorEntity toEntity() {
+        CompradorEntity compradorEntity = new CompradorEntity();
+        compradorEntity.setId(this.getId());
+        compradorEntity.setUsuario(this.getUsuario());
+        compradorEntity.setContrasenia(this.getContrasenia());
+        compradorEntity.setApodo(this.getApodo());
+        compradorEntity.setCorreoElectronico(this.getCorreoElectronico());
+        //compradorEntity.setCarritoDeCompras(this.getCarritoDeCompras());
+        //compradorEntity.setListaDeDeseos(this.getListaDeDeseos());
+        return compradorEntity;
+    }
     
     
 }
