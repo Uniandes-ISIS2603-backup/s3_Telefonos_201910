@@ -24,7 +24,7 @@ import javax.ws.rs.Produces;
  * @author Andres Felipe Daza
  */
 
-@Path("listasdedeseos")
+@Path("listasDeDeseos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

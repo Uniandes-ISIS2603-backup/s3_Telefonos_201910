@@ -14,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
@@ -36,20 +37,30 @@ public class TabletResource {
     }
     
     @GET
-    public TabletDTO getTablet(TabletDTO tablet){
+    public TabletDTO getTablets(TabletDTO tablet){
+      
+        return tablet;
+    }
+    
+    
+    @GET
+    @Path("{referencia: \\d+}")
+    public TabletDTO getTablet(@PathParam("referencia") String referencia, TabletDTO tablet){
       
         return tablet;
     }
     
     @PUT
-    public TabletDTO updateTablet(TabletDTO tablet){
+    @Path("{referencia: \\d+}")
+    public TabletDTO updateTablet(@PathParam("referencia") String referencia, TabletDTO tablet){
       
         return tablet;
     }
     
 
     @DELETE
-    public TabletDTO deleteTablet(TabletDTO tablet){
+    @Path("{referencia: \\d+}")
+    public TabletDTO deleteTablet(@PathParam("referencia") String referencia, TabletDTO tablet){
       
         return tablet;
     }
