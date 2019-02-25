@@ -113,5 +113,48 @@ public class MetodoDePagoPersistenceTest {
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
-    
+    @Test
+    public void getMetodosDePagoTest(){
+        List<MetodoDePagoEntity> list = metodoDePagoPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for(MetodoDePagoEntity ent : list)
+        {
+            boolean encontrado = false;
+            for (MetodoDePagoEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                   encontrado = true;}
+                
+        }
+            Assert.assertTrue(encontrado);
+    }
+}
+    @Test
+    public void getMetodoDePagoTest(){
+        MetodoDePagoEntity entity = data.get(0);
+        MetodoDePagoEntity newEntity = metodoDePagoPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+                
+    }
+    @Test
+    public void deleteMetodoDePagoTest(){
+        MetodoDePagoEntity entity = data.get(0);
+        metodoDePagoPersistence.delete(entity.getId());
+        MetodoDePagoEntity deleted = em.find(MetodoDePagoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    @Test
+    public void updateMetodoTest(){
+        MetodoDePagoEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        MetodoDePagoEntity newEntity = factory.manufacturePojo(MetodoDePagoEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        metodoDePagoPersistence.update(newEntity);
+
+        MetodoDePagoEntity resp = em.find(MetodoDePagoEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+    }
 }

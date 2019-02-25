@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.telefonos.resources;
 
 
 import co.edu.uniandes.csw.telefonos.dtos.PublicacionDTO;
+import co.edu.uniandes.csw.telefonos.ejb.PublicacionLogic;
+import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.ArrayList;
@@ -32,6 +34,8 @@ import javax.ws.rs.Produces;
  */
 public class PublicacionResource {
     private static final Logger LOGGER = Logger.getLogger(PublicacionResource.class.getName());
+    @Inject
+    private PublicacionLogic logica;
     
     
     /**
@@ -53,7 +57,7 @@ public class PublicacionResource {
  * @return publicacion creado
  */
 @POST
-public PublicacionDTO crearComprador (PublicacionDTO publicacion){
+public PublicacionDTO crearComprador (PublicacionDTO publicacion)throws BusinessLogicException{
     return publicacion;
 }
 

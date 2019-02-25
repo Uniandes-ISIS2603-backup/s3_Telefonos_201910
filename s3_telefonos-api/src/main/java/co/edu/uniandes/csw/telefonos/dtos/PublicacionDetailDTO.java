@@ -19,7 +19,7 @@ public class PublicacionDetailDTO extends PublicacionDTO implements Serializable
     
     public PublicacionDetailDTO()
     {
-        
+       super(); 
     }
 
     public CelularDTO getCelular() {
