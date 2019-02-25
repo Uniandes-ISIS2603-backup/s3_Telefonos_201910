@@ -68,15 +68,17 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
    /**
    * @return the celulares
    */
-   // public List<CelularEntity> getCelulares() {
-    //    return celulares;
-   // }
-
-   // /**
-   //  * @param celulares the celulares to set
-    // */
-   // public void setCelulares(List<CelularEntity> celulares) {
-    //    this.celulares = celulares;
-   // }
+    /*
+    public List<CelularEntity> getCelulares() {
+        return celulares;
+    }
+*/
+   /**
+     * @param celulares the celulares to set
+     */
+    /*
+   public void setCelulares(List<CelularEntity> celulares) {
+      this.celulares = celulares;
+    }*/
     
 }

@@ -8,6 +8,9 @@ package co.edu.uniandes.csw.telefonos.ejb;
 import co.edu.uniandes.csw.telefonos.entities.TabletEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.TabletPersistence;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -21,6 +24,8 @@ public class TabletLogic {
     @Inject
     private TabletPersistence persistence;
     
+    private static final Logger LOGGER = Logger.getLogger(TabletLogic.class.getName());
+    
     public TabletEntity createTablet(TabletEntity tablet)throws BusinessLogicException{
         
         if(persistence.findByReferencia(tablet.getReferencia())!=null){
@@ -29,4 +34,26 @@ public class TabletLogic {
         tablet = persistence.create(tablet);
         return tablet;
     }
+    
+    
+    public List<TabletEntity> getTablets(){
+         LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las tabletas");
+        List<TabletEntity> tablets = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todas las tabletas");
+        return tablets;
+    }
+    
+    public TabletEntity getTablet(String referencia){
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la tableta con referencia = {0}", referencia);
+        TabletEntity tablet = persistence.findByReferencia(referencia);
+        if(tablet == null){
+            LOGGER.log(Level.SEVERE, "La tableta con la referencia = {0} no existe", referencia);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la tableta con referencia = {0}", referencia);
+        return tablet;
+    }
+    
+ 
+    
+    
 }

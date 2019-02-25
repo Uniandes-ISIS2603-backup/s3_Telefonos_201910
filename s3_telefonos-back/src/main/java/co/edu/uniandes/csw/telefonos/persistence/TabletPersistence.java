@@ -42,7 +42,7 @@ public class TabletPersistence {
     
     public List<TabletEntity> findAll(){
         
-        TypedQuery<TabletEntity> query = em.createQuery("select u from EditorialEntity u", TabletEntity.class);
+        TypedQuery<TabletEntity> query = em.createQuery("select u from TabletEntity u", TabletEntity.class);
         return query.getResultList();
     }
     
