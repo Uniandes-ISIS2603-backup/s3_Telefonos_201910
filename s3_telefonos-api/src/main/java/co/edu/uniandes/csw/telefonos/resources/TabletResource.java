@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.telefonos.resources;
 
 import co.edu.uniandes.csw.telefonos.dtos.TabletDTO;
+import co.edu.uniandes.csw.telefonos.ejb.TabletLogic;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -27,6 +29,9 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class TabletResource {
+    
+    @Inject
+    private TabletLogic tabletLogic;
     
     private static final Logger LOGGER = Logger.getLogger(TabletResource.class.getName());
     

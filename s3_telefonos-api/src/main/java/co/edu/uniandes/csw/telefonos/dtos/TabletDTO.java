@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.telefonos.dtos;
 
+import co.edu.uniandes.csw.telefonos.entities.TabletEntity;
 import java.io.Serializable;
 
 /**
@@ -94,6 +95,24 @@ public class TabletDTO implements Serializable{
      */
     public void setRegistrado(boolean registrado) {
         this.registrado = registrado;
+    }
+    
+    public TabletEntity toEntity(){
+        TabletEntity entity = new TabletEntity();
+        entity.setMarca(this.marca);
+        entity.setModelo(this.modelo);
+        entity.setReferencia(this.referencia);
+        entity.setRegistrado(this.registrado);
+        return entity;
+    }
+    
+    public TabletDTO(TabletEntity entity){
+        if(entity!=null){
+            this.marca = entity.getMarca();
+            this.modelo = entity.getModelo();
+            this.referencia = entity.getReferencia();
+            this.registrado = entity.isRegistrado();
+        }
     }
     
 }
