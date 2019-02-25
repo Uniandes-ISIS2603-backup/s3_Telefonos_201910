@@ -7,10 +7,13 @@ package co.edu.uniandes.csw.telefonos.resources;
 
 import co.edu.uniandes.csw.telefonos.dtos.CompradorDTO;
 import co.edu.uniandes.csw.telefonos.dtos.CompradorDetailDTO;
+import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
+import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,6 +35,9 @@ import javax.ws.rs.Produces;
 public class CompradorResource {
  
 private static final Logger LOGGER= Logger.getLogger(CompradorResource.class.getName());  
+
+@Inject
+private CompradorLogic compradorLogic;
  
 /**
  * Obtiene todos los compradores
@@ -53,8 +59,9 @@ public List<CompradorDTO> obtenerCompradores (){
  * @return comprador creado
  */
 @POST
-public CompradorDTO crearComprador (CompradorDTO comprador){
-    return comprador;
+public CompradorDTO crearComprador (CompradorDTO comprador) throws BusinessLogicException{
+    CompradorDTO compradorDTO = new CompradorDTO(compradorLogic.createComprador(comprador.toEntity()));
+    return compradorDTO;
 }
 
 /**
