@@ -144,10 +144,18 @@ public class ListaDeDeseosPersistenceTest {
      *
      */
     @Test
-    public void deleteEditorialTest() {
+    public void deleteListaDeDeseosTest() {
         ListaDeDeseosEntity entity = data.get(0);
         listaPersistence.delete(entity.getId());
         ListaDeDeseosEntity deleted = em.find(ListaDeDeseosEntity.class, entity.getId());
         Assert.assertNull(deleted);
 }
+    
+    @Test
+    public void FindTabletByReferencia(){
+        ListaDeDeseosEntity entity=data.get(0);
+        ListaDeDeseosEntity newEntity = listaPersistence.findByIdentificador(entity.getIdentificador());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getIdentificador(), entity.getIdentificador());
+    }
 }

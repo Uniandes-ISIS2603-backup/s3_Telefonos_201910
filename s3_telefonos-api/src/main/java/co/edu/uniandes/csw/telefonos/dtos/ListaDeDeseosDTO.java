@@ -14,6 +14,8 @@ import java.io.Serializable;
 public class ListaDeDeseosDTO implements Serializable{
     
     private Double costoEstimado;
+    
+    private Long identificador;
 
     public ListaDeDeseosDTO(){
         
@@ -30,5 +32,19 @@ public class ListaDeDeseosDTO implements Serializable{
      */
     public void setCostoEstimado(double costoEstimado) {
         this.costoEstimado = costoEstimado;
+    }
+
+    /**
+     * @return the identificador
+     */
+    public Long getIdentificador() {
+        return identificador;
+    }
+
+    /**
+     * @param identificador the identificador to set
+     */
+    public void setIdentificador(Long identificador) {
+        this.identificador = identificador;
     }
 }

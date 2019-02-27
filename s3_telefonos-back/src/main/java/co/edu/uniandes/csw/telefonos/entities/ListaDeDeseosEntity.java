@@ -29,6 +29,8 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     //private List<CelularEntity> celulares = new ArrayList<CelularEntity>();
     
     private double costoEstimado;
+    
+    private Long identificador;
 
     public ListaDeDeseosEntity(){
         
@@ -63,6 +65,20 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
      */
     public void setTablets(List<TabletEntity> tablets) {
         this.tablets = tablets;
+    }
+
+    /**
+     * @return the identificador
+     */
+    public Long getIdentificador() {
+        return identificador;
+    }
+
+    /**
+     * @param identificador the identificador to set
+     */
+    public void setIdentificador(Long identificador) {
+        this.identificador = identificador;
     }
     
    /**

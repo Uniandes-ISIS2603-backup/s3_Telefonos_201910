@@ -183,4 +183,21 @@ public class ListaDeDeseosLogicTest {
         lista = listaLogic.agregarCelular(lista, celular);
     }
 */
+    
+    @Test
+    public void createListaDeDeseosTest() throws BusinessLogicException{
+        ListaDeDeseosEntity newEntity = factory.manufacturePojo(ListaDeDeseosEntity.class);
+        ListaDeDeseosEntity resultado = listaLogic.createListaDeDeseos(newEntity);
+        Assert.assertNotNull(resultado);
+        ListaDeDeseosEntity entity = em.find(ListaDeDeseosEntity.class, resultado.getId());
+        Assert.assertEquals(newEntity.getIdentificador(), entity.getIdentificador());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createListaDeDeseosConMismoIdentificadorTest() throws BusinessLogicException{
+        ListaDeDeseosEntity newEntity = factory.manufacturePojo(ListaDeDeseosEntity.class);
+        newEntity.setIdentificador(data.get(0).getIdentificador());
+        listaLogic.createListaDeDeseos(newEntity);
+    }
 }
