@@ -5,13 +5,16 @@
  */
 package co.edu.uniandes.csw.telefonos.resources;
 
+import co.edu.uniandes.csw.telefonos.ejb.CompradorListaDeDeseosLogic;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
 import co.edu.uniandes.csw.telefonos.ejb.ListaDeDeseosLogic;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -27,13 +30,24 @@ public class CompradorListaDeDeseosResource {
     @Inject 
     private CompradorLogic compradorLogic;
     
-    //@Inject
-    //private CompradorListaDeDeseosLogic compradorListaLogic;
+    @Inject
+    private CompradorListaDeDeseosLogic compradorListaLogic;
     
     @Inject 
     private ListaDeDeseosLogic listaDeDeseosLogic;
     
-    
+    /*
+    *Vacia la lista de deseos de un comprador
+    *
+    *@param idComprador id del comprador al que se le vaciara la lista de deseos
+    */
+    @PUT
+    public void vaciarListaDeDeseos(Long idComprador){
+        if(compradorLogic.getComprador(idComprador) == null){
+            throw new WebApplicationException("El recurso /compradores/" + idComprador + " no existe.", 404);
+        }
+        compradorListaLogic.vaciarListaDeDeseos(idComprador);
+    }
 
     
 }

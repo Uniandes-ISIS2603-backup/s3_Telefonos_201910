@@ -50,9 +50,9 @@ public class CompradorEntity extends BaseEntity implements Serializable{
     /*
     Lista de deseos del comprador
     */
-    //@PodamExclude
-    //@OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
-    //private ListaDeDeseosEntity listaDeDeseos;
+   @PodamExclude
+   @OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
+    private ListaDeDeseosEntity listaDeDeseos;
     
     /*
     Lista de facturas asociadas con un comprador
@@ -140,6 +140,20 @@ public class CompradorEntity extends BaseEntity implements Serializable{
      */
     public void setFacturasDeCompra(List<FacturaEntity> facturasDeCompra) {
         this.facturasDeCompra = facturasDeCompra;
+    }
+
+    /**
+     * @return the listaDeDeseos
+     */
+    public ListaDeDeseosEntity getListaDeDeseos() {
+        return listaDeDeseos;
+    }
+
+    /**
+     * @param listaDeDeseos the listaDeDeseos to set
+     */
+    public void setListaDeDeseos(ListaDeDeseosEntity listaDeDeseos) {
+        this.listaDeDeseos = listaDeDeseos;
     }
 
 }
