@@ -19,7 +19,11 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     //fecha de creación de la publicación
     private Date fechaCreacion;
     //arreglo de imagenes que se van a  usar en el post
-    private ArrayList<String> imagenes; 
+    private ArrayList<String> imagenes;
+    //celular que esta asociado a la publicación, tiene que ser null en caso de que la publicación ya tenga asociada 
+    private CelularEntity celular;
+    //Tablet que esta aspciada a la publicación, tiene que ser null si tiene una publicación asociada
+    private TabletEntity tablet;
 
     public Date getFechaCreacion() {
         return fechaCreacion;
@@ -27,6 +31,22 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public CelularEntity getCelular() {
+        return celular;
+    }
+
+    public void setCelular(CelularEntity celular) {
+        this.celular = celular;
+    }
+
+    public TabletEntity getTablet() {
+        return tablet;
+    }
+
+    public void setTablet(TabletEntity tablet) {
+        this.tablet = tablet;
     }
 
     public ArrayList<String> getImagenes() {
