@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.telefonos.dtos;
  *
  * @author estudiante
  */
+import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
 import java.io.Serializable;
 
 public class CelularDTO implements Serializable {
@@ -22,6 +23,10 @@ public class CelularDTO implements Serializable {
 	public CelularDTO(){
 		
 	}
+        public CelularDTO(CelularEntity celularEntity){
+		
+	}
+	
 	
 	public String getMarca() {
 		return marca;

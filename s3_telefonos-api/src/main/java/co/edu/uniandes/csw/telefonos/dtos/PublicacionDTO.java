@@ -19,6 +19,8 @@ public class PublicacionDTO implements Serializable{
     private Date fechaCreacion;
     //arreglo de imagenes que se van a  usar en el post
     private ArrayList<String> imagenes; 
+    //precio del objeto que esta siendo puesto en venta
+    private Double precio;
     //id
     private Long id;
     
@@ -30,6 +32,7 @@ public class PublicacionDTO implements Serializable{
    {
        this.fechaCreacion = publicacionEntity.getFechaCreacion();
        this.imagenes = publicacionEntity.getImagenes();
+       this.precio = publicacionEntity.getPrecio();
        this.id = publicacionEntity.getId();
        
    }
@@ -49,6 +52,13 @@ public class PublicacionDTO implements Serializable{
     public void setImagenes(ArrayList<String> imagenes) {
         this.imagenes = imagenes;
     }
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
 
     public Long getId() {
         return id;
@@ -63,6 +73,7 @@ public class PublicacionDTO implements Serializable{
         PublicacionEntity entidad = new PublicacionEntity();
         entidad.setFechaCreacion(this.fechaCreacion);
         entidad.setImagenes(this.imagenes);
+        entidad.setPrecio(this.precio);
         entidad.setId(this.id);
         return entidad;
     }

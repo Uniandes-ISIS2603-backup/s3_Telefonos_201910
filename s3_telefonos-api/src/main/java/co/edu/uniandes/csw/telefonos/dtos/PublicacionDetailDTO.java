@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.telefonos.dtos;
 
+import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
+import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.io.Serializable;
 
 /**
@@ -16,10 +18,26 @@ public class PublicacionDetailDTO extends PublicacionDTO implements Serializable
     public CelularDTO celular;
     //tablet si la posee
     public TabletDTO tablet;
+    public PublicacionDetailDTO(){
     
-    public PublicacionDetailDTO()
-    {
-       super(); 
+}
+    
+    public PublicacionDetailDTO(PublicacionEntity publicacionEntity ) throws BusinessLogicException{
+       super(publicacionEntity); 
+       if(publicacionEntity != null){
+           if(publicacionEntity.getCelular()!= null && publicacionEntity.getTablet()== null ){
+               CelularDTO pCelular = new CelularDTO(publicacionEntity.getCelular());
+               this.celular = pCelular;
+           }
+           if(publicacionEntity.getCelular()== null && publicacionEntity.getTablet()!= null ){
+               TabletDTO pTablet = new TabletDTO(publicacionEntity.getTablet());
+               this.tablet = pTablet;
+           }
+       }
+       else{
+           throw new BusinessLogicException();
+                   }
+       
     }
 
     public CelularDTO getCelular() {

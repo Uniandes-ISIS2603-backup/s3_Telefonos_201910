@@ -7,11 +7,14 @@ package co.edu.uniandes.csw.telefonos.resources;
 
 
 import co.edu.uniandes.csw.telefonos.dtos.PublicacionDTO;
+import co.edu.uniandes.csw.telefonos.dtos.PublicacionDetailDTO;
 import co.edu.uniandes.csw.telefonos.ejb.PublicacionLogic;
+import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.logging.Logger;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -23,7 +26,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-@Path("publicacion")
+@Path("publicaciones")
 @Produces("aplication/json")
 @Consumes("aplication/json")
 @RequestScoped
@@ -35,7 +38,7 @@ import javax.ws.rs.Produces;
 public class PublicacionResource {
     private static final Logger LOGGER = Logger.getLogger(PublicacionResource.class.getName());
     @Inject
-    private PublicacionLogic logica;
+    private PublicacionLogic publicacionLogic;
     
     
     /**
@@ -43,12 +46,11 @@ public class PublicacionResource {
  * @return Lista de publicaciones
  */
     @GET
-    public List<PublicacionDTO> obtenerPublicaciones() {
-        List<PublicacionDTO> result = new ArrayList();
-        PublicacionDTO x = new PublicacionDTO();
-        x.setId(Long.MIN_VALUE);
-        result.add(x);
-        return result;
+    public List<PublicacionDetailDTO> obtenerPublicaciones() {
+           LOGGER.info("PublicacionResource getPublicaciones: input: void");
+        List<PublicacionDetailDTO> listaPublicaciones = listEntity2DetailDTO(publicacionLogic.getPublicaciones());
+        LOGGER.log(Level.INFO, "PublicacionResource getPublicaciones: output: {0}", listaPublicaciones);
+        return listaPublicaciones;
         
     }
     /**
@@ -101,6 +103,28 @@ public PublicacionDTO crearComprador (PublicacionDTO publicacion)throws Business
  }
  
  
+ /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos EditorialEntity a una lista de
+     * objetos PublicacionDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de publicaciones de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de publicacion en forma DTO (json)
+     */
+    private List<PublicacionDetailDTO> listEntity2DetailDTO(List<PublicacionEntity> entityList) {
+        List<PublicacionDetailDTO> list = new ArrayList<>();
+        for (PublicacionEntity entity : entityList) {
+            try{
+            list.add(new PublicacionDetailDTO(entity));
+            }
+            catch(BusinessLogicException e){
+            }    
+            
+        }
+        return list;
     
     
+}
 }
