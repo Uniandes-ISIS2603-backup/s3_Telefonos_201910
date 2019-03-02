@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.telefonos.persistence;
 
 import co.edu.uniandes.csw.telefonos.entities.ListaDeDeseosEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -48,6 +50,14 @@ public class ListaDeDeseosPersistence {
         return em.find(ListaDeDeseosEntity.class, listaId);
 }
     
+    
+    public List<ListaDeDeseosEntity> findAll(){
+        
+        TypedQuery<ListaDeDeseosEntity> query = em.createQuery("select u from ListaDeDeseosEntity u", ListaDeDeseosEntity.class);
+        return query.getResultList();
+    }
+    
+    
      /**
      * Actualiza una lista de deseos.
      *
@@ -75,4 +85,21 @@ public class ListaDeDeseosPersistence {
         em.remove(entity);
         LOGGER.log(Level.INFO, "Saliendo de borrar la lista de deseos con id = {0}", listaId);
 }
+    
+    public ListaDeDeseosEntity findByIdentificador(Long pIdentificador){
+        LOGGER.log(Level.INFO, "Buscando lista de deseos con identificador ", pIdentificador);    
+        TypedQuery query=em.createQuery("Select e From ListaDeDeseosEntity e where e.identificador = :identificador", ListaDeDeseosEntity.class);
+        query = query.setParameter("identificador", pIdentificador);
+        List<ListaDeDeseosEntity> mismoIdentificador = query.getResultList();
+        ListaDeDeseosEntity resultado;
+        if(mismoIdentificador == null){
+            resultado=null;
+        }else if(mismoIdentificador.isEmpty()){
+            resultado = null;
+        }else{
+            resultado=mismoIdentificador.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar lista de deseos con identificador ", pIdentificador);     
+        return resultado;
+    }
 }

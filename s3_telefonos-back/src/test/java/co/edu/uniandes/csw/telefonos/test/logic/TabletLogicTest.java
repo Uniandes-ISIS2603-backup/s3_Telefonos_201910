@@ -123,4 +123,18 @@ public class TabletLogicTest {
         tabletLogic.createTablet(newEntity);
     }
     
+    @Test
+    public void getTabletsTest(){
+        List<TabletEntity> list = tabletLogic.getTablets();
+        Assert.assertEquals(data.size(), list.size());
+        for(TabletEntity entity: list){
+            boolean encontro = false;
+            for(TabletEntity storedEntity: data){
+                if(entity.getId().equals(storedEntity.getId())){
+                    encontro = true;
+                }
+            }
+            Assert.assertTrue(encontro);
+        }
+    }
 }

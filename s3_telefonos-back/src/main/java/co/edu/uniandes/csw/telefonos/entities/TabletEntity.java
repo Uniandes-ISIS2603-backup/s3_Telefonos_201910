@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -20,7 +21,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class TabletEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<ListaDeDeseosEntity> listasDeDeseos = new ArrayList<>();
     
     

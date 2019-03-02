@@ -29,9 +29,11 @@ public class CompradorDetailDTO extends CompradorDTO implements Serializable{
     Metodo constructor
     */
     public CompradorDetailDTO(){
-        
-        
+        super();
     }
+    
+    //Agregar constructor que recibe entity
+    
 
     /**
      * @return the facturasDeCompra

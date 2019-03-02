@@ -15,60 +15,53 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author Laura Valentina Prieto Jimenez
+ * @author Daniel Babativa, Andres Daza, Rodrigo Gonzalez y Laura Prieto
  */
 @Entity
-public class CompradorEntity extends BaseEntity implements Serializable{
+public class ProveedorEntity extends BaseEntity implements Serializable{
     
     /*
-    Usuario con que se registra el comprador
+    Usuario con que se registra el proveedor
     */
     private String usuario;
     
     /*
-    Contrasenia con que se registra el comprador
+    Contrasenia con que se registra el  proveedor
     */
     private String contrasenia;
     
     /*
-    Apodo (nickname) con que se registra el comprador
+   Nombre con que se registra el proveedor
     */
-    private String apodo;
+    private String nombre;
     
     /*
-    Correo con que se registra el comprador
+    Correo con que se registra el  proveedor
     */
     private String correoElectronico;
-    
-     /*
-    Carrito de compras del comprador
-    */
-    //@PodamExclude
-    //@OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
-    //private CarritoDeComprasEntity carritoDeCompras;
-    
-    /*
-    Lista de deseos del comprador
-    */
-   @PodamExclude
-   @OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
-    private ListaDeDeseosEntity listaDeDeseos;
-    
+
     /*
     Lista de facturas asociadas con un comprador
     */ 
     @PodamExclude
-    @OneToMany(mappedBy = "comprador",fetch = FetchType.LAZY )
-    private List<FacturaEntity> facturasDeCompra;
+    @OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY )
+    private List<FacturaEntity> facturasDeVenta;
     
-     /*
-    Metodos de pago asociados con un comprador
+    /*
+    Seguros asociados con un proveedor
     */
     //@PodamExclude
-    //@OneToMany(mappedBy = "comprador",fetch = FetchType.EAGER )
-    //private List<MetodoDePagoEntity> metodosDePago;
+    //@OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
+    //private List<SeguroEntity> seguros;
+    
+     /*
+    Publicaciones asociadas con un proveedor
+    */
+    //@PodamExclude
+    //@OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
+    //private List<PublicacionEntity> publicaciones;
 
-    public CompradorEntity(){
+    public ProveedorEntity(){
         
     }
     
@@ -101,20 +94,6 @@ public class CompradorEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the apodo
-     */
-    public String getApodo() {
-        return apodo;
-    }
-
-    /**
-     * @param apodo the apodo to set
-     */
-    public void setApodo(String apodo) {
-        this.apodo = apodo;
-    }
-
-    /**
      * @return the correoElectronico
      */
     public String getCorreoElectronico() {
@@ -132,28 +111,28 @@ public class CompradorEntity extends BaseEntity implements Serializable{
      * @return the facturasDeCompra
      */
     public List<FacturaEntity> getFacturasDeCompra() {
-        return facturasDeCompra;
+        return facturasDeVenta;
     }
 
     /**
-     * @param facturasDeCompra the facturasDeCompra to set
+     * @param facturasDeVenta the facturasDeCompra to set
      */
-    public void setFacturasDeCompra(List<FacturaEntity> facturasDeCompra) {
-        this.facturasDeCompra = facturasDeCompra;
+    public void setFacturasDeCompra(List<FacturaEntity> facturasDeVenta) {
+        this.facturasDeVenta = facturasDeVenta;
     }
 
     /**
-     * @return the listaDeDeseos
+     * @return the nombre
      */
-    public ListaDeDeseosEntity getListaDeDeseos() {
-        return listaDeDeseos;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
-     * @param listaDeDeseos the listaDeDeseos to set
+     * @param nombre the nombre to set
      */
-    public void setListaDeDeseos(ListaDeDeseosEntity listaDeDeseos) {
-        this.listaDeDeseos = listaDeDeseos;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }
