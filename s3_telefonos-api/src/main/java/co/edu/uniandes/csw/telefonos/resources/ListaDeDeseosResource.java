@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.telefonos.resources;
 import co.edu.uniandes.csw.telefonos.dtos.ListaDeDeseosDTO;
 import co.edu.uniandes.csw.telefonos.dtos.TabletDTO;
 import co.edu.uniandes.csw.telefonos.dtos.ListaDeDeseosDetailDTO;
+import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.logging.Logger;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -21,7 +22,7 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author Andres Felipe Daza
+ * @author Andres Felipe Daza Diaz
  */
 
 @Path("listasDeDeseos")
@@ -35,7 +36,7 @@ public class ListaDeDeseosResource {
     
     
     @POST
-    public ListaDeDeseosDTO createListaDeDeseos(ListaDeDeseosDTO listaDeDeseos){
+    public ListaDeDeseosDTO createListaDeDeseos(ListaDeDeseosDTO listaDeDeseos)throws BusinessLogicException{
         
         return listaDeDeseos;
     }
