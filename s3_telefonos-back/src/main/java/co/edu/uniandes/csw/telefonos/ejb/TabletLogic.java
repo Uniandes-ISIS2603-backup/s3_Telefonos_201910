@@ -70,7 +70,7 @@ public class TabletLogic {
      *
      * @param tabletId: id de la factura a borrar
      */
-    public void deleteFactura(Long tabletId) {
+    public void deleteTablet(Long tabletId) {
         persistence.delete(tabletId);
     }
     
