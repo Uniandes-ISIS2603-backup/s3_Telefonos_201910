@@ -25,6 +25,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 @Path("publicaciones")
 @Produces("aplication/json")
@@ -60,7 +61,15 @@ public class PublicacionResource {
  */
 @POST
 public PublicacionDTO crearComprador (PublicacionDTO publicacion)throws BusinessLogicException{
-    return publicacion;
+      LOGGER.log(Level.INFO, "PublicacionResource createPublicacion: input: {0}", publicacion);
+        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
+        PublicacionEntity publicacionEntity = publicacion.toEntity();
+        // Invoca la lógica para crear la editorial nueva
+        PublicacionEntity nuevaPublicacionEntity = publicacionLogic.createPublicacion(publicacionEntity);
+        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
+        PublicacionDTO nuevaPublicacionDTO = new PublicacionDTO(nuevaPublicacionEntity);
+        LOGGER.log(Level.INFO, "PublicacionResource createPublicacion: output: {0}", nuevaPublicacionDTO);
+        return nuevaPublicacionDTO;
 }
 
 /**
@@ -70,10 +79,18 @@ public PublicacionDTO crearComprador (PublicacionDTO publicacion)throws Business
  */
 @GET
 @Path("{publicacionId: \\d+}")
- public PublicacionDTO obtenerPublicacionID(@PathParam("publicacionId") Long id) {
-     PublicacionDTO x =new PublicacionDTO();
-     x.setId(id);
-     return x;
+ public PublicacionDetailDTO obtenerPublicacionID(@PathParam("publicacionesId") Long publicacionesId)throws WebApplicationException,BusinessLogicException {
+     LOGGER.log(Level.INFO, "PublicacionResource getPublicacion: input: {0}", publicacionesId);
+        PublicacionEntity publicacionEntity = publicacionLogic.getPublicacion(publicacionesId);
+        if (publicacionEntity == null) {
+            throw new WebApplicationException("El recurso /publicaciones/" + publicacionesId + " no existe.", 404);
+        }
+        
+        PublicacionDetailDTO detailDTO = new PublicacionDetailDTO(publicacionEntity);
+        
+        
+        LOGGER.log(Level.INFO, "PublicacionResource getPublicacion: output: {0}", detailDTO);
+        return detailDTO;
  }
    
 /**
@@ -84,10 +101,21 @@ public PublicacionDTO crearComprador (PublicacionDTO publicacion)throws Business
  */ 
 @PUT
 @Path("{publicacionId: \\d+}")
- public PublicacionDTO  actualizarPublicacionID(@PathParam("publicacionId") Long id, PublicacionDTO publicacion){
-     publicacion.setId(id);
-     return publicacion;
- }
+ public PublicacionDTO  actualizarPublicacionID(@PathParam("publicacionId") Long publicacionId, PublicacionDTO publicacion) throws WebApplicationException, BusinessLogicException{
+      
+        LOGGER.log(Level.INFO, "PublicacionResource updatePublicacion: input: id:{0} , publicacion: {1}", new Object[]{publicacionId, publicacion});
+        publicacion.setId(publicacionId);
+        if (publicacionLogic.getPublicacion(publicacionId) == null) {
+            throw new WebApplicationException("El recurso /publicaciones/" + publicacionId + " no existe.", 404);
+        }
+        PublicacionDetailDTO detailDTO = new PublicacionDetailDTO(publicacionLogic.updatePublicacion(publicacionId, publicacion.toEntity()));
+        LOGGER.log(Level.INFO, "PublicacionResource updatePublicacion: output: {0}", detailDTO);
+        return detailDTO;
+
+    }
+
+    
+ 
   
  /**
   * Elimina un publicacion con identificador id
@@ -96,10 +124,13 @@ public PublicacionDTO crearComprador (PublicacionDTO publicacion)throws Business
   */
  @DELETE
  @Path("{publicacionId: \\d+}")
- public PublicacionDTO  eliminarPublicacionID(@PathParam("publicacionId") long id){
-     PublicacionDTO x =new PublicacionDTO();
-     x.setId(id);
-     return x;
+ public void  eliminarPublicacionID(@PathParam("publicacionId") Long publicacionId)throws WebApplicationException,BusinessLogicException{
+    LOGGER.log(Level.INFO, "EditorialResource deleteEditorial: input: {0}", publicacionId);
+        if (publicacionLogic.getPublicacion(publicacionId) == null) {
+            throw new WebApplicationException("El recurso /publicaciones/" + publicacionId + " no existe.", 404);
+        }
+        publicacionLogic.deletePublicacion(publicacionId);
+        LOGGER.info("PublicacionResource deletePublicacion: output: void");
  }
  
  

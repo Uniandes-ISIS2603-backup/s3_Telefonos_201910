@@ -98,7 +98,7 @@ public class PublicacionLogic {
      * @param publicacionesId: id de la publicacion a borrar
      * @throws BusinessLogicException Si la publicacion a eliminar tiene libros.
      */
-    public void deleteEditorial(Long publicacionesId) throws BusinessLogicException {
+    public void deletePublicacion(Long publicacionesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la publicacion con id = {0}", publicacionesId);
         persistence.delete(publicacionesId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la publicacion con id = {0}", publicacionesId);
