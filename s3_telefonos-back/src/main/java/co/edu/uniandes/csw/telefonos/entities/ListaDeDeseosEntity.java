@@ -26,9 +26,9 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     @ManyToMany(mappedBy = "listasDeDeseos", fetch = FetchType.EAGER)
     private List<TabletEntity> tablets = new ArrayList<TabletEntity>();
     
-    //@PodamExclude
-    //@ManyToMany(mappedBy = "listasDeDeseos")
-    //private List<CelularEntity> celulares = new ArrayList<CelularEntity>();
+    @PodamExclude
+    @ManyToMany(mappedBy = "listasDeDeseos")
+    private List<CelularEntity> celulares = new ArrayList<CelularEntity>();
     
     /*
     Comprador de la lista de deseos
@@ -107,17 +107,19 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
    /**
    * @return the celulares
    */
-    /*
+  
     public List<CelularEntity> getCelulares() {
         return celulares;
     }
-*/
+
    /**
      * @param celulares the celulares to set
      */
-    /*
+    
    public void setCelulares(List<CelularEntity> celulares) {
       this.celulares = celulares;
-    }*/
+    }
+   
+   
     
 }

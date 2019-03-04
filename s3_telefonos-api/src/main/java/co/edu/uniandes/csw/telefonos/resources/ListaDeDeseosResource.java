@@ -8,7 +8,10 @@ package co.edu.uniandes.csw.telefonos.resources;
 import co.edu.uniandes.csw.telefonos.dtos.ListaDeDeseosDTO;
 import co.edu.uniandes.csw.telefonos.dtos.TabletDTO;
 import co.edu.uniandes.csw.telefonos.dtos.ListaDeDeseosDetailDTO;
+import co.edu.uniandes.csw.telefonos.ejb.ListaDeDeseosLogic;
+import co.edu.uniandes.csw.telefonos.entities.ListaDeDeseosEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -18,7 +21,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -34,27 +39,68 @@ public class ListaDeDeseosResource {
     
     private static final Logger LOGGER = Logger.getLogger(ListaDeDeseosResource.class.getName());
     
+    private ListaDeDeseosLogic listaLogic;
     
     @POST
     public ListaDeDeseosDTO createListaDeDeseos(ListaDeDeseosDTO listaDeDeseos)throws BusinessLogicException{
-        
-        return listaDeDeseos;
+        ListaDeDeseosEntity listaEntity = listaDeDeseos.toEntity();
+        ListaDeDeseosEntity nuevaListaEntity = listaLogic.createListaDeDeseos(listaEntity);
+        ListaDeDeseosDTO nuevaListaDTO = new ListaDeDeseosDTO(nuevaListaEntity);
+        return nuevaListaDTO;
     }
     
 
+    /**
+     * Busca y devuelve todas las listas de deseos que existen en la aplicacion.
+     *
+     * @return JSONArray {@link ListaDeDeseosDetailDTO} - Las listas de deseos
+     * encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     */
     @GET
-    public ListaDeDeseosDTO getListaDeDeseos (ListaDeDeseosDTO listaDeDeseos){
-        
-        return listaDeDeseos;
+    public List<ListaDeDeseosDetailDTO> getListasDeDeseos (){
+        List<ListaDeDeseosDetailDTO> listaListas = listEntity2DetailDTO(listaLogic.getListasDeDeseos());
+        return listaListas;
     }
     
-    @DELETE
-    public ListaDeDeseosDTO deleteListaDeDeseos (ListaDeDeseosDTO listaDeDeseos){
-        return listaDeDeseos;
-    }
+     /**
+     * Busca la lista de deseos con el id asociado recibido en la URL y la devuelve.
+     *
+     * @param listaId Identificador de la lista de deseos que se esta buscando.
+     * Este debe ser una cadena de dígitos.
+     * @return JSON {@link ListaDeDeseosDetailDTO} - La lista de deseos buscada
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la lista de deseos.
+     */
+    @GET
+    @Path("{listaId: \\d+}")
+    public ListaDeDeseosDetailDTO getListaDeDeseos(@PathParam("listaId") Long listaId) throws WebApplicationException {
+       
+        ListaDeDeseosEntity listaEntity = listaLogic.getListaDeDeseos(listaId);
+        if (listaEntity == null) {
+            throw new WebApplicationException("El recurso /listasDeDeseos/" + listaId + " no existe.", 404);
+        }
+        ListaDeDeseosDetailDTO detailDTO = new ListaDeDeseosDetailDTO(listaEntity);
+        return detailDTO;
+}
+   
     
-    @PUT
-    public ListaDeDeseosDTO updateListaDeDeseos (ListaDeDeseosDTO listaDeDeseos){
-        return listaDeDeseos;
-    }
+    
+    
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos ListaDeDeseosEntity a una lista de
+     * objetos ListaDeDeseosDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de listas de deseos de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de listas de deseos en forma DTO (json)
+     */
+    private List<ListaDeDeseosDetailDTO> listEntity2DetailDTO(List<ListaDeDeseosEntity> entityList) {
+        List<ListaDeDeseosDetailDTO> list = new ArrayList<>();
+        for (ListaDeDeseosEntity entity : entityList) {
+            list.add(new ListaDeDeseosDetailDTO(entity));
+        }
+        return list;
+}
 }

@@ -38,16 +38,7 @@ public class ListaDeDeseosLogic {
         return lista;
     }
     
-    public ListaDeDeseosEntity agregarTableta(ListaDeDeseosEntity listaEntity,TabletEntity tabletEntity )throws BusinessLogicException{
-        ArrayList<TabletEntity> tablets = (ArrayList<TabletEntity>) listaEntity.getTablets();
-        //ArrayList<CelularEntity> celulares = (ArrayList<CelularEntity>) listaEntity.getCelulares();
-        if(tablets.size()/*+celulares.size()*/>=10){
-            throw new BusinessLogicException("No se pudo registrar la tableta en la lista de deseos. Solo se pueden tener 10 dispositivos como maximo");
-        }
-        tablets.add(tabletEntity);
-        listaEntity.setTablets(tablets);
-        return listaEntity;
-    }
+    
     
     /*
     public ListaDeDeseosEntity agregarCelular(ListaDeDeseosEntity listaEntity,CelularEntity celularEntity )throws Exception{

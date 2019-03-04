@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -23,6 +24,10 @@ public class TabletEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany(fetch = FetchType.EAGER)
     private List<ListaDeDeseosEntity> listasDeDeseos = new ArrayList<>();
+    
+    
+    @OneToOne(fetch = FetchType.EAGER)
+    private PublicacionEntity publicacion;
     
     
     /*
@@ -104,4 +109,6 @@ public class TabletEntity extends BaseEntity implements Serializable{
     public void setRegistrado(boolean registrado) {
         this.registrado = registrado;
     }
+    
+    
 }
