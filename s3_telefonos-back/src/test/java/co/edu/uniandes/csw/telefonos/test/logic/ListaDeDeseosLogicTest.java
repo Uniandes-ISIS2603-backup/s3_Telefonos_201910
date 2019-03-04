@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.telefonos.test.logic;
 
 
+import co.edu.uniandes.csw.telefonos.ejb.ListaDeDeseosCelularLogic;
 import co.edu.uniandes.csw.telefonos.ejb.ListaDeDeseosLogic;
+import co.edu.uniandes.csw.telefonos.ejb.ListaDeDeseosTabletLogic;
 import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
 import co.edu.uniandes.csw.telefonos.entities.ListaDeDeseosEntity;
 import co.edu.uniandes.csw.telefonos.entities.TabletEntity;
@@ -54,6 +56,12 @@ public class ListaDeDeseosLogicTest {
     
     @Inject
     private ListaDeDeseosLogic listaLogic;
+    
+    @Inject
+    private ListaDeDeseosTabletLogic listaTabletLogic;
+    
+    @Inject
+    private ListaDeDeseosCelularLogic listaCelularLogic;
     
     private List<ListaDeDeseosEntity> data = new ArrayList<ListaDeDeseosEntity>();
     
@@ -104,9 +112,9 @@ public class ListaDeDeseosLogicTest {
         
             ListaDeDeseosEntity entity = factory.manufacturePojo(ListaDeDeseosEntity.class);
             ArrayList<TabletEntity> tablets = (ArrayList<TabletEntity>) entity.getTablets();
-            //ArrayList<CelularEntity> celulares = (ArrayList<CelularEntity>) entity.getCelulares();
-            //celulares.clear();
-            //entity.setCelulares(celulares);
+            ArrayList<CelularEntity> celulares = (ArrayList<CelularEntity>) entity.getCelulares();
+            celulares.clear();
+            entity.setCelulares(celulares);
             tablets.clear();
             for(int i=0;i<9;i++){
                 TabletEntity tablet = factory.manufacturePojo(TabletEntity.class);
@@ -118,22 +126,22 @@ public class ListaDeDeseosLogicTest {
             
             entity = factory.manufacturePojo(ListaDeDeseosEntity.class);
             tablets = (ArrayList<TabletEntity>) entity.getTablets();
-            ///elulares = (ArrayList<CelularEntity>) entity.getCelulares();
-            ///celulares.clear();
+            celulares = (ArrayList<CelularEntity>) entity.getCelulares();
+            celulares.clear();
             tablets.clear();
             for(int i=0;i<5;i++){
-                //CelularEntity celular = factory.manufacturePojo(CelularEntity.class);
-                //celulares.add(celular);
+                CelularEntity celular = factory.manufacturePojo(CelularEntity.class);
+                celulares.add(celular);
             }
-            for(int i=0;i<10;i++){
+            for(int i=0;i<5;i++){
                 TabletEntity tablet = factory.manufacturePojo(TabletEntity.class);
                 tablets.add(tablet);
             }
-            //entity.setCelulares(celulares);
+            entity.setCelulares(celulares);
             entity.setTablets(tablets);
             em.persist(entity);
             data.add(entity);
-        /*
+        
             entity = factory.manufacturePojo(ListaDeDeseosEntity.class);
             tablets = (ArrayList<TabletEntity>) entity.getTablets();
             celulares = (ArrayList<CelularEntity>) entity.getCelulares();
@@ -147,42 +155,41 @@ public class ListaDeDeseosLogicTest {
             entity.setCelulares(celulares);
             em.persist(entity);
             data.add(entity);
-*/
+
     }
     
     @Test
     public void agregarTabletListaTest()throws BusinessLogicException{
         TabletEntity nuevaTablet = factory.manufacturePojo(TabletEntity.class);
         ListaDeDeseosEntity lista = data.get(0);
-        lista = listaLogic.agregarTableta(lista, nuevaTablet);
-        Assert.assertEquals(10, lista.getTablets().size()/*+lista.getCelulares().size()*/);
+        lista = listaTabletLogic.agregarTableta(nuevaTablet.getReferencia(), lista.getId() );
+        Assert.assertEquals(10, lista.getTablets().size()+lista.getCelulares().size());
       
     }
     
-    /*
+    
     @Test
     public void agregarCelularListaTest()throws BusinessLogicException{
         CelularEntity nuevoCelular = factory.manufacturePojo(CelularEntity.class);
         ListaDeDeseosEntity lista = data.get(2);
-        lista = listaLogic.agregarTableta(lista, nuevoCelular);
+        lista = listaCelularLogic.agregarCelular(nuevoCelular.getImei(), lista.getId());
         Assert.assertEquals(10, lista.getTablets().size()+lista.getCelulares().size());
     }
-*/
+
     
     @Test(expected=BusinessLogicException.class)
     public void ExcederCapacidadConTabletaTest()throws BusinessLogicException{
         ListaDeDeseosEntity lista = data.get(1);
         TabletEntity tablet = factory.manufacturePojo(TabletEntity.class);
-        lista = listaLogic.agregarTableta(lista, tablet);
+        lista = listaTabletLogic.agregarTableta(tablet.getReferencia(), lista.getId());
     }
-    /*
+    
     @Test(expected=BusinessLogicException.class)
     public void ExcederCapacidadConCelularTest()throws BusinessLogicException{
         ListaDeDeseosEntity lista = data.get(2);
         CelularEntity celular = factory.manufacturePojo(CelularEntity.class);
-        lista = listaLogic.agregarCelular(lista, celular);
+        lista = listaCelularLogic.agregarCelular(celular.getImei(), lista.getId());
     }
-*/
     
     @Test
     public void createListaDeDeseosTest() throws BusinessLogicException{
