@@ -66,17 +66,25 @@ public class TabletResource {
     
     @PUT
     @Path("{referencia: \\d+}")
-    public TabletDTO updateTablet(@PathParam("referencia") String referencia, TabletDTO tablet){
-      
-        return tablet;
+    public TabletDTO updateTablet(@PathParam("referencia") String referencia, TabletDTO tablet) throws BusinessLogicException{
+      tablet.setReferencia(referencia);
+        if (tabletLogic.getTablet(referencia) == null) {
+            throw new WebApplicationException("El recurso /tablets/" + referencia + " no existe.", 404);
+        }
+        TabletDTO tabletDTO = new TabletDTO(tabletLogic.updateTablet(tabletLogic.getTablet(referencia).getId(), tablet.toEntity()));
+        return tabletDTO;
     }
     
 
     @DELETE
     @Path("{referencia: \\d+}")
-    public TabletDTO deleteTablet(@PathParam("referencia") String referencia, TabletDTO tablet){
-      
-        return tablet;
+    public void deleteTablet(@PathParam("referencia") String referencia, TabletDTO tablet){
+      TabletEntity entity = tabletLogic.getTablet(referencia);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /tablets/" + referencia + " no existe.", 404);
+        }
+        tabletLogic.deleteTablet(entity.getId());
+  
     }
     
     private List<TabletDTO> listEntityToDTO(List<TabletEntity> listaEntidades){

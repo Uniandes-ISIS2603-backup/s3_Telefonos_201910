@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.telefonos.dtos;
 
+import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -37,7 +38,7 @@ public class FacturaDTO implements Serializable {
     /*
     Proveedor relacionado con la factura
     */
-    //private ProveedorDTO proveedor;
+    private ProveedorDTO proveedor;
     
     /*
     Publicacion asociada a la factura
@@ -49,7 +50,24 @@ public class FacturaDTO implements Serializable {
     */
     public FacturaDTO(){
         
-        
+    }
+    
+    /**
+     * Crea un objeto FacturaDTO a partir de un objeto FacturaEntity.
+     *
+     * @param facturaEntity Entidad FacturaEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+    public FacturaDTO(FacturaEntity facturaEntity) {
+        if (facturaEntity != null) {
+            this.id = facturaEntity.getId();
+            this.fecha = facturaEntity.getFecha();
+            this.referencia = facturaEntity.getReferencia();
+            this.comprador = new CompradorDTO(facturaEntity.getComprador());
+            this.proveedor = new ProveedorDTO(facturaEntity.getProveedor());
+            this.publicacion = new PublicacionDTO(facturaEntity.getPublicacion());
+        }
     }
 
     /**
@@ -121,6 +139,35 @@ public class FacturaDTO implements Serializable {
     public void setPublicacion(PublicacionDTO publicacion) {
         this.publicacion = publicacion;
     }
+
+    /**
+     * @return the proveedor
+     */
+    public ProveedorDTO getProveedor() {
+        return proveedor;
+    }
+
+    /**
+     * @param proveedor the proveedor to set
+     */
+    public void setProveedor(ProveedorDTO proveedor) {
+        this.proveedor = proveedor;
+    }
     
-    
+    /**
+     * Convierte un objeto FacturaDTO a FacturaEntity.
+     *
+     * @return Nueva objeto FacturaEntity.
+     *
+     */
+    public FacturaEntity toEntity() {
+        FacturaEntity facturaEntity = new FacturaEntity();
+        facturaEntity.setId(this.getId());
+        facturaEntity.setFecha(this.getFecha());
+        facturaEntity.setReferencia(this.getReferencia());
+        facturaEntity.setComprador(this.getComprador().toEntity());
+        facturaEntity.setProveedor(this.getProveedor().toEntity());
+        facturaEntity.setPublicacion(this.getPublicacion().toEntity());
+        return facturaEntity;
+    }
 }

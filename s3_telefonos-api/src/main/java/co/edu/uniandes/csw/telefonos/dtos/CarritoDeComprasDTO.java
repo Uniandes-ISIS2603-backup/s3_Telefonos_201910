@@ -9,25 +9,34 @@ package co.edu.uniandes.csw.telefonos.dtos;
  *
  * @author estudiante
  */
+import co.edu.uniandes.csw.telefonos.entities.CarritoDeComprasEntity;
 import java.io.Serializable;
 
 public class CarritoDeComprasDTO implements Serializable{
 	
-	private double costoTotal;
+	private Double costoTotal;
 	
 	public CarritoDeComprasDTO()
 	{
 		
 	}
+        
+         public CarritoDeComprasDTO(CarritoDeComprasEntity carrito){
+            this.costoTotal = carrito.getCostoTotal();
+	}
 	
-	public double getCostoTotal()
+	public Double getCostoTotal()
 	{
 		return costoTotal;
 	}
 	
-	public void setCostoTotal(double costoTotal)
+	public void setCostoTotal(Double costoTotal)
 	{
 		this.costoTotal = costoTotal;
 	}
-	
+	public CarritoDeComprasEntity toEntity(){
+            CarritoDeComprasEntity carrito = new CarritoDeComprasEntity();
+            carrito.setCostoTotal(this.costoTotal);
+            return carrito;
+        }
 }

@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.telefonos.entities;
-
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -14,6 +19,14 @@ import javax.persistence.Entity;
  */
 @Entity
 public class CelularEntity extends BaseEntity implements Serializable{
+    
+    @PodamExclude
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<ListaDeDeseosEntity> listasDeDeseos = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToOne(fetch = FetchType.EAGER)
+    private PublicacionEntity publicacion;
     
     private String marca;
     
@@ -28,7 +41,7 @@ public class CelularEntity extends BaseEntity implements Serializable{
     public CelularEntity(){
         
     }
-
+    
     /**
      * @return the marca
      */

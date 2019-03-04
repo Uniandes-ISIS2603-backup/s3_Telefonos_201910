@@ -42,16 +42,16 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     /*
     Proveedor relacionado con la factura
     */
-    //@PodamExclude 
-    //@ManyToOne
-    //private ProveedorEntity proveedor;
+    @PodamExclude 
+    @ManyToOne
+    private ProveedorEntity proveedor;
     
     /*
     Publicacion asociada a la factura
     */
-    //@PodamExclude
-    //@OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
-    //private PublicacionEntity publicacion;
+    @PodamExclude
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    private PublicacionEntity publicacion;
     
     /**
      * Constructor
@@ -100,6 +100,34 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      */
     public void setComprador(CompradorEntity comprador) {
         this.comprador = comprador;
+    }
+
+    /**
+     * @return the proveedor
+     */
+    public ProveedorEntity getProveedor() {
+        return proveedor;
+    }
+
+    /**
+     * @param proveedor the proveedor to set
+     */
+    public void setProveedor(ProveedorEntity proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    /**
+     * @return the publicacion
+     */
+    public PublicacionEntity getPublicacion() {
+        return publicacion;
+    }
+
+    /**
+     * @param publicacion the publicacion to set
+     */
+    public void setPublicacion(PublicacionEntity publicacion) {
+        this.publicacion = publicacion;
     }
     
 }

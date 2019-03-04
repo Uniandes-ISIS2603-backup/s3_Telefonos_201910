@@ -70,8 +70,8 @@ public class CompradorDTO implements Serializable {
             this.contrasenia = compradorEntity.getContrasenia();
             this.apodo = compradorEntity.getApodo();
             this.correoElectronico = compradorEntity.getCorreoElectronico();
-            //this.carritoDeCompras =  compradorEntity.getCarritoDeCompras();
-            //this.listaDeDeseos =  compradorEntity.getListaDeDeseos();
+            this.carritoDeCompras =  new CarritoDeComprasDTO(compradorEntity.getCarritoDeCompras());
+            this.listaDeDeseos =  new ListaDeDeseosDTO(compradorEntity.getListaDeDeseos());
               
         }
     }
@@ -115,7 +115,7 @@ public class CompradorDTO implements Serializable {
      * @param id the id to set
      */
     public void setId(long id) {
-        this.id = id;
+        this.setId((Long) id);
     }
 
     /**
@@ -187,8 +187,8 @@ public class CompradorDTO implements Serializable {
         compradorEntity.setContrasenia(this.getContrasenia());
         compradorEntity.setApodo(this.getApodo());
         compradorEntity.setCorreoElectronico(this.getCorreoElectronico());
-        //compradorEntity.setCarritoDeCompras(this.getCarritoDeCompras());
-        //compradorEntity.setListaDeDeseos(this.getListaDeDeseos());
+        compradorEntity.setCarritoDeCompras(this.getCarritoDeCompras().toEntity());
+        compradorEntity.setListaDeDeseos(this.getListaDeDeseos().toEntity());
         return compradorEntity;
     }
     
