@@ -20,7 +20,6 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author Andres Felipe Daza Diaz
  */
-@Path("compradores/{compradorId: \\d+}/listaDeDeseos")
 @Produces("application/json")
 @Consumes("application/json")
 public class CompradorListaDeDeseosResource {
@@ -48,6 +47,8 @@ public class CompradorListaDeDeseosResource {
         }
         compradorListaLogic.vaciarListaDeDeseos(idComprador);
     }
+    
+    
 
     
 }
