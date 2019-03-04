@@ -20,7 +20,7 @@ public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
     //@ManyToMany(mappedBy = "carritoDeCompras")
     //private List<PublicacionEntity> publicaciones = new ArrayList<PublicacionEntity>();
     
-    private Integer costoTotal;
+    private Double costoTotal;
     
     public CarritoDeComprasEntity(){
         
@@ -29,14 +29,14 @@ public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
     /**
      * @return the costoTotal
      */
-    public Integer getCostoTotal() {
+    public Double getCostoTotal() {
         return costoTotal;
     }
 
     /**
      * @param costoTotal the costoTotal to set
      */
-    public void setCostoTotal(Integer costoTotal) {
+    public void setCostoTotal(Double costoTotal) {
         this.costoTotal = costoTotal;
     }
     
