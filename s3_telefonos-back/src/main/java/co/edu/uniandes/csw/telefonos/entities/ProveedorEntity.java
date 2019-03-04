@@ -50,9 +50,9 @@ public class ProveedorEntity extends BaseEntity implements Serializable{
     /*
     Seguros asociados con un proveedor
     */
-    //@PodamExclude
-    //@OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
-    //private List<SeguroEntity> seguros;
+    @PodamExclude
+    @OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
+    private List<SeguroEntity> seguros;
     
      /*
     Publicaciones asociadas con un proveedor

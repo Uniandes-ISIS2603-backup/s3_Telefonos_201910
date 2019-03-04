@@ -25,7 +25,7 @@ public class TabletEntity extends BaseEntity implements Serializable{
     @ManyToMany(fetch = FetchType.EAGER)
     private List<ListaDeDeseosEntity> listasDeDeseos = new ArrayList<>();
     
-    
+    @PodamExclude
     @OneToOne(fetch = FetchType.EAGER)
     private PublicacionEntity publicacion;
     

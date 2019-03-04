@@ -27,7 +27,7 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     private List<TabletEntity> tablets = new ArrayList<TabletEntity>();
     
     @PodamExclude
-    @ManyToMany(mappedBy = "listasDeDeseos")
+    @ManyToMany(mappedBy = "listasDeDeseos", fetch = FetchType.EAGER)
     private List<CelularEntity> celulares = new ArrayList<CelularEntity>();
     
     /*

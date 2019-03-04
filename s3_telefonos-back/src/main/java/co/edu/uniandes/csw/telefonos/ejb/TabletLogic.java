@@ -53,7 +53,26 @@ public class TabletLogic {
         return tablet;
     }
     
- 
+
+    public TabletEntity updateTablet(Long tabletId, TabletEntity tabletEntity) throws BusinessLogicException {
+        
+        //La referencia de cada factura debe ser unica
+        if(persistence.findByReferencia(tabletEntity.getReferencia())!=null){
+            throw new BusinessLogicException("Ya existe una Tablet con la referencia \"" + tabletEntity.getReferencia() + "\"");
+        }
+        
+       TabletEntity newEntity = persistence.update(tabletEntity);
+        return newEntity;
+    }
+    
+    /**
+     * Borrar una tablet
+     *
+     * @param tabletId: id de la factura a borrar
+     */
+    public void deleteFactura(Long tabletId) {
+        persistence.delete(tabletId);
+    }
     
     
 }
