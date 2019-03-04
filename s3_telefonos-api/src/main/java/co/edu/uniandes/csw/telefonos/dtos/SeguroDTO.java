@@ -54,7 +54,7 @@ public class SeguroDTO implements Serializable{
     }
     
     /**
-     * Convierte un objetoSeguroDTO a SeguroEntity.
+     * Convierte un objeto SeguroDTO a SeguroEntity.
      *
      * @return Nueva objeto SeguroEntity.
      *

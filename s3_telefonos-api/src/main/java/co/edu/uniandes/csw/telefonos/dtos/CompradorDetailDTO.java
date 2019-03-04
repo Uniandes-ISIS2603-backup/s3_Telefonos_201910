@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.telefonos.dtos;
 
+import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
+import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
+import co.edu.uniandes.csw.telefonos.entities.MetodoDePagoEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +36,28 @@ public class CompradorDetailDTO extends CompradorDTO implements Serializable{
         super();
     }
     
-    //Agregar constructor que recibe entity
-    
+    /**
+     * Crea un objeto CompradorDetailDTO a partir de un objeto CompradorEntity
+     * incluyendo los atributos de CompradorDTO.
+     *
+     * @param compradorEntity Entidad CompradorEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+    public CompradorDetailDTO(CompradorEntity compradorEntity) {
+        super(compradorEntity);
+        if (compradorEntity != null) {
+            facturasDeCompra = new ArrayList<>();
+            for (FacturaEntity entityFacturas : compradorEntity.getFacturasDeCompra()) {
+                facturasDeCompra.add(new FacturaDTO(entityFacturas));
+            }
+            
+            metodosDePago = new ArrayList();
+            for (MetodoDePagoEntity entityMetodo : compradorEntity.getMetodosDePago()) {
+                metodosDePago.add(new MetodoDePagoDTO(entityMetodo));
+            }
+        }
+    }
 
     /**
      * @return the facturasDeCompra

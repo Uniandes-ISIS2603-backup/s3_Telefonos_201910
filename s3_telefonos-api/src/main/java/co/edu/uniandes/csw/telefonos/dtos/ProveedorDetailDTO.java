@@ -5,7 +5,12 @@
  */
 package co.edu.uniandes.csw.telefonos.dtos;
 
+import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
+import co.edu.uniandes.csw.telefonos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
+import co.edu.uniandes.csw.telefonos.entities.SeguroEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,12 +23,12 @@ public class ProveedorDetailDTO extends ProveedorDTO implements Serializable{
     /*
     Lista de facturas asociadas con un proveedor
     */
-    private List<FacturaDTO> facturasDeVenta;
+    private List<FacturaDTO> facturasDeVentas;
     
     /*
     Publicaciones asociadas con un proveedor
     */
-    private List<PublicacionDTO> publicaciones;
+    private List<PublicacionDTO> publicacionesDeVenta;
     
     /*
     Seguros asociados con un proveedor
@@ -37,35 +42,76 @@ public class ProveedorDetailDTO extends ProveedorDTO implements Serializable{
         super();
     }
     
-    //TODO: Agregar constructor que recibe entity
-
     /**
-     * @return the facturasDeVenta
+     * Crea un objeto ProveedorDetailDTO a partir de un objeto ProveedorEntity
+     * incluyendo los atributos de ProveedorDTO.
+     *
+     * @param proveedorEntity Entidad ProveedorEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
      */
-    public List<FacturaDTO> getFacturasDeVenta() {
-        return facturasDeVenta;
+    public ProveedorDetailDTO(ProveedorEntity proveedorEntity) {
+        super(proveedorEntity);
+        if (proveedorEntity != null) {
+            facturasDeVentas = new ArrayList<>();
+            for (FacturaEntity entityFacturas : proveedorEntity.getFacturasDeVenta()) {
+                facturasDeVentas.add(new FacturaDTO(entityFacturas));
+            }
+            publicacionesDeVenta = new ArrayList();
+            for (PublicacionEntity entityPublicacion : proveedorEntity.getPublicaciones()) {
+                publicacionesDeVenta.add(new PublicacionDTO(entityPublicacion));
+            }
+            
+            seguros = new ArrayList();
+            for (SeguroEntity entitySeguro : proveedorEntity.getSeguros()) {
+                seguros.add(new SeguroDTO(entitySeguro));
+            }
+        }
     }
 
     /**
-     * @param facturasDeVenta the facturasDeVenta to set
+     * @return the facturasDeVentas
      */
-    public void setFacturasDeVenta(List<FacturaDTO> facturasDeVenta) {
-        this.facturasDeVenta = facturasDeVenta;
+    public List<FacturaDTO> getFacturasDeVentas() {
+        return facturasDeVentas;
     }
 
     /**
-     * @return the publicaciones
+     * @param facturasDeVentas the facturasDeVentas to set
      */
-    public List<PublicacionDTO> getPublicaciones() {
-        return publicaciones;
+    public void setFacturasDeVentas(List<FacturaDTO> facturasDeVentas) {
+        this.facturasDeVentas = facturasDeVentas;
     }
 
     /**
-     * @param publicaciones the publicaciones to set
+     * @return the publicacionesDeVenta
      */
-    public void setPublicaciones(List<PublicacionDTO> publicaciones) {
-        this.publicaciones = publicaciones;
+    public List<PublicacionDTO> getPublicacionesDeVenta() {
+        return publicacionesDeVenta;
     }
+
+    /**
+     * @param publicacionesDeVenta the publicacionesDeVenta to set
+     */
+    public void setPublicacionesDeVenta(List<PublicacionDTO> publicacionesDeVenta) {
+        this.publicacionesDeVenta = publicacionesDeVenta;
+    }
+
+    /**
+     * @return the seguros
+     */
+    public List<SeguroDTO> getSeguros() {
+        return seguros;
+    }
+
+    /**
+     * @param seguros the seguros to set
+     */
+    public void setSeguros(List<SeguroDTO> seguros) {
+        this.seguros = seguros;
+    }
+
+    
     
     
 }

@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class ProveedorDTO implements Serializable{
     
     /*
-    Usuario con que se registra elproveedor
+    Usuario con que se registra el proveedor
     */
     private String usuario;
     
@@ -59,20 +59,19 @@ public class ProveedorDTO implements Serializable{
      */
     public ProveedorDTO(ProveedorEntity proveedorEntity) {
         if (proveedorEntity != null) {
-            this.id = proveedorEntity.getId();
             this.usuario = proveedorEntity.getUsuario();
             this.contrasenia = proveedorEntity.getContrasenia();
-            this.nombre = proveedorEntity.getNombre();
+            this.id = proveedorEntity.getId();
             this.correoElectronico = proveedorEntity.getCorreoElectronico();
-            
-             
+            this.raitig = proveedorEntity.getRaitig();
+            this.nombre = proveedorEntity.getNombre();
         }
     }
     
      /**
-     * Convierte un objeto CompradorDTO a CompradorEntity.
+     * Convierte un objeto ProveedorDTO a ProveedorEntity.
      *
-     * @return Nueva objeto CompradorEntity.
+     * @return Nueva objetoProveedorEntity.
      *
      */
     public ProveedorEntity toEntity() {
@@ -82,6 +81,7 @@ public class ProveedorDTO implements Serializable{
         proveedorEntity.setContrasenia(this.getContrasenia());
         proveedorEntity.setNombre(this.getNombre());
         proveedorEntity.setCorreoElectronico(this.getCorreoElectronico());
+        proveedorEntity.setRaitig(this.getRaitig());
         return proveedorEntity;
     }
 

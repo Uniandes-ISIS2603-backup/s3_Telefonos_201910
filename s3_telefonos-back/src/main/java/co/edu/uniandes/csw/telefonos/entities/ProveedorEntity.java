@@ -20,26 +20,31 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ProveedorEntity extends BaseEntity implements Serializable{
     
-    /*
+     /*
     Usuario con que se registra el proveedor
     */
     private String usuario;
     
     /*
-    Contrasenia con que se registra el  proveedor
+    Contrasenia con que se registra el proveedor
     */
     private String contrasenia;
+ 
+    /*
+    Correo con que se registra el comprador
+    */
+    private String correoElectronico; 
     
     /*
-   Nombre con que se registra el proveedor
+    Raiting
+    */
+    private Integer raitig;
+    
+    /*
+    Nombre del proveedor
     */
     private String nombre;
     
-    /*
-    Correo con que se registra el  proveedor
-    */
-    private String correoElectronico;
-
     /*
     Lista de facturas asociadas con un comprador
     */ 
@@ -57,14 +62,14 @@ public class ProveedorEntity extends BaseEntity implements Serializable{
      /*
     Publicaciones asociadas con un proveedor
     */
-    //@PodamExclude
-    //@OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
-    //private List<PublicacionEntity> publicaciones;
+    @PodamExclude
+    @OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
+    private List<PublicacionEntity> publicaciones;
 
     public ProveedorEntity(){
         
     }
-    
+
     /**
      * @return the usuario
      */
@@ -108,17 +113,17 @@ public class ProveedorEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the facturasDeCompra
+     * @return the raitig
      */
-    public List<FacturaEntity> getFacturasDeCompra() {
-        return facturasDeVenta;
+    public Integer getRaitig() {
+        return raitig;
     }
 
     /**
-     * @param facturasDeVenta the facturasDeCompra to set
+     * @param raitig the raitig to set
      */
-    public void setFacturasDeCompra(List<FacturaEntity> facturasDeVenta) {
-        this.facturasDeVenta = facturasDeVenta;
+    public void setRaitig(Integer raitig) {
+        this.raitig = raitig;
     }
 
     /**
@@ -135,4 +140,47 @@ public class ProveedorEntity extends BaseEntity implements Serializable{
         this.nombre = nombre;
     }
 
+    /**
+     * @return the facturasDeVenta
+     */
+    public List<FacturaEntity> getFacturasDeVenta() {
+        return facturasDeVenta;
+    }
+
+    /**
+     * @param facturasDeVenta the facturasDeVenta to set
+     */
+    public void setFacturasDeVenta(List<FacturaEntity> facturasDeVenta) {
+        this.facturasDeVenta = facturasDeVenta;
+    }
+
+    /**
+     * @return the seguros
+     */
+    public List<SeguroEntity> getSeguros() {
+        return seguros;
+    }
+
+    /**
+     * @param seguros the seguros to set
+     */
+    public void setSeguros(List<SeguroEntity> seguros) {
+        this.seguros = seguros;
+    }
+
+    /**
+     * @return the publicaciones
+     */
+    public List<PublicacionEntity> getPublicaciones() {
+        return publicaciones;
+    }
+
+    /**
+     * @param publicaciones the publicaciones to set
+     */
+    public void setPublicaciones(List<PublicacionEntity> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+    
+    
 }
