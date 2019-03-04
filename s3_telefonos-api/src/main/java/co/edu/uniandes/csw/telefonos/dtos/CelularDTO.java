@@ -17,14 +17,19 @@ public class CelularDTO implements Serializable {
 	private String marca;
 	private String referencia;
 	private String modelo;
-	private int imei;             
+	private Long imei;             
 	private boolean registrado;             
              
 	public CelularDTO(){
 		
 	}
-        public CelularDTO(CelularEntity celularEntity){
-		
+        
+        public CelularDTO(CelularEntity celular){
+            this.imei = celular.getImei();
+            this.marca = celular.getMarca();
+            this.modelo = celular.getModelo();
+            this.referencia = celular.getReferencia();
+            this.registrado = celular.isRegistrado();
 	}
 	
 	
@@ -46,10 +51,10 @@ public class CelularDTO implements Serializable {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public int getImei() {
+	public Long getImei() {
 		return imei;
 	}
-	public void setImei(int imei) {
+	public void setImei(Long imei) {
 		this.imei = imei;
 	}
 	public boolean isRegistrado() {
@@ -60,5 +65,14 @@ public class CelularDTO implements Serializable {
 	}
 	
 	
+ public CelularEntity toEntity(){
+            CelularEntity celular = new CelularEntity();
+            celular.setImei(this.imei);
+            celular.setMarca(this.marca);
+            celular.setModelo(this.modelo);
+            celular.setReferencia(this.referencia);
+            celular.setRegistrado(this.registrado);
+            return celular;
+        }
 }  
 

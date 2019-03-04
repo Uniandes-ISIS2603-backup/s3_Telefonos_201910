@@ -28,7 +28,7 @@ public class CelularLogic {
      * @return el celular en caso de ser creado
      * @throws Exception en caso de que el celular sea robado o 
      */
-     public CelularEntity createCarritoDeCompras(CelularEntity celular)throws Exception
+     public CelularEntity createCelular(CelularEntity celular)throws BusinessLogicException
     {
         /**
          * HACER VERIFICACIÖN CON IMEI
