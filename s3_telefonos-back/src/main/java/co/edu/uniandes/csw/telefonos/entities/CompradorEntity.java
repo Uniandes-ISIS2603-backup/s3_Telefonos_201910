@@ -43,15 +43,15 @@ public class CompradorEntity extends BaseEntity implements Serializable{
      /*
     Carrito de compras del comprador
     */
-    //@PodamExclude
-    //@OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
-    //private CarritoDeComprasEntity carritoDeCompras;
+    @PodamExclude
+    @OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
+    private CarritoDeComprasEntity carritoDeCompras;
     
     /*
     Lista de deseos del comprador
     */
-   @PodamExclude
-   @OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
+    @PodamExclude
+    @OneToOne(mappedBy = "comprador", fetch = FetchType.LAZY)
     private ListaDeDeseosEntity listaDeDeseos;
     
     /*
@@ -64,9 +64,9 @@ public class CompradorEntity extends BaseEntity implements Serializable{
      /*
     Metodos de pago asociados con un comprador
     */
-    //@PodamExclude
-    //@OneToMany(mappedBy = "comprador",fetch = FetchType.EAGER )
-    //private List<MetodoDePagoEntity> metodosDePago;
+    @PodamExclude
+    @OneToMany(mappedBy = "comprador",fetch = FetchType.EAGER )
+    private List<MetodoDePagoEntity> metodosDePago;
 
     public CompradorEntity(){
         
@@ -154,6 +154,34 @@ public class CompradorEntity extends BaseEntity implements Serializable{
      */
     public void setListaDeDeseos(ListaDeDeseosEntity listaDeDeseos) {
         this.listaDeDeseos = listaDeDeseos;
+    }
+
+    /**
+     * @return the carritoDeCompras
+     */
+    public CarritoDeComprasEntity getCarritoDeCompras() {
+        return carritoDeCompras;
+    }
+
+    /**
+     * @param carritoDeCompras the carritoDeCompras to set
+     */
+    public void setCarritoDeCompras(CarritoDeComprasEntity carritoDeCompras) {
+        this.carritoDeCompras = carritoDeCompras;
+    }
+
+    /**
+     * @return the metodosDePago
+     */
+    public List<MetodoDePagoEntity> getMetodosDePago() {
+        return metodosDePago;
+    }
+
+    /**
+     * @param metodosDePago the metodosDePago to set
+     */
+    public void setMetodosDePago(List<MetodoDePagoEntity> metodosDePago) {
+        this.metodosDePago = metodosDePago;
     }
 
 }
