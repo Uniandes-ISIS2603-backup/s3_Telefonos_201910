@@ -47,16 +47,15 @@ public class MetodoDePagoResource {
         MetodoDePagoDTO nuevoMetodoDePagoDTO = new MetodoDePagoDTO(nuevoMetodoDePagoEntity);
         LOGGER.log(Level.INFO, "MetodoDePagoResource createMetodoDePago: output: {0}", nuevoMetodoDePagoDTO);
         return nuevoMetodoDePagoDTO;
-    }/**
+    }
      @GET
-     //TODO cambiar el DTO por un DETAIL DTO apenas se definan las asociaciones de metodo de pago
     public List<MetodoDePagoDTO> getEditorials() {
         LOGGER.info("MetodoDePagoResource getMetodosDePago: input: void");
-        List<MetodoDePagoDTO> listaMetodosDePago = listEntity2DetailDTO(editorialLogic.getEditorials());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales);
-        return listaEditoriales;
+        List<MetodoDePagoDTO> listaMetodosDePago = listEntity2DTO(metodoDePagoLogic.getMetodosDePago());
+        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaMetodosDePago);
+        return listaMetodosDePago;
     }
-    */
+   
     /**
     @GET
     @Path("{metodosDePagoId: \\d+}")
@@ -98,14 +97,13 @@ public class MetodoDePagoResource {
     }
 
     
-   //terminar tan pronto como se tenga el método de pago detail DTO
-    /**
-    private List<MetodoDePagoDetailDTO> listEntity2DetailDTO(List<MetodoDePagoEntity> entityList) {
-        List<MetodoDePagoDetailDTO> list = new ArrayList<>();
+  
+    private List<MetodoDePagoDTO> listEntity2DTO(List<MetodoDePagoEntity> entityList) {
+        List<MetodoDePagoDTO> list = new ArrayList<>();
         for (MetodoDePagoEntity entity : entityList) {
-            list.add(new MetodoDePagoDetailDTO(entity));
+            list.add(new MetodoDePagoDTO(entity));
         }
         return list;
     }
-    */
+  
 }

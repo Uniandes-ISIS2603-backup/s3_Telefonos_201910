@@ -25,21 +25,26 @@ public class MetodoDePagoDTO implements Serializable{
     //fecha de expiración metodo de pago
     private Date fecha;
     //código de verificación metodo de pago
-    private int codigoVerificacion;
+    private Integer codigoVerificacion;                                 
     //id
     private Long id;
+    //Comprador
+    private CompradorDTO comprador;
     
     public MetodoDePagoDTO(){
     
     }
 
     public MetodoDePagoDTO(MetodoDePagoEntity metodoEntity) {
+        if(metodoEntity != null){
         this.nombre = metodoEntity.getNombre();
         this.banco = metodoEntity.getBanco();
         this.tipo = metodoEntity.getTipo();
         this.fecha = metodoEntity.getFecha();
         this.codigoVerificacion = metodoEntity.getCodigoVerificacion();
         this.id = metodoEntity.getId();
+        this.comprador = new CompradorDTO(metodoEntity.getComprador());
+        }
     }
 
     public String getNombre() {
@@ -78,7 +83,7 @@ public class MetodoDePagoDTO implements Serializable{
         return codigoVerificacion;
     }
 
-    public void setCodigoVerificacion(int codigoVerificacion) {
+    public void setCodigoVerificacion(Integer codigoVerificacion) {
         this.codigoVerificacion = codigoVerificacion;
     }
 
@@ -89,6 +94,14 @@ public class MetodoDePagoDTO implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
+    public CompradorDTO getComprador() {
+        return comprador;
+    }
+
+    public void setComprador(CompradorDTO comprador) {
+        this.comprador = comprador;
+    }
+    
     public MetodoDePagoEntity toEntity()
     {
         MetodoDePagoEntity entidad = new MetodoDePagoEntity();
@@ -97,6 +110,7 @@ public class MetodoDePagoDTO implements Serializable{
         entidad.setFecha(this.fecha);
         entidad.setTipo(this.tipo);
         entidad.setFecha(this.fecha);
+        entidad.setComprador(this.getComprador().toEntity() );
         return entidad;
     }
       @Override
