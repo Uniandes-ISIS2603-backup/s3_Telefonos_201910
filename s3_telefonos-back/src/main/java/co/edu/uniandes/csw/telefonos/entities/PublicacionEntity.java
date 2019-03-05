@@ -11,7 +11,10 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -26,13 +29,27 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     //precio del producto ofrecido
     private Double precio;
     //celular que esta asociado a la publicación, tiene que ser null en caso de que la publicación ya tenga asociada 
-    @OneToOne(mappedBy = "publicacion", cascade = CascadeType.ALL,
-              fetch = FetchType.EAGER, optional = false)
+    @PodamExclude
+    @OneToOne(mappedBy = "publicacion",
+              fetch = FetchType.EAGER)
     private CelularEntity celular;
     //Tablet que esta aspciada a la publicación, tiene que ser null si tiene una publicación asociada
-    @OneToOne(mappedBy = "publicacion", cascade = CascadeType.ALL,
-              fetch = FetchType.EAGER, optional = false)
+    @PodamExclude
+    @OneToOne(mappedBy = "publicacion",
+              fetch = FetchType.EAGER)
     private TabletEntity tablet;
+    //Carrito de compras
+    @PodamExclude
+    @ManyToMany(mappedBy = "publicacion", fetch = FetchType.LAZY)
+    private CarritoDeComprasEntity carritoDeCompras;
+    //factura
+    @PodamExclude
+    @OneToOne(mappedBy = "publicacion", fetch = FetchType.LAZY)
+    private FacturaEntity factura;
+    //proveedor
+    @PodamExclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProveedorEntity proveedor;
 
     public Date getFechaCreacion() {
         return fechaCreacion;
@@ -72,4 +89,30 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+
+    public CarritoDeComprasEntity getCarritoDeCompras() {
+        return carritoDeCompras;
+    }
+
+    public void setCarritoDeCompras(CarritoDeComprasEntity carritoDeCompras) {
+        this.carritoDeCompras = carritoDeCompras;
+    }
+
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
+    }
+
+    public ProveedorEntity getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(ProveedorEntity proveedor) {
+        this.proveedor = proveedor;
+    }
+    
+    
 }
