@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.telefonos.ejb;
 
 import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
 import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
+import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.CompradorPersistence;
 import co.edu.uniandes.csw.telefonos.persistence.FacturaPersistence;
 import java.util.List;
@@ -52,4 +53,24 @@ public class CompradorFacturasLogic {
     public List<FacturaEntity> getFacturas(Long compradorId) {
         return compradorPersistence.find(compradorId).getFacturasDeCompra();
     }
+    
+    /**
+     * Retorna una factura asociado a un comprador
+     *
+     * @param compradorId El id del comprador a buscar.
+     * @param facturaId El id de la factura a buscar
+     * @return La factura encontrada dentro del comprador.
+     * @throws BusinessLogicException Si la factura no esta asociada al comprador
+     */
+    public FacturaEntity getFactura(Long compradorId, Long facturaId) throws BusinessLogicException {
+        List<FacturaEntity> facturas = compradorPersistence.find(compradorId).getFacturasDeCompra();
+        FacturaEntity facturaEntity = facturaPersistence.find(facturaId);
+        int index = facturas.indexOf(facturaEntity);
+        if (index >= 0) {
+            return facturas.get(index);
+        }
+        throw new BusinessLogicException("La factura no esta asociada al comprador");
+    }
+
+    
 }
