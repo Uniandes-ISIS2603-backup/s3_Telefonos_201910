@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.telefonos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.CascadeType;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -41,7 +41,7 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     //Carrito de compras
     @PodamExclude
     @ManyToMany(mappedBy = "publicacion", fetch = FetchType.LAZY)
-    private CarritoDeComprasEntity carritoDeCompras;
+    private List<CarritoDeComprasEntity> carritoDeCompras;
     //factura
     @PodamExclude
     @OneToOne(mappedBy = "publicacion", fetch = FetchType.LAZY)
@@ -89,15 +89,16 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-
-    public CarritoDeComprasEntity getCarritoDeCompras() {
+    
+    public List<CarritoDeComprasEntity> getCarritoDeCompras() {
         return carritoDeCompras;
     }
 
-    public void setCarritoDeCompras(CarritoDeComprasEntity carritoDeCompras) {
+    public void setCarritoDeCompras(List<CarritoDeComprasEntity> carritoDeCompras) {
         this.carritoDeCompras = carritoDeCompras;
     }
 
+   
     public FacturaEntity getFactura() {
         return factura;
     }

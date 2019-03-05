@@ -5,9 +5,12 @@
  */
 package co.edu.uniandes.csw.telefonos.dtos;
 
+import co.edu.uniandes.csw.telefonos.entities.CarritoDeComprasEntity;
 import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,6 +21,12 @@ public class PublicacionDetailDTO extends PublicacionDTO implements Serializable
     public CelularDTO celular;
     //tablet si la posee
     public TabletDTO tablet;
+    //Carrito de compras
+    private List<CarritoDeComprasDTO> carritoDeCompras;
+    //factura
+    private FacturaDTO factura;
+    //proveedor
+    private ProveedorDTO proveedor;
     public PublicacionDetailDTO(){
     
 }
@@ -33,11 +42,17 @@ public class PublicacionDetailDTO extends PublicacionDTO implements Serializable
                TabletDTO pTablet = new TabletDTO(publicacionEntity.getTablet());
                this.tablet = pTablet;
            }
+           this.factura = new FacturaDTO(publicacionEntity.getFactura());
+           this.proveedor = new ProveedorDTO(publicacionEntity.getProveedor());
+           carritoDeCompras = new ArrayList<CarritoDeComprasDTO>();
+              for (CarritoDeComprasEntity entityCarritoDeCompras : publicacionEntity.getCarritoDeCompras()) {
+                carritoDeCompras.add(new CarritoDeComprasDTO(entityCarritoDeCompras));
+            }
        }
        else{
            throw new BusinessLogicException();
                    }
-       
+         
     }
 
     public CelularDTO getCelular() {
@@ -55,4 +70,29 @@ public class PublicacionDetailDTO extends PublicacionDTO implements Serializable
     public void setTablet(TabletDTO tablet) {
         this.tablet = tablet;
     }
+
+    public List<CarritoDeComprasDTO> getCarritoDeCompras() {
+        return carritoDeCompras;
+    }
+
+    public void setCarritoDeCompras(List<CarritoDeComprasDTO> carritoDeCompras) {
+        this.carritoDeCompras = carritoDeCompras;
+    }
+
+    public FacturaDTO getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaDTO factura) {
+        this.factura = factura;
+    }
+
+    public ProveedorDTO getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(ProveedorDTO proveedor) {
+        this.proveedor = proveedor;
+    }
+    
 }
