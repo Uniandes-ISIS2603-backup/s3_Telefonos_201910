@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.telefonos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -25,6 +27,10 @@ public class MetodoDePagoEntity extends BaseEntity implements Serializable{
     private Date fecha;
     //código de verificación metodo de pago
     private int codigoVerificacion;
+    //Comprador dueño del método
+    @PodamExclude
+    @ManyToOne
+    private CompradorEntity comprador;
 
     public String getNombre() {
         return nombre;
@@ -64,6 +70,14 @@ public class MetodoDePagoEntity extends BaseEntity implements Serializable{
 
     public void setCodigoVerificacion(int pCodigoVerificacion) {
         this.codigoVerificacion = pCodigoVerificacion;
+    }
+
+    public CompradorEntity getComprador() {
+        return comprador;
+    }
+
+    public void setComprador(CompradorEntity comprador) {
+        this.comprador = comprador;
     }
     
 }
