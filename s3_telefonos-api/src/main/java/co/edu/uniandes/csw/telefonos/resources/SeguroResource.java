@@ -118,7 +118,7 @@ public class SeguroResource {
      * Convierte una lista de entidades a DTO.
      *
      * Este método convierte una lista de objetos SeguroEntity a una lista de
-     * objetos SegurolDTO (json)
+     * objetos SeguroDTO (json)
      *
      * @param entityList corresponde a la lista de seguros de tipo Entity que
      * vamos a convertir a DTO.
