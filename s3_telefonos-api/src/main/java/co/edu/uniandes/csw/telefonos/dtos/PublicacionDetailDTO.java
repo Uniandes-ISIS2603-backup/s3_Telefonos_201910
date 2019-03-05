@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.telefonos.dtos;
 
 import co.edu.uniandes.csw.telefonos.entities.CarritoDeComprasEntity;
+import co.edu.uniandes.csw.telefonos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.io.Serializable;
@@ -94,5 +95,38 @@ public class PublicacionDetailDTO extends PublicacionDTO implements Serializable
     public void setProveedor(ProveedorDTO proveedor) {
         this.proveedor = proveedor;
     }
-    
+     @Override
+     public PublicacionEntity toEntity()
+     { 
+         PublicacionEntity publicacionEntity = super.toEntity();
+          if(celular != null)
+            {  
+                  publicacionEntity.setCelular(this.celular.toEntity());
+            }
+                
+           if(tablet != null)
+            {  
+                  publicacionEntity.setTablet(this.tablet.toEntity());
+            }
+                
+        
+          if (carritoDeCompras != null) {
+            List<CarritoDeComprasEntity> carritosEntity = new ArrayList<>();
+            for (CarritoDeComprasDTO dtoCarritoDeCompra : carritoDeCompras) {
+                carritosEntity.add(dtoCarritoDeCompra.toEntity());
+            }
+              publicacionEntity.setCarritoDeCompras(carritosEntity);
+             
+        }
+          if(proveedor != null)
+            {  
+                  publicacionEntity.setProveedor(this.proveedor.toEntity());
+            }
+          if(factura != null)
+            {  
+                  publicacionEntity.setFactura(this.factura.toEntity());
+            }
+                
+         return publicacionEntity;
+     }
 }
