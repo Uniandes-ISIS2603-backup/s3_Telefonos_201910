@@ -36,6 +36,7 @@ public class MetodoDePagoDTO implements Serializable{
     }
 
     public MetodoDePagoDTO(MetodoDePagoEntity metodoEntity) {
+        if(metodoEntity != null){
         this.nombre = metodoEntity.getNombre();
         this.banco = metodoEntity.getBanco();
         this.tipo = metodoEntity.getTipo();
@@ -43,6 +44,7 @@ public class MetodoDePagoDTO implements Serializable{
         this.codigoVerificacion = metodoEntity.getCodigoVerificacion();
         this.id = metodoEntity.getId();
         this.comprador = new CompradorDTO(metodoEntity.getComprador());
+        }
     }
 
     public String getNombre() {

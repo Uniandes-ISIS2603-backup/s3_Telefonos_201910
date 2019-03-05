@@ -29,11 +29,12 @@ public class PublicacionDTO implements Serializable{
        
    }
    public PublicacionDTO(PublicacionEntity publicacionEntity)
-   {
+   { if(publicacionEntity != null){
        this.fechaCreacion = publicacionEntity.getFechaCreacion();
        this.imagenes = publicacionEntity.getImagenes();
        this.precio = publicacionEntity.getPrecio();
        this.id = publicacionEntity.getId();
+   }
        
    }
 
