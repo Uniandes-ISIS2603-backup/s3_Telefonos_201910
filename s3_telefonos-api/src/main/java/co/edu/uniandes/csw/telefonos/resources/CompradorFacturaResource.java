@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.telefonos.dtos.CompradorDTO;
 import co.edu.uniandes.csw.telefonos.dtos.FacturaDTO;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorFacturasLogic;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
+import co.edu.uniandes.csw.telefonos.ejb.FacturaLogic;
 import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,9 @@ public class CompradorFacturaResource {
 
     @Inject
     private CompradorLogic compradorLogic;
+    
+    @Inject
+    private FacturaLogic facturaLogic;
     
     @Inject 
     private CompradorFacturasLogic compradorFacturasLogic;
@@ -80,7 +84,11 @@ public class CompradorFacturaResource {
     @GET
     @Path("{facturaId: \\d+}")
     public FacturaDTO obtenerFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) {
-        return null;
+        if (facturaLogic.getFactura(facturaId) == null) {
+            throw new WebApplicationException("El recurso /compradores/" + compradorId + "/facturas/" + facturaId + " no existe.", 404);
+        }
+        FacturaDTO facturaDTO = new FacturaDTO(compradorFacturasLogic.getFactura(compradorId, facturaId));
+        return facturaDTO;
     }
     
     /**
