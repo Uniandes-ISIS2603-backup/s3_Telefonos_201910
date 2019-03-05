@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.telefonos.resources;
 
 import co.edu.uniandes.csw.telefonos.dtos.CompradorDTO;
 import co.edu.uniandes.csw.telefonos.dtos.FacturaDTO;
+import co.edu.uniandes.csw.telefonos.ejb.CompradorFacturasLogic;
+import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -14,10 +16,12 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -30,6 +34,12 @@ public class CompradorFacturaResource {
 
     private static final Logger LOGGER = Logger.getLogger(CompradorFacturaResource.class.getName());
 
+    @Inject
+    private CompradorLogic compradorLogic;
+    
+    @Inject 
+    private CompradorFacturasLogic compradorFacturasLogic;
+    
     /**
      * Relaciona una factura a un comprador
      *
@@ -42,11 +52,11 @@ public class CompradorFacturaResource {
     @POST
     @Path("{facturaId: \\d+}")
     public FacturaDTO agregarFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) {
-        FacturaDTO f = new FacturaDTO();
-        CompradorDTO c = new CompradorDTO();
-        f.setId(facturaId);
-        f.setComprador(c);
-        return f;
+        if (compradorLogic.getComprador(compradorId) == null) {
+            throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
+        }
+        FacturaDTO facturaDTO = new FacturaDTO(compradorFacturasLogic.addFactura(compradorId, facturaId));
+        return facturaDTO;
     }
 
     /**

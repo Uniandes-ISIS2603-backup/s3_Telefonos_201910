@@ -112,7 +112,7 @@ public class FacturaResource {
         }
         facturaLogic.deleteFactura(id);
     }
-    
+
     /**
      * Convierte una lista de entidades a DTO.
      *

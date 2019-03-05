@@ -88,7 +88,7 @@ public class SeguroResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public SeguroDTO actualizarSeguroID(@PathParam("id")Long id, SeguroDTO seguro) throws BusinessLogicException {
+    public SeguroDTO actualizarSeguroID(@PathParam("id") Long id, SeguroDTO seguro) throws BusinessLogicException {
 
         seguro.setId(id);
         if (seguroLogic.getSeguro(id) == null) {
@@ -113,7 +113,7 @@ public class SeguroResource {
         }
         seguroLogic.deleteSeguro(id);
     }
-    
+
     /**
      * Convierte una lista de entidades a DTO.
      *
