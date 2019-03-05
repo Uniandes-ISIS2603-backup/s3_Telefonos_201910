@@ -112,7 +112,7 @@ public class ProveedorDetailDTO extends ProveedorDTO implements Serializable{
     }
 
     /**
-     * Convierte un objeto ProveedorDetailDTO a AuthorEntity incluyendo los
+     * Convierte un objeto ProveedorDetailDTO a ProveedorEntity incluyendo los
      * atributos de ProveedorDTO.
      *
      * @return Nueva objeto ProveedorEntity.

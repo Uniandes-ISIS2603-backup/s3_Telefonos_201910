@@ -87,4 +87,32 @@ public class CompradorDetailDTO extends CompradorDTO implements Serializable{
         this.metodosDePago = metodosDePago;
     }
     
+    /**
+     * Convierte un objeto CompradorDetailDTO a CompradorEntity incluyendo los
+     * atributos de CompradorDTO.
+     *
+     * @return Nueva objeto CompradorEntity.
+     *
+     */
+    @Override
+    public CompradorEntity toEntity() {
+        CompradorEntity compradorEntity = super.toEntity();
+        if (facturasDeCompra != null) {
+            List<FacturaEntity> facturasEntity = new ArrayList<>();
+            for (FacturaDTO dtoFactura : facturasDeCompra) {
+                facturasEntity.add(dtoFactura.toEntity());
+            }
+            compradorEntity.setFacturasDeCompra(facturasEntity);
+        }
+        if (metodosDePago != null) {
+            List<MetodoDePagoEntity> metodosDePagoEntity = new ArrayList<>();
+            for (MetodoDePagoDTO dtoMetodoDePago : metodosDePago) {
+                metodosDePagoEntity.add(dtoMetodoDePago.toEntity());
+            }
+            compradorEntity.setMetodosDePago(metodosDePagoEntity);
+        }
+        
+        return compradorEntity;
+    }
+    
 }
