@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -37,6 +38,7 @@ public class ProveedorResource {
      
 private static final Logger LOGGER= Logger.getLogger(CompradorResource.class.getName());  
 
+@Inject
 private ProveedorLogic proveedorLogic;
  
 /**
