@@ -25,11 +25,13 @@ public class CelularDTO implements Serializable {
 	}
         
         public CelularDTO(CelularEntity celular){
-            this.imei = celular.getImei();
-            this.marca = celular.getMarca();
-            this.modelo = celular.getModelo();
-            this.referencia = celular.getReferencia();
-            this.registrado = celular.isRegistrado();
+            if(celular!=null){
+                this.imei = celular.getImei();
+                this.marca = celular.getMarca();
+                this.modelo = celular.getModelo();
+                this.referencia = celular.getReferencia();
+                this.registrado = celular.isRegistrado();
+            }
 	}
 	
 	

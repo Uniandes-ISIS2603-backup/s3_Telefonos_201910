@@ -22,7 +22,9 @@ public class CarritoDeComprasDTO implements Serializable{
 	}
         
          public CarritoDeComprasDTO(CarritoDeComprasEntity carrito){
-            this.costoTotal = carrito.getCostoTotal();
+            if(carrito!=null){
+                this.costoTotal = carrito.getCostoTotal();
+            }
 	}
 	
 	public Double getCostoTotal()
