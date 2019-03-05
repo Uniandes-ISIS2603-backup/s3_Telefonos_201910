@@ -33,7 +33,7 @@ public class MetodoDePagoLogic {
      * @return La entiddad de la método de Pago luego de persistirla.
      * @throws BusinessLogicException Si la método de Pago a persistir ya existe.
      */
-    public MetodoDePagoEntity createEditorial(MetodoDePagoEntity metodoDePagoEntity) throws BusinessLogicException {
+    public MetodoDePagoEntity createMetodoDePago(MetodoDePagoEntity metodoDePagoEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del método de pago");
         persistence.create(metodoDePagoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del método de pago");
@@ -93,7 +93,7 @@ public class MetodoDePagoLogic {
      * @param metodoDePagosId: id de la método de Pago a borrar
      * @throws BusinessLogicException Si la método de Pago a eliminar tiene libros.
      */
-    public void deleteMetodoDePagp(Long metodoDePagosId) throws BusinessLogicException {
+    public void deleteMetodoDePago(Long metodoDePagosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la método de Pago con id = {0}", metodoDePagosId);
         persistence.delete(metodoDePagosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la método de Pago con id = {0}", metodoDePagosId);

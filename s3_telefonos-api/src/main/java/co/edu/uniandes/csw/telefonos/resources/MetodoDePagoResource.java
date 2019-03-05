@@ -6,16 +6,25 @@
 package co.edu.uniandes.csw.telefonos.resources;
 
 import co.edu.uniandes.csw.telefonos.dtos.MetodoDePagoDTO;
+import co.edu.uniandes.csw.telefonos.ejb.MetodoDePagoLogic;
+import co.edu.uniandes.csw.telefonos.ejb.PublicacionLogic;
 import co.edu.uniandes.csw.telefonos.entities.MetodoDePagoEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -27,22 +36,76 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class MetodoDePagoResource {
     private static final Logger LOGGER = Logger.getLogger(MetodoDePagoResource.class.getName());
+    @Inject
+    private MetodoDePagoLogic metodoDePagoLogic;
     
-    @POST
+     @POST
     public MetodoDePagoDTO createMetodoDePago(MetodoDePagoDTO metodo) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "MetodoDePagoResource createMetodoDePago: input: {0}", metodo);
-        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         MetodoDePagoEntity metodoDePagoEntity = metodo.toEntity();
-        // Invoca la lógica para crear el metodo de pago nueva
-        /**MetodoDePagoEntity nuevoEditorialEntity = metodoDePagoLogic.createEditorial(metodoDePagoEntity);
-        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        * */
-        //TODO cambiar esto al terminar el logic
-        MetodoDePagoEntity nuevoEditorialEntity = new MetodoDePagoEntity();
-        MetodoDePagoDTO nuevoMetodoDTO = new MetodoDePagoDTO(nuevoEditorialEntity);
-        LOGGER.log(Level.INFO, "EditorialResource createEditorial: output: {0}", nuevoMetodoDTO);
-        return nuevoMetodoDTO;
+        MetodoDePagoEntity nuevoMetodoDePagoEntity = metodoDePagoLogic.createMetodoDePago(metodoDePagoEntity);
+        MetodoDePagoDTO nuevoMetodoDePagoDTO = new MetodoDePagoDTO(nuevoMetodoDePagoEntity);
+        LOGGER.log(Level.INFO, "MetodoDePagoResource createMetodoDePago: output: {0}", nuevoMetodoDePagoDTO);
+        return nuevoMetodoDePagoDTO;
+    }/**
+     @GET
+     //TODO cambiar el DTO por un DETAIL DTO apenas se definan las asociaciones de metodo de pago
+    public List<MetodoDePagoDTO> getEditorials() {
+        LOGGER.info("MetodoDePagoResource getMetodosDePago: input: void");
+        List<MetodoDePagoDTO> listaMetodosDePago = listEntity2DetailDTO(editorialLogic.getEditorials());
+        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales);
+        return listaEditoriales;
+    }
+    */
+    /**
+    @GET
+    @Path("{metodosDePagoId: \\d+}")
+    public MetodoDePagoDetailDTO getMetodoDePago(@PathParam("metodosDePagoId") Long metodoDePagoId) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodoDePago: input: {0}", metodoDePagoId);
+        MetodoDePagoEntity metodoDePagoEntity = metodoDePagoLogic.getMetodoDePago(metodoDePagoId);
+        if (metodoDePagoEntity == null) {
+            throw new WebApplicationException("El recurso /metodosDePago/" + metodoDePagoId + " no existe.", 404);
+        }
+        MetodoDePagoDetailDTO detailDTO = new MetodoDePagoDetailDTO(MetodoDePagoEntity);
+        LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodoDePago: output: {0}", detailDTO);
+        return detailDTO;
+    }
+    */
+    /**
+     @PUT
+    @Path("{metodosDePagoId: \\d+}")
+    public EditorialDetailDTO updateEditorial(@PathParam("metodosDePagoId") Long metodosDePagoId, MetodoDePagoDetailDTO metodoDePago) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "MetodoDePagoResource updateMetodoDePago: input: id:{0} , metodoDePago: {1}", new Object[]{metodosDePagoId, metodoDePago});
+        metodoDePago.setId(metodosDePagoId);
+        if (metodoDePagoLogic.getMetodoDePago(metodosDePagoId) == null) {
+            throw new WebApplicationException("El recurso /metodosDePago/" + metodosDePagoId + " no existe.", 404);
+        }
+        MetodoDePagoDetailDTO detailDTO = new MetodoDePagoDetailDTO(metodoDePagoLogic.updateMetodoDePago(metodosDePagoId, metodoDePago.toEntity()));
+        LOGGER.log(Level.INFO, "MetodoDePagoResource updateMetodoDePago: output: {0}", detailDTO);
+        return detailDTO;
+
+    }
+    */
+    @DELETE
+    @Path("{metodosDePagoId: \\d+}")
+    public void deleteMetodoDePago(@PathParam("metodosDePagoId") Long metodosDePagoId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "MetodoDePagoResource deleteMetodoDePago: input: {0}", metodosDePagoId);
+        if (metodoDePagoLogic.getMetodoDePago(metodosDePagoId) == null) {
+            throw new WebApplicationException("El recurso /metodosDePago/" + metodosDePagoId + " no existe.", 404);
+        }
+        metodoDePagoLogic.deleteMetodoDePago(metodosDePagoId);
+        LOGGER.info("metodosDePagoResource deleteMetodoDePago: output: void");
     }
 
-   
+    
+   //terminar tan pronto como se tenga el método de pago detail DTO
+    /**
+    private List<MetodoDePagoDetailDTO> listEntity2DetailDTO(List<MetodoDePagoEntity> entityList) {
+        List<MetodoDePagoDetailDTO> list = new ArrayList<>();
+        for (MetodoDePagoEntity entity : entityList) {
+            list.add(new MetodoDePagoDetailDTO(entity));
+        }
+        return list;
+    }
+    */
 }
