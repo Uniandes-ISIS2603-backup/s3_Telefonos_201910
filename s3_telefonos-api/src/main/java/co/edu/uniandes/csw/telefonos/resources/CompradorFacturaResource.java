@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.telefonos.dtos.CompradorDTO;
 import co.edu.uniandes.csw.telefonos.dtos.FacturaDTO;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorFacturasLogic;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
+import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -66,11 +67,8 @@ public class CompradorFacturaResource {
      */
     @GET
     public List<FacturaDTO> obtenerFacturas(@PathParam("compradorId") Long compradorId) {
-        List<FacturaDTO> result = new ArrayList();
-        FacturaDTO f = new FacturaDTO();
-        f.setReferencia("Prueba C-F");
-        result.add(f);
-        return result;
+        List<FacturaDTO> listaDetailDTOs = facturasListEntity2DTO(compradorFacturasLogic.getFacturas(compradorId));
+        return listaDetailDTOs;
     }
     
     /**
@@ -82,10 +80,7 @@ public class CompradorFacturaResource {
     @GET
     @Path("{facturaId: \\d+}")
     public FacturaDTO obtenerFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) {
-        FacturaDTO f = new FacturaDTO();
-        f.setReferencia("Prueba C-F");
-        f.setId(facturaId);
-        return f;
+        return null;
     }
     
     /**
@@ -98,5 +93,19 @@ public class CompradorFacturaResource {
     @Path("{facturaId: \\d+}")
     public String eliminarFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) {
         return ("Comp: "+compradorId+" -- Fact: "+facturaId);
+    }
+    
+    /**
+     * Convierte una lista de FacturaEntity a una lista de FacturaDTO.
+     *
+     * @param entityList Lista de FacturaEntity a convertir.
+     * @return Lista de FacturaDTO convertida.
+     */
+    private List<FacturaDTO> facturasListEntity2DTO(List<FacturaEntity> entityList) {
+        List<FacturaDTO> list = new ArrayList();
+        for (FacturaEntity entity : entityList) {
+            list.add(new FacturaDTO(entity));
+        }
+        return list;
     }
 }

@@ -42,4 +42,14 @@ public class CompradorFacturasLogic {
         compradorEntity.setFacturasDeCompra(facturas);
         return facturaEntity;
     }
+    
+    /**
+     * Retorna todas las facturas asociadas a un comprador
+     *
+     * @param compradorId El ID del comprador buscado
+     * @return La lista de facturas del comprador
+     */
+    public List<FacturaEntity> getFacturas(Long compradorId) {
+        return compradorPersistence.find(compradorId).getFacturasDeCompra();
+    }
 }

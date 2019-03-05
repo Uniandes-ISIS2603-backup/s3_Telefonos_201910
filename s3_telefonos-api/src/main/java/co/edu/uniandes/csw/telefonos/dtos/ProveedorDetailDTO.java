@@ -111,7 +111,40 @@ public class ProveedorDetailDTO extends ProveedorDTO implements Serializable{
         this.seguros = seguros;
     }
 
-    
+    /**
+     * Convierte un objeto ProveedorDetailDTO a AuthorEntity incluyendo los
+     * atributos de ProveedorDTO.
+     *
+     * @return Nueva objeto ProveedorEntity.
+     *
+     */
+    @Override
+    public ProveedorEntity toEntity() {
+        ProveedorEntity proveedorEntity = super.toEntity();
+        if (facturasDeVentas != null) {
+            List<FacturaEntity> facturasEntity = new ArrayList<>();
+            for (FacturaDTO dtoFactura : facturasDeVentas) {
+                facturasEntity.add(dtoFactura.toEntity());
+            }
+            proveedorEntity.setFacturasDeVenta(facturasEntity);
+        }
+        if (publicacionesDeVenta != null) {
+            List<PublicacionEntity> publicacionesEntity = new ArrayList<>();
+            for (PublicacionDTO dtoPublicacion : publicacionesDeVenta) {
+                publicacionesEntity.add(dtoPublicacion.toEntity());
+            }
+            proveedorEntity.setPublicaciones(publicacionesEntity);
+        }
+        if (seguros != null) {
+            List<SeguroEntity> segurosEntity = new ArrayList<>();
+            for (SeguroDTO dtoSeguro : seguros) {
+                segurosEntity.add(dtoSeguro.toEntity());
+            }
+            proveedorEntity.setSeguros(segurosEntity);
+        }
+        
+        return proveedorEntity;
+    }
     
     
 }
