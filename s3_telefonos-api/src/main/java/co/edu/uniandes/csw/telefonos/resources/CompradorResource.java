@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.telefonos.resources;
 import co.edu.uniandes.csw.telefonos.dtos.CompradorDTO;
 import co.edu.uniandes.csw.telefonos.dtos.CompradorDetailDTO;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
+import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.List;
 import java.util.ArrayList;
@@ -28,90 +29,99 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author Laura Valentina Prieto Jimenez
  */
-
 @Path("compradores")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class CompradorResource {
- 
-private static final Logger LOGGER= Logger.getLogger(CompradorResource.class.getName());  
 
-@Inject
-private CompradorLogic compradorLogic;
- 
-/**
- * Obtiene todos los compradores
- * @return Lista de compradores
- */
-@GET
-public List<CompradorDTO> obtenerCompradores (){
-    List<CompradorDTO> result = new ArrayList();
-    CompradorDTO c = new CompradorDTO();
-    c.setApodo("Prueba");
-    result.add(c);
-    return result;
-}
+    private static final Logger LOGGER = Logger.getLogger(CompradorResource.class.getName());
 
+    @Inject
+    private CompradorLogic compradorLogic;
 
-/**
- * Crea un nuevo comprador
- * @param comprador Nuevo comprador que se va a crear
- * @return comprador creado
- */
-@POST
-public CompradorDTO crearComprador (CompradorDTO comprador) throws BusinessLogicException{
-    CompradorDTO compradorDTO = new CompradorDTO(compradorLogic.createComprador(comprador.toEntity()));
-    return compradorDTO;
-}
+    /**
+     * Obtiene todos los compradores
+     *
+     * @return Lista de compradores
+     */
+    @GET
+    public List<CompradorDetailDTO> obtenerCompradores() {
+        List<CompradorDetailDTO> listaCompradores = listEntity2DetailDTO(compradorLogic.getCompradores());
+        return listaCompradores;
+    }
 
-/**
- * Obtiene el comprador con identificador id
- * @param id Identificador del comprador
- * @return Comprador con identificador id
- */
-@GET
-@Path("{compradorId: \\d+}")
- public CompradorDetailDTO obtenerCompradorID(@PathParam("compradorId") Long compradorId) {
-     CompradorDetailDTO c =new CompradorDetailDTO();
-     c.setId(compradorId);
-     return c;
- }
-   
-/**
- * Actualiza un comprador con identificador id
- * @param id Identificador del comprador
- * @param comprador Nueva informacion del comprador
- * @return Comprador actualizado
- */ 
-@PUT
-@Path("{compradorId: \\d+}")
- public CompradorDetailDTO  actualizarCompradorID(@PathParam("compradorId") Long compradorId, CompradorDetailDTO comprador){
-     comprador.setId(compradorId);
-     return comprador;
- }
-  
- /**
-  * Elimina un comprador con identificador id
-  * @param id Identificador del comprador
-  * @return Comprador eliminado
-  */
- @DELETE
- @Path("{compradorId: \\d+}")
- public CompradorDTO  eliminarCompradorID(@PathParam("compradorId") Long compradorId){
-     CompradorDTO c =new CompradorDTO();
-     c.setId(compradorId);
-     return c;
- }
- 
- @Path("{compradorId: \\d+}/facturas")
+    /**
+     * Crea un nuevo comprador
+     *
+     * @param comprador Nuevo comprador que se va a crear
+     * @return comprador creado
+     */
+    @POST
+    public CompradorDTO crearComprador(CompradorDTO comprador) throws BusinessLogicException {
+        CompradorDTO compradorDTO = new CompradorDTO(compradorLogic.createComprador(comprador.toEntity()));
+        return compradorDTO;
+    }
+
+    /**
+     * Obtiene el comprador con identificador id
+     *
+     * @param id Identificador del comprador
+     * @return Comprador con identificador id
+     */
+    @GET
+    @Path("{compradorId: \\d+}")
+    public CompradorDetailDTO obtenerCompradorID(@PathParam("compradorId") Long compradorId) {
+        CompradorEntity compradorEntity = compradorLogic.getComprador(compradorId);
+        if (compradorEntity == null) {
+            throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
+        }
+        CompradorDetailDTO compradorDetailDTO = new CompradorDetailDTO(compradorEntity);
+        return compradorDetailDTO;
+    }
+
+    /**
+     * Actualiza un comprador con identificador id
+     *
+     * @param id Identificador del comprador
+     * @param comprador Nueva informacion del comprador
+     * @return Comprador actualizado
+     */
+    @PUT
+    @Path("{compradorId: \\d+}")
+    public CompradorDetailDTO actualizarCompradorID(@PathParam("compradorId") Long compradorId, CompradorDetailDTO comprador) throws BusinessLogicException {
+        comprador.setId(compradorId);
+        if (compradorLogic.getComprador(compradorId) == null) {
+            throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
+        }
+        CompradorDetailDTO detailDTO = new CompradorDetailDTO(compradorLogic.updateComprador(compradorId, comprador.toEntity()));
+        return detailDTO;
+    }
+
+    /**
+     * Elimina un comprador con identificador id
+     *
+     * @param id Identificador del comprador
+     * @return Comprador eliminado
+     */
+    @DELETE
+    @Path("{compradorId: \\d+}")
+    public void eliminarCompradorID(@PathParam("compradorId") Long compradorId) {
+        CompradorEntity entity = compradorLogic.getComprador(compradorId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
+        }
+        compradorLogic.deleteComprador(compradorId);
+    }
+
+    @Path("{compradorId: \\d+}/facturas")
     public Class<CompradorFacturaResource> getCompradorFacturaResource(@PathParam("compradorId") Long compradorId) {
         if (compradorLogic.getComprador(compradorId) == null) {
             throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
         }
         return CompradorFacturaResource.class;
     }
- 
+
     @Path("{compradorId: \\d+}/listasDeDeseos")
     public Class<CompradorListaDeDeseosResource> getCompradorListaDeDeseosResource(@PathParam("compradorId") Long compradorId) {
         if (compradorLogic.getComprador(compradorId) == null) {
@@ -119,5 +129,23 @@ public CompradorDTO crearComprador (CompradorDTO comprador) throws BusinessLogic
         }
         return CompradorListaDeDeseosResource.class;
     }
-    
+
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos CompradorEntity a una lista de
+     * objetos CompradorDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de compradores de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de compradores en forma DTO (json)
+     */
+    private List<CompradorDetailDTO> listEntity2DetailDTO(List<CompradorEntity> entityList) {
+        List<CompradorDetailDTO> list = new ArrayList<>();
+        for (CompradorEntity entity : entityList) {
+            list.add(new CompradorDetailDTO(entity));
+        }
+        return list;
+    }
+
 }
