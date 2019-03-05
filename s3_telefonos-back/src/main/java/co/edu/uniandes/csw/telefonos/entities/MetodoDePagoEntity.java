@@ -26,7 +26,7 @@ public class MetodoDePagoEntity extends BaseEntity implements Serializable{
     //fecha de expiración metodo de pago
     private Date fecha;
     //código de verificación metodo de pago
-    private int codigoVerificacion;
+    private Integer codigoVerificacion;
     //Comprador dueño del método
     @PodamExclude
     @ManyToOne
@@ -68,7 +68,7 @@ public class MetodoDePagoEntity extends BaseEntity implements Serializable{
         return codigoVerificacion;
     }
 
-    public void setCodigoVerificacion(int pCodigoVerificacion) {
+    public void setCodigoVerificacion(Integer pCodigoVerificacion) {
         this.codigoVerificacion = pCodigoVerificacion;
     }
 
