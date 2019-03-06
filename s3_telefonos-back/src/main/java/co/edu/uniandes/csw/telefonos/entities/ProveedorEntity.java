@@ -66,6 +66,9 @@ public class ProveedorEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
     private List<PublicacionEntity> publicaciones;
 
+    /*
+    Metodo constructor
+    */
     public ProveedorEntity(){
         
     }

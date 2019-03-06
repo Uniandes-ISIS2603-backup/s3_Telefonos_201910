@@ -65,7 +65,7 @@ public class CompradorEntity extends BaseEntity implements Serializable{
     Metodos de pago asociados con un comprador
     */
     @PodamExclude
-    @OneToMany(mappedBy = "comprador",fetch = FetchType.EAGER )
+    @OneToMany(mappedBy = "comprador",fetch = FetchType.LAZY )
     private List<MetodoDePagoEntity> metodosDePago;
 
     public CompradorEntity(){
