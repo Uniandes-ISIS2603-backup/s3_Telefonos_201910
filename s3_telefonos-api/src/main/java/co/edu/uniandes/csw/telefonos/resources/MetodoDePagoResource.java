@@ -56,35 +56,35 @@ public class MetodoDePagoResource {
         return listaMetodosDePago;
     }
    
-    /**
+    
     @GET
     @Path("{metodosDePagoId: \\d+}")
-    public MetodoDePagoDetailDTO getMetodoDePago(@PathParam("metodosDePagoId") Long metodoDePagoId) throws WebApplicationException {
+    public MetodoDePagoDTO getMetodoDePago(@PathParam("metodosDePagoId") Long metodoDePagoId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodoDePago: input: {0}", metodoDePagoId);
         MetodoDePagoEntity metodoDePagoEntity = metodoDePagoLogic.getMetodoDePago(metodoDePagoId);
         if (metodoDePagoEntity == null) {
             throw new WebApplicationException("El recurso /metodosDePago/" + metodoDePagoId + " no existe.", 404);
         }
-        MetodoDePagoDetailDTO detailDTO = new MetodoDePagoDetailDTO(MetodoDePagoEntity);
+        MetodoDePagoDTO detailDTO = new MetodoDePagoDTO(metodoDePagoEntity);
         LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodoDePago: output: {0}", detailDTO);
         return detailDTO;
     }
-    */
-    /**
+   
+    
      @PUT
     @Path("{metodosDePagoId: \\d+}")
-    public EditorialDetailDTO updateEditorial(@PathParam("metodosDePagoId") Long metodosDePagoId, MetodoDePagoDetailDTO metodoDePago) throws WebApplicationException {
+    public MetodoDePagoDTO updateMetodoDePago(@PathParam("metodosDePagoId") Long metodosDePagoId, MetodoDePagoDTO metodoDePago) throws WebApplicationException {
         LOGGER.log(Level.INFO, "MetodoDePagoResource updateMetodoDePago: input: id:{0} , metodoDePago: {1}", new Object[]{metodosDePagoId, metodoDePago});
         metodoDePago.setId(metodosDePagoId);
         if (metodoDePagoLogic.getMetodoDePago(metodosDePagoId) == null) {
             throw new WebApplicationException("El recurso /metodosDePago/" + metodosDePagoId + " no existe.", 404);
         }
-        MetodoDePagoDetailDTO detailDTO = new MetodoDePagoDetailDTO(metodoDePagoLogic.updateMetodoDePago(metodosDePagoId, metodoDePago.toEntity()));
+        MetodoDePagoDTO detailDTO = new MetodoDePagoDTO(metodoDePagoLogic.updateMetodoDePago(metodosDePagoId, metodoDePago.toEntity()));
         LOGGER.log(Level.INFO, "MetodoDePagoResource updateMetodoDePago: output: {0}", detailDTO);
         return detailDTO;
 
     }
-    */
+   
     @DELETE
     @Path("{metodosDePagoId: \\d+}")
     public void deleteMetodoDePago(@PathParam("metodosDePagoId") Long metodosDePagoId) throws BusinessLogicException {
