@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author Andres Felipe Daza Diaz
+ * @author Andres Daza, Laura Prieto
  */
 @Stateless
 public class SeguroPersistence {

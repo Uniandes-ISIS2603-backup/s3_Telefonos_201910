@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.telefonos.persistence;
 
 import co.edu.uniandes.csw.telefonos.entities.ProveedorEntity;
-import co.edu.uniandes.csw.telefonos.entities.TabletEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
