@@ -115,11 +115,11 @@ public class CompradorResource {
     }
 
     @Path("{compradorId: \\d+}/facturas")
-    public Class<CompradorFacturaResource> getCompradorFacturaResource(@PathParam("compradorId") Long compradorId) {
+    public Class<CompradorFacturasResource> getCompradorFacturaResource(@PathParam("compradorId") Long compradorId) {
         if (compradorLogic.getComprador(compradorId) == null) {
             throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
         }
-        return CompradorFacturaResource.class;
+        return CompradorFacturasResource.class;
     }
 
     @Path("{compradorId: \\d+}/listasDeDeseos")

@@ -114,11 +114,14 @@ public class ProveedorResource {
         proveedorLogic.deleteProveedor(proveedorId);
     }
 
-    /*@Path("{proveedorId: \\d+}/facturas")
-    public Class<ProveedorFacturaResource> getProveedorFacturaResource(@PathParam("proveedorId") Long proveedorId) {
-        return ProveedorFacturaResource.class;
+      @Path("{proveedorId: \\d+}/facturas")
+    public Class<ProveedorFacturasResource> getProveedorFacturaResource(@PathParam("proveedorId") Long proveedorId) {
+        if (proveedorLogic.getProveedor(proveedorId) == null) {
+            throw new WebApplicationException("El recurso /proveedores/" + proveedorId + " no existe.", 404);
+        }
+        return ProveedorFacturasResource.class;
     }
-     */
+    
     private List<ProveedorDTO> listEntityToDTO(List<ProveedorEntity> listaEntidades) {
         List<ProveedorDTO> lista = new ArrayList<>();
         for (ProveedorEntity entity : listaEntidades) {

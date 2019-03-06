@@ -33,7 +33,7 @@ public class CompradorFacturasLogic {
      *
      * @param compradorId El id del comprador en el cual se va a guardar la factura
      * @param facturaId El id de la factura que se va a guardar
-     * @return El libro creado.
+     * @return La factura creada.
      */
     public FacturaEntity addFactura(Long compradorId, Long facturaId) {
         CompradorEntity compradorEntity = compradorPersistence.find(compradorId);
@@ -55,7 +55,7 @@ public class CompradorFacturasLogic {
     }
     
     /**
-     * Retorna una factura asociado a un comprador
+     * Retorna una factura asociada a un comprador
      *
      * @param compradorId El id del comprador a buscar.
      * @param facturaId El id de la factura a buscar

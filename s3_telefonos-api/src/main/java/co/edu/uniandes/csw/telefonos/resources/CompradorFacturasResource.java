@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.telefonos.ejb.CompradorFacturasLogic;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
 import co.edu.uniandes.csw.telefonos.ejb.FacturaLogic;
 import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
+import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -32,9 +33,9 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class CompradorFacturaResource {
+public class CompradorFacturasResource {
 
-    private static final Logger LOGGER = Logger.getLogger(CompradorFacturaResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CompradorFacturasResource.class.getName());
 
     @Inject
     private CompradorLogic compradorLogic;
@@ -66,7 +67,7 @@ public class CompradorFacturaResource {
 
     /**
      * Obtiene todas las facturas asociadas comprador 
-     * @param compradorId
+     * @param compradorId Identificador del comprador
      * @return 
      */
     @GET
@@ -83,24 +84,12 @@ public class CompradorFacturaResource {
      */
     @GET
     @Path("{facturaId: \\d+}")
-    public FacturaDTO obtenerFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) {
+    public FacturaDTO obtenerFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) throws BusinessLogicException {
         if (facturaLogic.getFactura(facturaId) == null) {
             throw new WebApplicationException("El recurso /compradores/" + compradorId + "/facturas/" + facturaId + " no existe.", 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(compradorFacturasLogic.getFactura(compradorId, facturaId));
         return facturaDTO;
-    }
-    
-    /**
-     * Elimina una factura de un ocomprador con identificador dado
-     * @param compradorId Identificador del comprador
-     * @param facturaId Identificador de la factura que se quiere eliminar
-     * @return Esto debe quitarse!!! Solo es para probar en Postman
-     */
-    @DELETE
-    @Path("{facturaId: \\d+}")
-    public String eliminarFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) {
-        return ("Comp: "+compradorId+" -- Fact: "+facturaId);
     }
     
     /**
