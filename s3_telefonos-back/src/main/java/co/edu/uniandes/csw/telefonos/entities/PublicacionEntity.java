@@ -21,7 +21,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author rj.gonzalez10
  */
 @Entity
-public class PublicacionEntity extends BaseEntity implements Serializable{
+public class PublicacionEntity extends BaseEntity implements Serializable {
+
     //fecha de creación de la publicación
     private Date fechaCreacion;
     //arreglo de imagenes que se van a  usar en el post
@@ -31,21 +32,24 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     //celular que esta asociado a la publicación, tiene que ser null en caso de que la publicación ya tenga asociada 
     @PodamExclude
     @OneToOne(mappedBy = "publicacion",
-              fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private CelularEntity celular;
     //Tablet que esta aspciada a la publicación, tiene que ser null si tiene una publicación asociada
     @PodamExclude
     @OneToOne(mappedBy = "publicacion",
-              fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private TabletEntity tablet;
+
     //Carrito de compras
     @PodamExclude
-    @ManyToMany(mappedBy = "publicacion", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<CarritoDeComprasEntity> carritoDeCompras;
+
     //factura
     @PodamExclude
-    @OneToOne(mappedBy = "publicacion", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private FacturaEntity factura;
+    
     //proveedor
     @PodamExclude
     @ManyToOne(fetch = FetchType.LAZY)
@@ -82,14 +86,15 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     public void setImagenes(ArrayList<String> imagenes) {
         this.imagenes = imagenes;
     }
-     public Double getPrecio() {
+
+    public Double getPrecio() {
         return precio;
     }
 
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-    
+
     public List<CarritoDeComprasEntity> getCarritoDeCompras() {
         return carritoDeCompras;
     }
@@ -98,7 +103,6 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
         this.carritoDeCompras = carritoDeCompras;
     }
 
-   
     public FacturaEntity getFactura() {
         return factura;
     }
@@ -114,6 +118,5 @@ public class PublicacionEntity extends BaseEntity implements Serializable{
     public void setProveedor(ProveedorEntity proveedor) {
         this.proveedor = proveedor;
     }
-    
-    
+
 }
