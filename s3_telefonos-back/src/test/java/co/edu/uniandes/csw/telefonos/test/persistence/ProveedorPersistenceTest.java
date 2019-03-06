@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.telefonos.test.persistence;
 
-import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
-import co.edu.uniandes.csw.telefonos.persistence.CompradorPersistence;
+import co.edu.uniandes.csw.telefonos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.telefonos.persistence.ProveedorPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,10 +29,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Laura Valentina Prieto Jimenez
  */
 @RunWith(Arquillian.class)
-public class CompradorPersistenceTest {
+public class ProveedorPersistenceTest {
 
     @Inject
-    private CompradorPersistence compradorPersistence;
+    private ProveedorPersistence proveedorPersistence;
 
     @PersistenceContext
     private EntityManager em;
@@ -40,7 +40,7 @@ public class CompradorPersistenceTest {
     @Inject
     UserTransaction utx;
 
-    private List<CompradorEntity> data = new ArrayList<CompradorEntity>();
+    private List<ProveedorEntity> data = new ArrayList<ProveedorEntity>();
 
     /**
      * 
@@ -49,8 +49,8 @@ public class CompradorPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CompradorEntity.class.getPackage())
-                .addPackage(CompradorPersistence.class.getPackage())
+                .addPackage(ProveedorEntity.class.getPackage())
+                .addPackage(ProveedorPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -80,7 +80,7 @@ public class CompradorPersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from CompradorEntity").executeUpdate();
+        em.createQuery("delete from ProveedorEntity").executeUpdate();
     }
 
     /**
@@ -91,7 +91,7 @@ public class CompradorPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-            CompradorEntity entity = factory.manufacturePojo(CompradorEntity.class);
+           ProveedorEntity entity = factory.manufacturePojo(ProveedorEntity.class);
 
             data.add(entity);
 
@@ -100,31 +100,31 @@ public class CompradorPersistenceTest {
     }
 
     /**
-     * Prueba para crear un comprador
+     * Prueba para crear un proveedor
      */
     @Test
-    public void createCompradorTest() {
+    public void createProveedorTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        CompradorEntity newEntity = factory.manufacturePojo(CompradorEntity.class);
-        CompradorEntity result = compradorPersistence.create(newEntity);
+        ProveedorEntity newEntity = factory.manufacturePojo(ProveedorEntity.class);
+        ProveedorEntity result = proveedorPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        CompradorEntity entity = em.find(CompradorEntity.class, result.getId());
+        ProveedorEntity entity = em.find(ProveedorEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
     }
 
     /**
-     * Prueba para obtener una lista de compradores
+     * Prueba para obtener una lista de proveedores
      */
     @Test
-    public void getCompradoresTest() {
-        List<CompradorEntity> list = compradorPersistence.findAll();
+    public void getProveedoresTest() {
+        List<ProveedorEntity> list = proveedorPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (CompradorEntity ent : list) {
+        for (ProveedorEntity ent : list) {
             boolean found = false;
-            for (CompradorEntity entity : data) {
+            for (ProveedorEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -134,70 +134,70 @@ public class CompradorPersistenceTest {
     }
 
     /**
-     * Prueba para obtener un comprador
+     * Prueba para obtener un proveedor
      */
     @Test
-    public void getCompradorTest() {
-        CompradorEntity entity = data.get(0);
-        CompradorEntity newEntity = compradorPersistence.find(entity.getId());
+    public void getProveedorTest() {
+        ProveedorEntity entity = data.get(0);
+        ProveedorEntity newEntity = proveedorPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
     }
     
     /**
-     * Prueba para actualizar un comprador
+     * Prueba para actualizar un proveedor
      */
     @Test
-    public void updateCompradorTest() {
-        CompradorEntity entity = data.get(0);
+    public void updateProveedorTest() {
+        ProveedorEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        CompradorEntity newEntity = factory.manufacturePojo(CompradorEntity.class);
+        ProveedorEntity newEntity = factory.manufacturePojo(ProveedorEntity.class);
 
         newEntity.setId(entity.getId());
 
-        compradorPersistence.update(newEntity);
+        proveedorPersistence.update(newEntity);
 
-        CompradorEntity resp = em.find(CompradorEntity.class, entity.getId());
+        ProveedorEntity resp = em.find(ProveedorEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getUsuario(), resp.getUsuario());
     }
     
     /**
-     * Prueba para eliminar un comprador
+     * Prueba para eliminar un proveedor
      */
     @Test
     public void deleteCompradorTest() {
-        CompradorEntity entity = data.get(0);
-        compradorPersistence.delete(entity.getId());
-        CompradorEntity deleted = em.find(CompradorEntity.class, entity.getId());
+        ProveedorEntity entity = data.get(0);
+        proveedorPersistence.delete(entity.getId());
+        ProveedorEntity deleted = em.find(ProveedorEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para encontrar un comprador por su usuario
+     * Prueba para encontrar un proveedor por su usuario
      */
      @Test
-    public void findCompradorByUsuarioTest() {
-        CompradorEntity entity = data.get(0);
-        CompradorEntity newEntity = compradorPersistence.findByUsuario(entity.getUsuario());
+    public void findProveedorByUsuarioTest() {
+        ProveedorEntity entity = data.get(0);
+        ProveedorEntity newEntity = proveedorPersistence.findByUsername(entity.getUsuario());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
 
-        newEntity = compradorPersistence.findByUsuario(null);
+        newEntity = proveedorPersistence.findByUsername(null);
         Assert.assertNull(newEntity);
     }
     
     /**
-     * Prueba para encontrar un comprador por su correo
+     * Prueba para encontrar un proveedor por su correo
      */
      @Test
-    public void findCompradorByCorreoTest() {
-        CompradorEntity entity = data.get(0);
-        CompradorEntity newEntity = compradorPersistence.findByCorreo(entity.getCorreoElectronico());
+    public void findProveedorByCorreoTest() {
+        ProveedorEntity entity = data.get(0);
+        ProveedorEntity newEntity = proveedorPersistence.findByEmail(entity.getCorreoElectronico());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
 
-        newEntity = compradorPersistence.findByCorreo(null);
+        newEntity = proveedorPersistence.findByEmail(null);
         Assert.assertNull(newEntity);
     }
 }
