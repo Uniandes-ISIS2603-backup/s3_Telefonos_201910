@@ -53,7 +53,7 @@ public class ListaDeDeseosDetailDTO extends ListaDeDeseosDTO implements Serializ
            if(listaEntity.getCelulares() != null){
                celulares = new ArrayList<>();
                for(CelularEntity celularEntity: listaEntity.getCelulares()){
-                   //tablets.add(new CelularDTO(celularEntity));
+                   celulares.add(new CelularDTO(celularEntity));
                }
            }
         }
