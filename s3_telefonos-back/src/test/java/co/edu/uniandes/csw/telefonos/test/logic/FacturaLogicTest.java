@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.telefonos.test.logic;
 
 import co.edu.uniandes.csw.telefonos.ejb.FacturaLogic;
+import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
 import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
+import co.edu.uniandes.csw.telefonos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.FacturaPersistence;
 import java.util.ArrayList;
@@ -86,6 +89,9 @@ public class FacturaLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from FacturaEntity").executeUpdate();
+        em.createQuery("delete from CompradorEntity").executeUpdate();
+        em.createQuery("delete from ProveedorEntity").executeUpdate();
+        em.createQuery("delete from PublicacionEntity").executeUpdate();
     }
 
     /**
@@ -94,12 +100,58 @@ public class FacturaLogicTest {
      */
     private void insertData() {
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
             em.persist(entity);
             data.add(entity);
         }
+        
+        //Crea una factura con todos los atributos
+        FacturaEntity facturaFull = data.get(0);
+        CompradorEntity compradorEntity = factory.manufacturePojo(CompradorEntity.class);
+        em.persist(compradorEntity);
+        facturaFull.setComprador(compradorEntity);
 
+        ProveedorEntity proveedorEntity = factory.manufacturePojo(ProveedorEntity.class);
+        em.persist(proveedorEntity);
+        facturaFull.setProveedor(proveedorEntity);
+        
+        PublicacionEntity publicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
+        em.persist(publicacionEntity);
+        facturaFull.setPublicacion(publicacionEntity);
+        
+        //Crea una factura sin comprador
+        FacturaEntity facturaComp = data.get(1);
+   
+        proveedorEntity = factory.manufacturePojo(ProveedorEntity.class);
+        em.persist(proveedorEntity);
+        facturaComp.setProveedor(proveedorEntity);
+        
+        publicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
+        em.persist(publicacionEntity);
+        facturaComp.setPublicacion(publicacionEntity);
+        
+        //Crea una factura sin proveedor
+        FacturaEntity facturaProv = data.get(2);
+   
+        compradorEntity = factory.manufacturePojo(CompradorEntity.class);
+        em.persist(compradorEntity);
+        facturaProv.setComprador(compradorEntity);
+        
+        publicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
+        em.persist(publicacionEntity);
+        facturaProv.setPublicacion(publicacionEntity);
+        
+        //Crea una factura sin publicacion
+        FacturaEntity facturaPub = data.get(3);
+   
+        compradorEntity = factory.manufacturePojo(CompradorEntity.class);
+        em.persist(compradorEntity);
+        facturaPub.setComprador(compradorEntity);
+        
+        proveedorEntity = factory.manufacturePojo(ProveedorEntity.class);
+        em.persist(proveedorEntity);
+        facturaProv.setProveedor(proveedorEntity);
     }
 
     /**
@@ -108,6 +160,9 @@ public class FacturaLogicTest {
     @Test
     public void createFacturaTest() throws BusinessLogicException {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        newEntity.setComprador(data.get(0).getComprador());
+        newEntity.setProveedor(data.get(0).getProveedor());
+        newEntity.setPublicacion(data.get(0).getPublicacion());
         FacturaEntity result = facturaLogic.createFactura(newEntity);
         Assert.assertNotNull(result);
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
@@ -127,7 +182,45 @@ public class FacturaLogicTest {
         newEntity.setReferencia(data.get(0).getReferencia());
         facturaLogic.createFactura(newEntity);
     }
+    
+    /**
+     * Prueba para crear una Factura sin un comprador
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFacturaSinCompradorTest() throws BusinessLogicException {
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        newEntity.setProveedor(data.get(1).getProveedor());
+        newEntity.setPublicacion(data.get(1).getPublicacion());
+        facturaLogic.createFactura(newEntity);
+    }
 
+    /**
+     * Prueba para crear una Factura sin un proveedor
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFacturaSinProveedorTest() throws BusinessLogicException {
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        newEntity.setComprador(data.get(2).getComprador());
+        newEntity.setPublicacion(data.get(2).getPublicacion());
+        facturaLogic.createFactura(newEntity);
+    }
+    
+    /**
+     * Prueba para crear una Factura sin una publicacion
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFacturaSinPublicacionTest() throws BusinessLogicException {
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        newEntity.setProveedor(data.get(3).getProveedor());
+        newEntity.setComprador(data.get(3).getComprador());
+        facturaLogic.createFactura(newEntity);
+    }
 
     /**
      * Prueba para consultar la lista de Facturas.
@@ -169,6 +262,16 @@ public class FacturaLogicTest {
         FacturaEntity entity = data.get(0);
         FacturaEntity pojoEntity = factory.manufacturePojo(FacturaEntity.class);
         pojoEntity.setId(entity.getId());
+        
+        CompradorEntity compradorEntity = factory.manufacturePojo(CompradorEntity.class);
+        pojoEntity.setComprador(compradorEntity);
+
+        ProveedorEntity proveedorEntity = factory.manufacturePojo(ProveedorEntity.class);
+        pojoEntity.setProveedor(proveedorEntity);
+        
+        PublicacionEntity publicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
+        pojoEntity.setPublicacion(publicacionEntity);
+        
         facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
         FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
@@ -182,14 +285,74 @@ public class FacturaLogicTest {
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void updateFacturaConMismoUsuarioTest() throws BusinessLogicException {
+    public void updateFacturaConMismaReferenciaTest() throws BusinessLogicException {
         FacturaEntity entity = data.get(0);
         FacturaEntity pojoEntity = factory.manufacturePojo(FacturaEntity.class);
         pojoEntity.setId(entity.getId());
         pojoEntity.setReferencia(entity.getReferencia());
         facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
     }
+    
+    /**
+     * Prueba para actualizar una Factura sin comprador
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateFacturaSinCompradorTest() throws BusinessLogicException {
+        FacturaEntity entity = data.get(0);
+        FacturaEntity pojoEntity = factory.manufacturePojo(FacturaEntity.class);
+        pojoEntity.setId(entity.getId());
+        
+        PublicacionEntity publicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
+        pojoEntity.setPublicacion(publicacionEntity);
 
+        ProveedorEntity proveedorEntity = factory.manufacturePojo(ProveedorEntity.class);
+        pojoEntity.setProveedor(proveedorEntity);
+        
+        facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar una Factura sin proveedor
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateFacturaSinProveedorTest() throws BusinessLogicException {
+        FacturaEntity entity = data.get(0);
+        FacturaEntity pojoEntity = factory.manufacturePojo(FacturaEntity.class);
+        pojoEntity.setId(entity.getId());
+        
+        CompradorEntity compradorEntity = factory.manufacturePojo(CompradorEntity.class);
+        pojoEntity.setComprador(compradorEntity);
+
+        PublicacionEntity publicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
+        pojoEntity.setPublicacion(publicacionEntity);
+        
+        facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
+    }
+
+    /**
+     * Prueba para actualizar una Factura sin publicacion
+     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void updateFacturaSinPublicacionTest() throws BusinessLogicException {
+        FacturaEntity entity = data.get(0);
+        FacturaEntity pojoEntity = factory.manufacturePojo(FacturaEntity.class);
+        pojoEntity.setId(entity.getId());
+        
+        CompradorEntity compradorEntity = factory.manufacturePojo(CompradorEntity.class);
+        pojoEntity.setComprador(compradorEntity);
+
+        ProveedorEntity proveedorEntity = factory.manufacturePojo(ProveedorEntity.class);
+        pojoEntity.setProveedor(proveedorEntity);
+        
+        facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
+    }
+    
     /**
      * Prueba para eliminar una Factura.
      *
