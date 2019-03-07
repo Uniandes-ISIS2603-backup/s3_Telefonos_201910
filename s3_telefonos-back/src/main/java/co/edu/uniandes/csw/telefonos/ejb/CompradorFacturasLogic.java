@@ -35,7 +35,7 @@ public class CompradorFacturasLogic {
      * @param facturaId El id de la factura que se va a guardar
      * @return La factura creada.
      */
-    public FacturaEntity addFactura(Long compradorId, Long facturaId) {
+    public FacturaEntity addFactura(Long facturaId, Long compradorId) {
         CompradorEntity compradorEntity = compradorPersistence.find(compradorId);
         FacturaEntity facturaEntity = facturaPersistence.find(facturaId);
         List<FacturaEntity> facturas = compradorEntity.getFacturasDeCompra();
@@ -72,5 +72,4 @@ public class CompradorFacturasLogic {
         throw new BusinessLogicException("La factura no esta asociada al comprador");
     }
 
-    
 }
