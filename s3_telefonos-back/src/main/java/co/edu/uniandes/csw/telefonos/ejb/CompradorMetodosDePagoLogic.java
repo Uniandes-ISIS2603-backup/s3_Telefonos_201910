@@ -35,7 +35,7 @@ public class CompradorMetodosDePagoLogic {
      * @param metodoDePagoId El id del metodo de pago que se va a guardar
      * @return El metodo de pago creado.
      */
-    public MetodoDePagoEntity addMetodoDePago(Long compradorId, Long metodoDePagoId) {
+    public MetodoDePagoEntity addMetodoDePago(Long metodoDePagoId, Long compradorId) {
         CompradorEntity compradorEntity = compradorPersistence.find(compradorId);
         MetodoDePagoEntity metodoDePagoEntity = metodoDePagoPersistence.find(metodoDePagoId);
         List<MetodoDePagoEntity> metodosDePago = compradorEntity.getMetodosDePago();
