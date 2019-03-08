@@ -7,9 +7,12 @@ package co.edu.uniandes.csw.telefonos.test.logic;
 
 import co.edu.uniandes.csw.telefonos.ejb.CompradorListaDeDeseosLogic;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorLogic;
+import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
 import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
 import co.edu.uniandes.csw.telefonos.entities.ListaDeDeseosEntity;
+import co.edu.uniandes.csw.telefonos.entities.TabletEntity;
 import co.edu.uniandes.csw.telefonos.persistence.ListaDeDeseosPersistence;
+import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -97,9 +100,14 @@ public class CompradorListaDeDeseosLogicTest {
     private void insertData() {
         comprador = factory.manufacturePojo(CompradorEntity.class);
         lista = factory.manufacturePojo(ListaDeDeseosEntity.class);
-        while(lista.getTablets().size()/*+lista.getCelulares().size()*/<=0){
-            lista = factory.manufacturePojo(ListaDeDeseosEntity.class);
+        ArrayList<TabletEntity> tablets = new ArrayList<TabletEntity>();
+        ArrayList<CelularEntity> celulares = new ArrayList<CelularEntity>();
+        for(int i=0;i<3;i++){
+            TabletEntity tablet = factory.manufacturePojo(TabletEntity.class);
+            CelularEntity celular = factory.manufacturePojo(CelularEntity.class);
         }
+        lista.setTablets(tablets);
+        lista.setCelulares(celulares);
         comprador.setListaDeDeseos(lista);
         em.persist(comprador);
     }

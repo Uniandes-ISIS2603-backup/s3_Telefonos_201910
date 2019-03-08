@@ -106,10 +106,9 @@ public class ListaDeDeseosLogicTest {
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas. En el indice 0 se guardara una lista de deseos con 9 tablets, en el indice
-     * 2 se guardara una con 9 celulares, en el indice 3 se guardara una con 5 tablets y 5 celulares
+     * 1 se guardara una con 9 celulares, en el indice 2 se guardara una con 5 tablets y 5 celulares
      */
     private void insertData() {
-        
             ListaDeDeseosEntity entity = factory.manufacturePojo(ListaDeDeseosEntity.class);
             ArrayList<TabletEntity> tablets = (ArrayList<TabletEntity>) entity.getTablets();
             ArrayList<CelularEntity> celulares = (ArrayList<CelularEntity>) entity.getCelulares();
