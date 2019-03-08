@@ -46,8 +46,8 @@ public class ProveedorResource {
      * @return Lista de Proveedores
      */
     @GET
-    public List<ProveedorDTO> obtenerProveedores() {
-        List<ProveedorDTO> result = listEntityToDTO(proveedorLogic.getProveedores());
+    public List<ProveedorDetailDTO> obtenerProveedores() {
+        List<ProveedorDetailDTO> result = listEntityToDetailDTO(proveedorLogic.getProveedores());
         return result;
     }
 
@@ -122,10 +122,10 @@ public class ProveedorResource {
         return ProveedorFacturasResource.class;
     }
     
-    private List<ProveedorDTO> listEntityToDTO(List<ProveedorEntity> listaEntidades) {
-        List<ProveedorDTO> lista = new ArrayList<>();
+    private List<ProveedorDetailDTO> listEntityToDetailDTO(List<ProveedorEntity> listaEntidades) {
+        List<ProveedorDetailDTO> lista = new ArrayList<>();
         for (ProveedorEntity entity : listaEntidades) {
-            lista.add(new ProveedorDTO(entity));
+            lista.add(new ProveedorDetailDTO(entity));
         }
         return lista;
     }
