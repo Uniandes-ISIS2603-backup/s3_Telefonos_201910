@@ -38,4 +38,19 @@ public class CarritoDeComprasPersistence {
         TypedQuery<CarritoDeComprasEntity> query = em.createQuery("select u from CelularEntity u", CarritoDeComprasEntity.class);
         return query.getResultList();
     }
+    
+    public CarritoDeComprasEntity update(CarritoDeComprasEntity carritoDeComprasEntity) {
+        return em.merge(carritoDeComprasEntity);
+    }
+
+    /**
+     * Elimina un comprador de la base de datos recibiendo como parametro el id
+     * del comprador
+     *
+     * @param compradorId Identificador del comprador a eliminar
+     */
+    public void delete(Long carritoDeComprasId) {
+        CarritoDeComprasEntity carritoDeComprasEntity = em.find(CarritoDeComprasEntity.class, carritoDeComprasId);
+        em.remove(carritoDeComprasEntity);
+    }
 }
