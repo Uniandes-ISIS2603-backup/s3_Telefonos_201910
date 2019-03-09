@@ -35,7 +35,7 @@ public class ProveedorSegurosLogic {
      * @param seguroId El id del seguro que se va a guardar
      * @return Seguro creado.
      */
-    public SeguroEntity addSeguro(Long proveedorId, Long seguroId) {
+    public SeguroEntity addSeguro( Long seguroId, Long proveedorId) {
         ProveedorEntity proveedorEntity = proveedorPersistence.find(proveedorId);
         SeguroEntity seguroEntity = seguroPersistence.find(seguroId);
         List<SeguroEntity> seguros = proveedorEntity.getSeguros();

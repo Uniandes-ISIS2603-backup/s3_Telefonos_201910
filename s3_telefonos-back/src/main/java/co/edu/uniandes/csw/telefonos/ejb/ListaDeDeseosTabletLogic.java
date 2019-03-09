@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.ListaDeDeseosPersistence;
 import co.edu.uniandes.csw.telefonos.persistence.TabletPersistence;
 import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -50,6 +51,16 @@ public class ListaDeDeseosTabletLogic {
     
     }
        
+       /**
+     * Retorna todas las tablets asociadas a una lista de deseos
+     *
+     * @param lidtaId El ID de la lista buscada
+     * @return La lista de tablets de la lista de deseos.
+     */
+    public List<TabletEntity> getTablets(Long listaId) {
+        return listaPersistence.find(listaId).getTablets();
+}
+       
      /**
      * Borra una tableta de la lista de deseos
      *
@@ -75,4 +86,24 @@ public class ListaDeDeseosTabletLogic {
         return listaEntity;
     
     }
+       
+        /**
+     * Retorna una tablet asociada a una lista de deseos
+     *
+     * @param listaId El id de la lista a buscar.
+     * @param tabletId El id de la tablet a buscar
+     * @return La tablet encontrada dentro de la lista de deseos
+     * @throws BusinessLogicException Si la tablet no se encuentra en la lista
+     */
+    public TabletEntity getTablet(Long listaId, Long tabletId) throws BusinessLogicException {
+        List<TabletEntity> tablets = listaPersistence.find(listaId).getTablets();
+        TabletEntity tabletEntity = tabletPersistence.find(tabletId);
+        int index = tablets.indexOf(tabletEntity);
+
+        if (index >= 0) {
+            return tablets.get(index);
+        }
+        throw new BusinessLogicException("La tablet no está asociada a la lista de deseos.");
+}
+    
 }
