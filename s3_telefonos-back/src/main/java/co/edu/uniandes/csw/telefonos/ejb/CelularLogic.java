@@ -40,8 +40,12 @@ public class CelularLogic {
         }
         
         /**
-         * PREGUNTAR COMO HACER ROBADOS
+         * HACER ROBADOS
          */
+        if((Math.random()%2)!=0)
+        {
+            throw new BusinessLogicException("El celular con el IMEI " + celular.getImei() + " está reportado como robado.");
+        }
         
         celular = persistence.create(celular);
         return celular;
@@ -73,18 +77,15 @@ public class CelularLogic {
          return celular;
      }
      
-     public CelularEntity updateCelular(Long imeiCelular, CelularEntity celular) throws BusinessLogicException
+     public CelularEntity updateCelular(CelularEntity celular) throws BusinessLogicException
      {
-         /**
-          * if(celular.isRegistrado())
-         {
-             if(persistence.findByImei(celular.getImei())!=null)
-             {
-                 
-             }
-         }
-          */
-         return null;
+         //La referencia de cada factura debe ser unica
+        if(persistence.findByImei(celular.getImei())!=null){
+            throw new BusinessLogicException("Ya existe un Celular con el IMEI " + celular.getImei());
+        }
+        
+       CelularEntity newEntity = persistence.update(celular);
+        return newEntity;
      }
     
 }

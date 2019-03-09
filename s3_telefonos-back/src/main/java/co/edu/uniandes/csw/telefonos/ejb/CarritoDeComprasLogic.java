@@ -31,8 +31,8 @@ public class CarritoDeComprasLogic {
         return carrito;
     }
     
-    /**
-     * public PublicacionEntity agregarPublicacion(PublicacionEntity publicacion, CarritoDeComprasEntity carrito)throws BusinessLogicException
+   /**
+    * public PublicacionEntity agregarPublicacion(PublicacionEntity publicacion, CarritoDeComprasEntity carrito)throws BusinessLogicException
     {
         List<PublicacionEntity> publicaciones = carrito.getPublicaciones();
         if(publicaciones.size()>=10)
@@ -41,7 +41,21 @@ public class CarritoDeComprasLogic {
         }
         publicaciones.add(publicacion);
         carrito.setPublicaciones(publicaciones);
+        return publicacion;
     }
-     */
+    * @return 
+    */
+  
+   public List<CarritoDeComprasEntity> getCarritoDeCompras(){
+         
+        List<CarritoDeComprasEntity> listas = persistence.findAll();
+        return listas;
+    }
+    
+    public CarritoDeComprasEntity getCarritoDeCompras(Long id){
+        
+        CarritoDeComprasEntity lista = persistence.find(id);     
+        return lista;
+    }
 
 }

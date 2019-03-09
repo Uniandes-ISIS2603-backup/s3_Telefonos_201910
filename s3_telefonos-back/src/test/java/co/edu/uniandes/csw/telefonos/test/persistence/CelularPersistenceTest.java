@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.telefonos.test.persistence;
 
-import co.edu.uniandes.csw.telefonos.entities.CarritoDeComprasEntity;
-import co.edu.uniandes.csw.telefonos.persistence.CarritoDeComprasPersistence;
+
+import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
+import co.edu.uniandes.csw.telefonos.persistence.CelularPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,33 +30,28 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Daniel Babativa
  */
 @RunWith(Arquillian.class)
-public class CarritoDeComprasPersistenceTest {
+public class CelularPersistenceTest {
     @Inject
-    private CarritoDeComprasPersistence cp;
+    private CelularPersistence cp;
     
     @PersistenceContext
     private EntityManager em;
-
+    
     @Inject
     UserTransaction utx;
-
-    private List<CarritoDeComprasEntity> data = new ArrayList<CarritoDeComprasEntity>();
-
-    /**
-     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
-     * El jar contiene las clases, el descriptor de la base de datos y el
-     * archivo beans.xml para resolver la inyección de dependencias.
-     */
+    
+    private List<CelularEntity> data = new ArrayList<CelularEntity>();
+    
     @Deployment
-    public static JavaArchive createDeployment() {
+    public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CarritoDeComprasEntity.class.getPackage())
-                .addPackage(CarritoDeComprasPersistence.class.getPackage())
+                .addPackage(CelularEntity.class.getPackage())
+                .addPackage(CelularPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-
-    /**
+    
+     /**
      * Configuración inicial de la prueba.
      */
     @Before
@@ -80,7 +76,7 @@ public class CarritoDeComprasPersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from CarritoDeComprasEntity").executeUpdate();
+        em.createQuery("delete from CelularEntity").executeUpdate();
     }
 
     /**
@@ -90,31 +86,31 @@ public class CarritoDeComprasPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            CarritoDeComprasEntity entity = factory.manufacturePojo(CarritoDeComprasEntity.class);
+            CelularEntity entity = factory.manufacturePojo(CelularEntity.class);
 
             em.persist(entity);
             data.add(entity);
         }
     }
-
     
     @Test
-    public void createCarritoDeComprasTest(){
+    public void createCelularTest(){
         PodamFactory factory = new PodamFactoryImpl();
-        CarritoDeComprasEntity newEntity = factory.manufacturePojo(CarritoDeComprasEntity.class);
-        CarritoDeComprasEntity ce = cp.create(newEntity);
+        CelularEntity newEntity = factory.manufacturePojo(CelularEntity.class);
+        CelularEntity ce = cp.create(newEntity);
         Assert.assertNotNull(ce);
-        CarritoDeComprasEntity entity = em.find(CarritoDeComprasEntity.class, ce.getId());
-        Assert.assertEquals(newEntity.getCostoTotal(), entity.getCostoTotal());
+        CelularEntity entity = em.find(CelularEntity.class, ce.getId());
+        Assert.assertEquals(newEntity.getImei(), entity.getImei());
         
     }
     
      @Test
     public void getCarritosTest() {
-        List<CarritoDeComprasEntity> list = cp.findAll();
-        for (CarritoDeComprasEntity ent : list) {
+        List<CelularEntity> list = cp.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (CelularEntity ent : list) {
             boolean found = false;
-            for (CarritoDeComprasEntity entity : data) {
+            for (CelularEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -125,42 +121,43 @@ public class CarritoDeComprasPersistenceTest {
     
     
      @Test
-    public void getCarritoTest() {
-        CarritoDeComprasEntity entity = data.get(0);
-        CarritoDeComprasEntity newEntity = cp.find(entity.getId());
+    public void getCelularTest() {
+        CelularEntity entity = data.get(0);
+        CelularEntity newEntity = cp.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getComprador(), newEntity.getComprador());
-        Assert.assertEquals(entity.getCostoTotal(), newEntity.getCostoTotal());
-        Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getPublicaciones(), newEntity.getPublicaciones());
+      Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getImei(), newEntity.getImei());
+        Assert.assertEquals(entity.getMarca(), newEntity.getMarca());
+        Assert.assertEquals(entity.getReferencia(), newEntity.getReferencia());
+        Assert.assertEquals(entity.getReferencia(), newEntity.getReferencia());
     }
     
     
     @Test
-     public void deleteCarritoTest() {
-        CarritoDeComprasEntity entity = data.get(0);
+     public void deleteCelularTest() {
+        CelularEntity entity = data.get(0);
         cp.delete(entity.getId());
-        CarritoDeComprasEntity deleted = em.find(CarritoDeComprasEntity.class, entity.getId());
+        CelularEntity deleted = em.find(CelularEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     
     @Test
-    public void updateCarritoTest() {
-        CarritoDeComprasEntity entity = data.get(0);
+    public void updateCelularTest() {
+        CelularEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        CarritoDeComprasEntity newEntity = factory.manufacturePojo(CarritoDeComprasEntity.class);
+        CelularEntity newEntity = factory.manufacturePojo(CelularEntity.class);
 
         newEntity.setId(entity.getId());
 
         cp.update(newEntity);
 
-        CarritoDeComprasEntity resp = em.find(CarritoDeComprasEntity.class, entity.getId());
+        CelularEntity resp = em.find(CelularEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getComprador(), resp.getComprador());
-        Assert.assertEquals(newEntity.getCostoTotal(), resp.getCostoTotal());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getPublicaciones(), resp.getPublicaciones());
+        Assert.assertEquals(newEntity.getImei(), resp.getImei());
+        Assert.assertEquals(newEntity.getMarca(), resp.getMarca());
+        Assert.assertEquals(newEntity.getReferencia(), resp.getReferencia());
+        Assert.assertEquals(newEntity.getReferencia(), resp.getReferencia());
     }
-    
 }
