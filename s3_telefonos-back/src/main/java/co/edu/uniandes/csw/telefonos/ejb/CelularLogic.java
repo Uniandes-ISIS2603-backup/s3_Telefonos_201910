@@ -83,7 +83,6 @@ public class CelularLogic {
         if(persistence.findByImei(celular.getImei())!=null){
             throw new BusinessLogicException("Ya existe un Celular con el IMEI " + celular.getImei());
         }
-        
        CelularEntity newEntity = persistence.update(celular);
         return newEntity;
      }
