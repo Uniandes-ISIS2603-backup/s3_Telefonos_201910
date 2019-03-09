@@ -45,7 +45,7 @@ public class CompradorListaDeDeseosResource {
         if(compradorLogic.getComprador(idComprador) == null){
             throw new WebApplicationException("El recurso /compradores/" + idComprador + " no existe.", 404);
         }
-        compradorListaLogic.vaciarListaDeDeseos(idComprador);
+        compradorListaLogic.removeListaDeDeseos(idComprador);
     }
     
     

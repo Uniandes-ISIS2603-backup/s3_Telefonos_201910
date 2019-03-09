@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
 import co.edu.uniandes.csw.telefonos.entities.TabletEntity;
 import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
 import co.edu.uniandes.csw.telefonos.entities.ListaDeDeseosEntity;
+import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.ListaDeDeseosPersistence;
 import co.edu.uniandes.csw.telefonos.persistence.CompradorPersistence;
 import java.util.ArrayList;
@@ -29,21 +30,19 @@ public class CompradorListaDeDeseosLogic {
     private CompradorPersistence compradorPersistence;
     
     
-    /*
-    * Vacia la lsta de deseos de un comprador
-    *
-    *@param idComprador El id del comprador a actualizar
-    */
-    public void vaciarListaDeDeseos(Long idComprador){
-        CompradorEntity comprador = compradorPersistence.find(idComprador);
-        ListaDeDeseosEntity lista = comprador.getListaDeDeseos();
-        ArrayList<TabletEntity> tablets = (ArrayList<TabletEntity>) lista.getTablets();
-        //ArrayList<CelularEntity> celulares = lista.getCelulares();
-        tablets.clear();
-        //celulares.clear();
-        lista.setTablets(tablets);
-        //lista.setCelulares(celulares);
-        comprador.setListaDeDeseos(lista);
-    }
+    /**
+     * Borrar una lista de deseos de un comprador. 
+     *
+     * @param compradorId El comprador que se desea borrar de la lista de deseos.
+     */
+    public void removeListaDeDeseos(Long compradorId) {
+
+        CompradorEntity compradorEntity = compradorPersistence.find(compradorId);       
+        ListaDeDeseosEntity listaEntity = listaPersistence.find(compradorEntity.getListaDeDeseos().getId());
+        listaPersistence.delete(compradorEntity.getListaDeDeseos().getId());
+        compradorEntity.setListaDeDeseos(null);
+        listaEntity.setComprador(null);
+        
+}
     
 }
