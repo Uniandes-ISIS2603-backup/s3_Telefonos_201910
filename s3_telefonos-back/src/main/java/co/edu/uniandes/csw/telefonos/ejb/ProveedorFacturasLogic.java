@@ -35,7 +35,7 @@ public class ProveedorFacturasLogic {
      * @param facturaId El id de la factura que se va a guardar
      * @return La factura creada.
      */
-    public FacturaEntity addFactura(Long proveedorId, Long facturaId) {
+    public FacturaEntity addFactura(Long facturaId, Long proveedorId) {
         ProveedorEntity proveedorEntity = proveedorPersistence.find(proveedorId);
         FacturaEntity facturaEntity = facturaPersistence.find(facturaId);
         List<FacturaEntity> facturas = proveedorEntity.getFacturasDeVenta();
