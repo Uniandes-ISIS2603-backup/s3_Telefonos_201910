@@ -95,9 +95,9 @@ public class ListaDeDeseosTabletLogic {
      * @return La tablet encontrada dentro de la lista de deseos
      * @throws BusinessLogicException Si la tablet no se encuentra en la lista
      */
-    public TabletEntity getTablet(Long listaId, Long tabletId) throws BusinessLogicException {
+    public TabletEntity getTablet(Long listaId, String tabletRef) throws BusinessLogicException {
         List<TabletEntity> tablets = listaPersistence.find(listaId).getTablets();
-        TabletEntity tabletEntity = tabletPersistence.find(tabletId);
+        TabletEntity tabletEntity = tabletPersistence.findByReferencia(tabletRef);
         int index = tablets.indexOf(tabletEntity);
 
         if (index >= 0) {

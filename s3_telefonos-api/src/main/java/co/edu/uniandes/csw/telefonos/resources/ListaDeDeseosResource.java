@@ -83,7 +83,27 @@ public class ListaDeDeseosResource {
         return detailDTO;
 }
    
-    
+    /**
+     * Conexión con el servicio de tablets para una lista de deseos.
+     * {@link ListaDeDeseosTabletResource}
+     *
+     * Este método conecta la ruta de /listasDeDeseos con las rutas de /tablets que
+     * dependen de la lista de deseps, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de las tablets de una lista de deseos.
+     *
+     * @param listaId El ID de la lista de deseos con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de tablets para esta lista de deseos en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la lista de deseos.
+     */
+    @Path("{listaId: \\d+}/tablets")
+    public Class<ListaDeDeseosTabletResource> getListaDeDeseosTabletResource(@PathParam("listaId") Long listaId) {
+        if (listaLogic.getListaDeDeseos(listaId) == null) {
+            throw new WebApplicationException("El recurso /listasDeDeseos/" + listaId + " no existe.", 404);
+        }
+        return ListaDeDeseosTabletResource.class;
+}
     
     
     /**
