@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.telefonos.resources;
  *
  * @author Andres Felipe Daza Diaz
  */
+@Consumes()
 public class ListaDeDeseosTabletResource {
     
 }
