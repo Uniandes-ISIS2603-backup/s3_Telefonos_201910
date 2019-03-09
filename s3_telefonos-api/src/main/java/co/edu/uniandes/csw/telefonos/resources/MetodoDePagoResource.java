@@ -59,11 +59,11 @@ public class MetodoDePagoResource {
     
     @GET
     @Path("{metodosDePagoId: \\d+}")
-    public MetodoDePagoDTO getMetodoDePago(@PathParam("metodosDePagoId") Long metodoDePagoId) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodoDePago: input: {0}", metodoDePagoId);
-        MetodoDePagoEntity metodoDePagoEntity = metodoDePagoLogic.getMetodoDePago(metodoDePagoId);
+    public MetodoDePagoDTO getMetodoDePago(@PathParam("metodosDePagoId") Long metodosDePagoId) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodoDePago: input: {0}", metodosDePagoId);
+        MetodoDePagoEntity metodoDePagoEntity = metodoDePagoLogic.getMetodoDePago(metodosDePagoId);
         if (metodoDePagoEntity == null) {
-            throw new WebApplicationException("El recurso /metodosDePago/" + metodoDePagoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /metodosDePago/" + metodosDePagoId + " no existe.", 404);
         }
         MetodoDePagoDTO detailDTO = new MetodoDePagoDTO(metodoDePagoEntity);
         LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodoDePago: output: {0}", detailDTO);

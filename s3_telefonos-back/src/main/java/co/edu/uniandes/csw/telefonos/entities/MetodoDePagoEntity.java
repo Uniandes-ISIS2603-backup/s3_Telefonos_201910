@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -24,6 +26,7 @@ public class MetodoDePagoEntity extends BaseEntity implements Serializable{
     //tipo de metodo de pago
     private String tipo;
     //fecha de expiración metodo de pago
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     //código de verificación metodo de pago
     private Integer codigoVerificacion;
