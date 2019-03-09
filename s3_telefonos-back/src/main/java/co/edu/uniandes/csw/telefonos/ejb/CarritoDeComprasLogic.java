@@ -24,9 +24,11 @@ public class CarritoDeComprasLogic {
     private CarritoDeComprasPersistence persistence;
 
     
-    public CarritoDeComprasEntity createCarritoDeCompras(CarritoDeComprasEntity carrito)
+    public CarritoDeComprasEntity createCarritoDeCompras(CarritoDeComprasEntity carrito)throws BusinessLogicException
     {
-    
+    if(persistence.find(carrito.getId())!=null){
+            throw new BusinessLogicException("Ya existe un carrito de compras con el ID "+carrito.getId());
+        }
     carrito = persistence.create(carrito);
         return carrito;
     }
