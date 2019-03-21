@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -24,6 +26,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PublicacionEntity extends BaseEntity implements Serializable {
 
     //fecha de creación de la publicación
+    @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
     //arreglo de imagenes que se van a  usar en el post
     private ArrayList<String> imagenes;

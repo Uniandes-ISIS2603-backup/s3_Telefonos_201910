@@ -78,7 +78,7 @@ public PublicacionDTO crearComprador (PublicacionDTO publicacion)throws Business
  * @return publicacion con identificador id
  */
 @GET
-@Path("{publicacionId: \\d+}")
+@Path("{publicacionesId: \\d+}")
  public PublicacionDetailDTO obtenerPublicacionID(@PathParam("publicacionesId") Long publicacionesId)throws WebApplicationException,BusinessLogicException {
      LOGGER.log(Level.INFO, "PublicacionResource getPublicacion: input: {0}", publicacionesId);
         PublicacionEntity publicacionEntity = publicacionLogic.getPublicacion(publicacionesId);
