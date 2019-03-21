@@ -52,7 +52,7 @@ public class ListaDeDeseosTabletResource {
      */
     @POST
     @Path("{tabletId: \\d+}")
-    public ListaDeDeseosDetailDTO addBook(@PathParam("tabletId") Long listaId, @PathParam("booksId") String tabletRef) throws BusinessLogicException {
+    public ListaDeDeseosDetailDTO addTablet(@PathParam("tabletId") Long listaId, @PathParam("booksId") String tabletRef) throws BusinessLogicException {
         if (tabletLogic.getTablet(tabletRef) == null) {
             throw new WebApplicationException("El recurso /tablets/" + tabletRef + " no existe.", 404);
         }

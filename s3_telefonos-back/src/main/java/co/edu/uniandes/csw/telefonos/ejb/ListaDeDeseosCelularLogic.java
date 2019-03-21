@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.telefonos.persistence.CelularPersistence;
 import co.edu.uniandes.csw.telefonos.persistence.ListaDeDeseosPersistence;
 import co.edu.uniandes.csw.telefonos.persistence.TabletPersistence;
 import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -74,4 +75,33 @@ public class ListaDeDeseosCelularLogic {
         return listaEntity;
     
     }
+       
+            /**
+     * Retorna todos los celulares asociados a una lista de deseos
+     *
+     * @param listaId El ID de la lista buscada
+     * @return La lista de celulares de la lista de deseos.
+     */
+    public List<CelularEntity> getCelulares(Long listaId) {
+        return listaPersistence.find(listaId).getCelulares();
+}
+    
+        /**
+     * Retorna un celular asociado a una lista de deseos
+     *
+     * @param listaId El id de la lista a buscar.
+     * @param celularIMEI El IMEI del celular a buscar
+     * @return El celular encontrado dentro de la lista de deseos
+     * @throws BusinessLogicException Si el celular no se encuentra en la lista
+     */
+    public CelularEntity getCelular(Long listaId, Long celularIMEI) throws BusinessLogicException {
+        List<CelularEntity> celulares = listaPersistence.find(listaId).getCelulares();
+        CelularEntity celularEntity = celularPersistence.findByImei(celularIMEI);
+        int index = celulares.indexOf(celularEntity);
+
+        if (index >= 0) {
+            return celulares.get(index);
+        }
+        throw new BusinessLogicException("El celular no está asociado a la lista de deseos.");
+}
 }
