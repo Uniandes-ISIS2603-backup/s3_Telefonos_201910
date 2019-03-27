@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -39,6 +40,7 @@ public class ListaDeDeseosResource {
     
     private static final Logger LOGGER = Logger.getLogger(ListaDeDeseosResource.class.getName());
     
+    @Inject
     private ListaDeDeseosLogic listaLogic;
     
     @POST
@@ -88,7 +90,7 @@ public class ListaDeDeseosResource {
      * {@link ListaDeDeseosTabletResource}
      *
      * Este método conecta la ruta de /listasDeDeseos con las rutas de /tablets que
-     * dependen de la lista de deseps, es una redirección al servicio que maneja el
+     * dependen de la lista de deseos, es una redirección al servicio que maneja el
      * segmento de la URL que se encarga de las tablets de una lista de deseos.
      *
      * @param listaId El ID de la lista de deseos con respecto a la cual se
@@ -103,6 +105,28 @@ public class ListaDeDeseosResource {
             throw new WebApplicationException("El recurso /listasDeDeseos/" + listaId + " no existe.", 404);
         }
         return ListaDeDeseosTabletResource.class;
+}
+    
+    /**
+     * Conexión con el servicio de celulares para una lista de deseos.
+     * {@link ListaDeDeseosTabletResource}
+     *
+     * Este método conecta la ruta de /listasDeDeseos con las rutas de /celulares que
+     * dependen de la lista de deseos, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los celulares de una lista de deseos.
+     *
+     * @param listaId El ID de la lista de deseos con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de celulares para esta lista de deseos en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la lista de deseos.
+     */
+    @Path("{listaId: \\d+}/celulares")
+    public Class<ListaDeDeseosCelularResource> getListaDeDeseoCelularResource(@PathParam("listaId") Long listaId) {
+        if (listaLogic.getListaDeDeseos(listaId) == null) {
+            throw new WebApplicationException("El recurso /listasDeDeseos/" + listaId + " no existe.", 404);
+        }
+        return ListaDeDeseosCelularResource.class;
 }
     
     
