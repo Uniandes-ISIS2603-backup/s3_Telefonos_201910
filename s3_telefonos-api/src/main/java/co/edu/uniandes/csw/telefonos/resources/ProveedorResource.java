@@ -113,13 +113,31 @@ public class ProveedorResource {
         }
         proveedorLogic.deleteProveedor(proveedorId);
     }
-
-      @Path("{proveedorId: \\d+}/facturas")
+    
+    /**
+     * Devuelve el Resource que asocia proveedores con facturas
+     * @param proveedorId Identificador del proveedor
+     * @return Clase de asociacion
+     */
+    @Path("{proveedorId: \\d+}/facturas")
     public Class<ProveedorFacturasResource> getProveedorFacturaResource(@PathParam("proveedorId") Long proveedorId) {
         if (proveedorLogic.getProveedor(proveedorId) == null) {
             throw new WebApplicationException("El recurso /proveedores/" + proveedorId + " no existe.", 404);
         }
         return ProveedorFacturasResource.class;
+    }
+        
+    /**
+     * Devuelve el Resource que asocia proveedores con seguros
+     * @param proveedorId Identificador del proveedor
+     * @return Clase de asociacion
+     */
+    @Path("{proveedorId: \\d+}/seguros")
+    public Class<ProveedorSegurosResource> getCompradorMetodoDePagoResource(@PathParam("proveedorId") Long proveedorId) {
+        if (proveedorLogic.getProveedor(proveedorId) == null) {
+            throw new WebApplicationException("El recurso /proveedores/" + proveedorId + " no existe.", 404);
+        }
+        return ProveedorSegurosResource.class;
     }
     
     private List<ProveedorDetailDTO> listEntityToDetailDTO(List<ProveedorEntity> listaEntidades) {

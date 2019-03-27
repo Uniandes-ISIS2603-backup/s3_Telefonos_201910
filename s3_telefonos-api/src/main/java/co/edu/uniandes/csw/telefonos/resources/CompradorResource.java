@@ -114,6 +114,11 @@ public class CompradorResource {
         compradorLogic.deleteComprador(compradorId);
     }
 
+    /**
+     * Devuelve el Resource que asocia compradores con facturas
+     * @param compradorId Identificador del comprador
+     * @return Clase de asociacion
+     */
     @Path("{compradorId: \\d+}/facturas")
     public Class<CompradorFacturasResource> getCompradorFacturaResource(@PathParam("compradorId") Long compradorId) {
         if (compradorLogic.getComprador(compradorId) == null) {
@@ -121,7 +126,25 @@ public class CompradorResource {
         }
         return CompradorFacturasResource.class;
     }
+    
+        /**
+     * Devuelve el Resource que asocia compradores con metodos de pago
+     * @param compradorId Identificador del comprador
+     * @return Clase de asociacion
+     */
+    @Path("{compradorId: \\d+}/metodosDePago")
+    public Class<CompradorMetodosDePagoResource> getCompradorMetodoDePagoResource(@PathParam("compradorId") Long compradorId) {
+        if (compradorLogic.getComprador(compradorId) == null) {
+            throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
+        }
+        return CompradorMetodosDePagoResource.class;
+    }
 
+    /**
+     * Devuelve el Resource que asocia compradores con lista de deseos
+     * @param compradorId Identificador del comprador
+     * @return Clase de asociacion
+     */
     @Path("{compradorId: \\d+}/listasDeDeseos")
     public Class<CompradorListaDeDeseosResource> getCompradorListaDeDeseosResource(@PathParam("compradorId") Long compradorId) {
         if (compradorLogic.getComprador(compradorId) == null) {
