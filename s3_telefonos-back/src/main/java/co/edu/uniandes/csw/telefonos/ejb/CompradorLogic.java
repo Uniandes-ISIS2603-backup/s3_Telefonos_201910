@@ -80,13 +80,17 @@ public class CompradorLogic {
     public CompradorEntity updateComprador(Long compradorId, CompradorEntity compradorEntity) throws BusinessLogicException {
         
         //El usuario de cada comprador debe ser unico
-        if(persistencia.findByUsuario(compradorEntity.getUsuario())!=null){
-            throw new BusinessLogicException("Ya existe un Comprador con el usuario \"" + compradorEntity.getUsuario() + "\"");
+        if(persistencia.findByUsuario(compradorEntity.getUsuario())!=null){   
+            if(!(persistencia.findByUsuario(compradorEntity.getUsuario()).getId() == compradorEntity.getId())){
+                throw new BusinessLogicException("Ya existe un Comprador con el usuario \"" + compradorEntity.getUsuario() + "\"");
+            }
         }
         
         //El correo de cada comprador debe ser unico
         if(persistencia.findByCorreo(compradorEntity.getCorreoElectronico())!=null){
-            throw new BusinessLogicException("Ya existe un Comprador con el correo \"" + compradorEntity.getCorreoElectronico() + "\"");
+            if(!(persistencia.findByCorreo(compradorEntity.getCorreoElectronico()).getId() == compradorEntity.getId())){
+                throw new BusinessLogicException("Ya existe un Comprador con el correo \"" + compradorEntity.getCorreoElectronico() + "\"");
+            }
         }
         
        CompradorEntity newEntity = persistencia.update(compradorEntity);

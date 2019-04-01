@@ -1,0 +1,635 @@
+{
+	"info": {
+		"_postman_id": "69a210f2-49a3-4a71-a4b0-8d1c549ba808",
+		"name": "Comprador-Tests",
+		"description": "Comprador Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los compradores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1ec8df92-2410-4700-a3e2-76035c393112",
+						"exec": [
+							"tests[\"No genera error en el GET\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7debf0c0-32fb-4b97-8692-947610c85206",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"apodo\": \"Lau P\",\n\t\"correoElectronico\":\"lv.prieto@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f5edfb0-6fce-4634-8dd8-f1c3d3270677",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GET\"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un comprador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d22a8a6a-2187-4c43-908b-42953a0447f1",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /compradores/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comprador 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "01f69584-e7ee-4809-92b3-ceae955a625a",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c2\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"dfvega\",\n\t\"contrasenia\": \"Hello World\",\n\t\"apodo\": \"Dani V\",\n\t\"correoElectronico\":\"df.vega218@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comprador con usuario existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cc6da9c-a6a6-4cf1-a14f-1defa9675eca",
+						"exec": [
+							"tests[\"No crea con el mismo usuario\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Comprador con el usuario\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Fail\",\n\t\"apodo\": \"Laura\",\n\t\"correoElectronico\":\"lvprieto@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comprador con correo existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6daaa5af-7d98-4f8d-b63f-2493c1bdfade",
+						"exec": [
+							"tests[\"No crea con el mismo correo\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Comprador con el correo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"dvega\",\n\t\"contrasenia\": \"Fail2\",\n\t\"apodo\": \"Daniel\",\n\t\"correoElectronico\":\"df.vega218@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56b916ce-05e8-498d-9352-0ecfce192a09",
+						"exec": [
+							"console.log(responseBody);\r",
+							"tests[\"No genera error en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"apodo\": \"Nuevo Apodo\",\n\t\"correoElectronico\":\"lv.prieto@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un comprador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49e3aff0-95e7-482b-b1d7-a5f6d92b2417",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /compradores/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"apodo\":\"Nuevo apodo\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un comprador con usuario existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "201c3b78-90af-41b1-acf4-cfb708ce632d",
+						"exec": [
+							"tests[\"No actualiza con el mismo usuario\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Comprador con el usuario\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Password fail\",\n\t\"apodo\": \"Nickname fail\",\n\t\"correoElectronico\":\"lvprieto@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_c2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"{{new_id_c2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un comprador con correo existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de56287f-89d1-4271-bcc8-7cbf0f1ec676",
+						"exec": [
+							"tests[\"No actualiza con el mismo correo\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Comprador con el correo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvp\",\n\t\"contrasenia\": \"Password fail\",\n\t\"apodo\": \"Nickname fail\",\n\t\"correoElectronico\":\"lv.prieto@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_c2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"{{new_id_c2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f886964-909f-4b4e-955f-340fad623917",
+						"exec": [
+							"tests[\"No genera error en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un comprador 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dcc56861-5408-4b48-9603-9f1232aadfb9",
+						"exec": [
+							"tests[\"No genera error en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_c2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"{{new_id_c2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un comprador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6ee0a82-1156-447f-818d-cbf31a8b7dd6",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /compradores/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
