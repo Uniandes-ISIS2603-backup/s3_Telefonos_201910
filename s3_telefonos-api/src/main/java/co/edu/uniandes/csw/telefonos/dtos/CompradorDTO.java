@@ -70,10 +70,38 @@ public class CompradorDTO implements Serializable {
             this.contrasenia = compradorEntity.getContrasenia();
             this.apodo = compradorEntity.getApodo();
             this.correoElectronico = compradorEntity.getCorreoElectronico();
-            this.carritoDeCompras =  new CarritoDeComprasDTO(compradorEntity.getCarritoDeCompras());
+            if(compradorEntity.getCarritoDeCompras()!=null){
+            this.carritoDeCompras =  new CarritoDeComprasDTO(compradorEntity.getCarritoDeCompras());    
+            }
+            if(compradorEntity.getListaDeDeseos()!=null){
             this.listaDeDeseos =  new ListaDeDeseosDTO(compradorEntity.getListaDeDeseos());
+            }
               
         }
+    }
+
+    
+    
+     /**
+     * Convierte un objeto CompradorDTO a CompradorEntity.
+     *
+     * @return Nueva objeto CompradorEntity.
+     *
+     */
+    public CompradorEntity toEntity() {
+        CompradorEntity compradorEntity = new CompradorEntity();
+        compradorEntity.setId(this.getId());
+        compradorEntity.setUsuario(this.getUsuario());
+        compradorEntity.setContrasenia(this.getContrasenia());
+        compradorEntity.setApodo(this.getApodo());
+        compradorEntity.setCorreoElectronico(this.getCorreoElectronico());
+        if(this.getCarritoDeCompras()!=null){
+        compradorEntity.setCarritoDeCompras(this.getCarritoDeCompras().toEntity());
+        }
+        if(this.getListaDeDeseos()!=null){
+        compradorEntity.setListaDeDeseos(this.getListaDeDeseos().toEntity());
+        }
+        return compradorEntity;
     }
 
     /**
@@ -114,8 +142,8 @@ public class CompradorDTO implements Serializable {
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
-        this.setId((Long) id);
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -173,24 +201,7 @@ public class CompradorDTO implements Serializable {
     public void setListaDeDeseos(ListaDeDeseosDTO listaDeDeseos) {
         this.listaDeDeseos = listaDeDeseos;
     }
-    
-     /**
-     * Convierte un objeto CompradorDTO a CompradorEntity.
-     *
-     * @return Nueva objeto CompradorEntity.
-     *
-     */
-    public CompradorEntity toEntity() {
-        CompradorEntity compradorEntity = new CompradorEntity();
-        compradorEntity.setId(this.getId());
-        compradorEntity.setUsuario(this.getUsuario());
-        compradorEntity.setContrasenia(this.getContrasenia());
-        compradorEntity.setApodo(this.getApodo());
-        compradorEntity.setCorreoElectronico(this.getCorreoElectronico());
-        compradorEntity.setCarritoDeCompras(this.getCarritoDeCompras().toEntity());
-        compradorEntity.setListaDeDeseos(this.getListaDeDeseos().toEntity());
-        return compradorEntity;
-    }
+
     
     
 }

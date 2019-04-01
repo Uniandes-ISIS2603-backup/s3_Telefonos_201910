@@ -64,9 +64,15 @@ public class FacturaDTO implements Serializable {
             this.id = facturaEntity.getId();
             this.fecha = facturaEntity.getFecha();
             this.referencia = facturaEntity.getReferencia();
+            if(comprador!=null){
             this.comprador = new CompradorDTO(facturaEntity.getComprador());
+            }
+            if(proveedor!=null){
             this.proveedor = new ProveedorDTO(facturaEntity.getProveedor());
+            }
+            if(publicacion!=null){
             this.publicacion = new PublicacionDTO(facturaEntity.getPublicacion());
+            }
         }
     }
 
