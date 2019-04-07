@@ -197,7 +197,6 @@ public class ProveedorLogicTest {
     public void updateProveedorConMismoUsuarioTest() throws BusinessLogicException {
         ProveedorEntity entity = data.get(0);
         ProveedorEntity pojoEntity = factory.manufacturePojo(ProveedorEntity.class);
-        pojoEntity.setId(entity.getId());
         pojoEntity.setUsuario(entity.getUsuario());
         proveedorLogic.updateProveedor(pojoEntity.getId(), pojoEntity);
     }
@@ -212,7 +211,6 @@ public class ProveedorLogicTest {
     public void updateProveedorConMismoCorreoTest() throws BusinessLogicException {
         ProveedorEntity entity = data.get(0);
         ProveedorEntity pojoEntity = factory.manufacturePojo(ProveedorEntity.class);
-        pojoEntity.setId(entity.getId());
         pojoEntity.setCorreoElectronico(entity.getCorreoElectronico());
         proveedorLogic.updateProveedor(pojoEntity.getId(), pojoEntity);
     }

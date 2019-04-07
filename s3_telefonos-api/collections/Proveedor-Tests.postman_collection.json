@@ -1,0 +1,642 @@
+{
+	"info": {
+		"_postman_id": "497b8a4a-dad2-4b93-bacc-d37f018c5f0f",
+		"name": "Proveedor-Tests",
+		"description": "Proveedor Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los proveedores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b7ac425-22a8-4393-b6a6-4867f89e681a",
+						"exec": [
+							"tests[\"No genera error en el GET\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e242635-3df9-49f0-9cca-540a7739d8ea",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_p\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"lv.prieto@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Laura P\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15c6e2a5-7c22-4028-aa62-03f84c317db8",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GET\"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_p}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_p}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un proveedor que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2ce68ce-4ed7-411c-aeb9-72444f2d6fac",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /proveedores/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un proveedor 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb1aeed3-ef19-452b-8732-2d45dc4a2642",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_p2\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"dfvega\",\n\t\"contrasenia\": \"Hello World\",\n\t\"correoElectronico\":\"df.vega218@uniandes.edu.co\",\n\t\"raiting\": 8,\n\t\"nombre\": \"Daniel V\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un proveedor con usuario existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2178624-ae35-40ac-bf24-c5d215812490",
+						"exec": [
+							"tests[\"No crea con el mismo usuario\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Proveedor con el usuario\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Fail\",\n\t\"correoElectronico\":\"lvprieto@uniandes.edu.co\",\n\t\"raiting\": 2,\n\t\"nombre\": \"Fail\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un proveedor con correo existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "112a9f24-ae56-457a-8a14-297e8d2056cc",
+						"exec": [
+							"tests[\"No crea con el mismo usuario\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Proveedor con el correo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvp\",\n\t\"contrasenia\": \"Fail\",\n\t\"correoElectronico\":\"lv.prieto@uniandes.edu.co\",\n\t\"raiting\": 2,\n\t\"nombre\": \"Fail\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15625ac9-409e-42d0-9320-92120ce3517d",
+						"exec": [
+							"console.log(responseBody);\r",
+							"tests[\"No genera error en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"lv.prieto@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Nuevo nombre\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_p}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_p}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un proveedor que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a2579e3-dd7d-47cd-a4d6-94277fdad1f3",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /proveedores/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvpr\",\n\t\"contrasenia\": \"No existe\",\n\t\"correoElectronico\":\"lvpr@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"No existe\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un proveedor con usuario existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "681da112-f2ff-4bf0-96a6-69e6bc63a2ad",
+						"exec": [
+							"tests[\"No actualiza con el mismo usuario\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Proveedor con el usuario\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprieto\",\n\t\"contrasenia\": \"Fail\",\n\t\"correoElectronico\":\"lvpr@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Fail\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_p2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_p2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un proveedor con correo existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ac4eb1f-091b-455c-bc0c-924020cf9207",
+						"exec": [
+							"tests[\"No actualiza con el mismo usuario\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Proveedor con el correo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprj\",\n\t\"contrasenia\": \"Fail\",\n\t\"correoElectronico\":\"lv.prieto@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Fail\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_p2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_p2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un proveedor 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e885a9d-783c-43a6-a622-fd7b58527999",
+						"exec": [
+							"tests[\"No genera error en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_p2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_p2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50ddfbf1-b35f-4ea8-b4e4-f5266fef7c55",
+						"exec": [
+							"tests[\"No genera error en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_p}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_p}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un proveedor que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebce2d92-0172-4756-89cd-ff25feee7c0c",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /proveedores/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
