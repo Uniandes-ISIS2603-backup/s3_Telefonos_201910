@@ -14,44 +14,44 @@ import java.util.Date;
  * @author Laura Valentina Prieto Jimenez
  */
 public class FacturaDTO implements Serializable {
-    
+
     /*
     Fecha de expedicion de la factura
-    */
+     */
     private Date fecha;
-    
+
     /*
     Referencia de la factura
-    */
+     */
     private String referencia;
-    
+
     /*
     ID asignado a la factura
-    */
+     */
     private Long id;
-    
+
     /*
     Comprador relacionado con la factura
-    */
+     */
     private CompradorDTO comprador;
-    
+
     /*
     Proveedor relacionado con la factura
-    */
+     */
     private ProveedorDTO proveedor;
-    
+
     /*
     Publicacion asociada a la factura
-    */
+     */
     private PublicacionDTO publicacion;
-    
+
     /*
     Metodo constructor
-    */
-    public FacturaDTO(){
-        
+     */
+    public FacturaDTO() {
+
     }
-    
+
     /**
      * Crea un objeto FacturaDTO a partir de un objeto FacturaEntity.
      *
@@ -64,14 +64,22 @@ public class FacturaDTO implements Serializable {
             this.id = facturaEntity.getId();
             this.fecha = facturaEntity.getFecha();
             this.referencia = facturaEntity.getReferencia();
-            if(comprador!=null){
-            this.comprador = new CompradorDTO(facturaEntity.getComprador());
+            if (facturaEntity.getComprador() != null) {
+                this.comprador = new CompradorDTO(facturaEntity.getComprador());
+            } else {
+                this.comprador = null;
             }
-            if(proveedor!=null){
-            this.proveedor = new ProveedorDTO(facturaEntity.getProveedor());
+            if (facturaEntity.getProveedor() != null) {
+                this.proveedor = new ProveedorDTO(facturaEntity.getProveedor());
             }
-            if(publicacion!=null){
-            this.publicacion = new PublicacionDTO(facturaEntity.getPublicacion());
+            else{
+                this.proveedor=null;
+            }
+            if (facturaEntity.getPublicacion() != null) {
+                this.publicacion = new PublicacionDTO(facturaEntity.getPublicacion());
+            }
+            else{
+                this.publicacion=null;
             }
         }
     }
@@ -159,7 +167,7 @@ public class FacturaDTO implements Serializable {
     public void setProveedor(ProveedorDTO proveedor) {
         this.proveedor = proveedor;
     }
-    
+
     /**
      * Convierte un objeto FacturaDTO a FacturaEntity.
      *
@@ -171,9 +179,15 @@ public class FacturaDTO implements Serializable {
         facturaEntity.setId(this.getId());
         facturaEntity.setFecha(this.getFecha());
         facturaEntity.setReferencia(this.getReferencia());
-        facturaEntity.setComprador(this.getComprador().toEntity());
-        facturaEntity.setProveedor(this.getProveedor().toEntity());
-        facturaEntity.setPublicacion(this.getPublicacion().toEntity());
+        if (this.getComprador() != null) {
+            facturaEntity.setComprador(this.getComprador().toEntity());
+        }
+        if (this.getProveedor() != null) {
+            facturaEntity.setProveedor(this.getProveedor().toEntity());
+        }
+        if (this.getPublicacion() != null) {
+            facturaEntity.setPublicacion(this.getPublicacion().toEntity());
+        }
         return facturaEntity;
     }
 }

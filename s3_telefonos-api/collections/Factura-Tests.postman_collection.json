@@ -1,0 +1,799 @@
+{
+	"info": {
+		"_postman_id": "c1d1c0b1-9830-4022-9c75-c2d51e99e13b",
+		"name": "Factura-Tests",
+		"description": "Factura Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todas las facturas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7a13d20-1513-485e-a63c-8272a8f1573e",
+						"exec": [
+							"tests[\"No genera error en el GET\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e242635-3df9-49f0-9cca-540a7739d8ea",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_pf\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprietof\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"lv.prietof@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Laura P\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un proveedor 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e242635-3df9-49f0-9cca-540a7739d8ea",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_pf2\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"dfvegaf\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"df.vegaf@uniandes.edu.co\",\n\t\"raiting\": 8,\n\t\"nombre\": \"Daniel V\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7debf0c0-32fb-4b97-8692-947610c85206",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cf\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprietof\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"apodo\": \"Lau P\",\n\t\"correoElectronico\":\"lv.prietof@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un comprador 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7debf0c0-32fb-4b97-8692-947610c85206",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cf2\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"dfvegaf\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"apodo\": \"Dani V\",\n\t\"correoElectronico\":\"df.vegaf@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una publicacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a2d4f18-4d8f-40cb-91a0-75ca0ffc8c0a",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_puf\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaCreacion\": \"1927-03-03T00:00:00-05:00\",\n\t\"precio\":300000,\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/publicaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"publicaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una publicacion 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a2d4f18-4d8f-40cb-91a0-75ca0ffc8c0a",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_puf2\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fechaCreacion\": \"1998-03-03T00:00:00-05:00\",\n\t\"precio\":390800,\n\t\"id\":2\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/publicaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"publicaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41447759-63e4-4d90-a5a5-8e2bd59f0e32",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\": \"1927-03-03T00:00:00-05:00\",\n\t\"referencia\":\"R0001\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cf}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pf}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_puf}} \n\t\t}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una factura 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41447759-63e4-4d90-a5a5-8e2bd59f0e32",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f2\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\": \"1999-03-03T00:00:00-05:00\",\n\t\"referencia\":\"R0002\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cf2}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pf2}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_puf2}} \n\t\t}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af9be6e2-e34e-4dfd-a570-e358ee34ddfc",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GET\"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una factura que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6eb61c9d-b468-4ec5-8723-324822df9962",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /facturas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una factura con referencia existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "02a93531-0854-4150-be11-a79dba0fae43",
+						"exec": [
+							"tests[\"No crea con el mismo usuario\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Factura con la referencia\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\": \"1927-03-03T00:00:00-05:00\",\n\t\"referencia\":\"R0001\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cf}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pf}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_puf}} \n\t\t}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd5b3ec7-c768-4c04-a631-34321b149ddb",
+						"exec": [
+							"console.log(responseBody);\r",
+							"tests[\"No genera error en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\": \"2018-04-03T00:00:00-05:00\",\n\t\"referencia\":\"R0001\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cf}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pf}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_puf}} \n\t\t}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una factura que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8f35b67-d2b3-491c-8ade-609ee4b59843",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /facturas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\": \"2018-04-03T00:00:00-05:00\",\n\t\"referencia\":\"Fail\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cf}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pf}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_puf}} \n\t\t}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una factura con referencia existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "972817c3-5e04-459e-8c00-a785a12ebac9",
+						"exec": [
+							"tests[\"No actualiza con el mismo correo\"] = responseCode.code ==412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Factura con la referencia\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fecha\": \"2019-04-03T00:00:00-05:00\",\n\t\"referencia\":\"R0001\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cf2}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pf2}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_puf2}} \n\t\t}\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/{{new_id_f2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"{{new_id_f2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa859afa-5fb0-4916-8520-ccb154714285",
+						"exec": [
+							"tests[\"No genera error en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una factura 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c53cdb54-41f9-41f7-ba81-29130190c97a",
+						"exec": [
+							"tests[\"No genera error en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/{{new_id_f2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"{{new_id_f2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una factura que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a82fd3b-2d8b-4e07-be2d-626a4fda7ac8",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /facturas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

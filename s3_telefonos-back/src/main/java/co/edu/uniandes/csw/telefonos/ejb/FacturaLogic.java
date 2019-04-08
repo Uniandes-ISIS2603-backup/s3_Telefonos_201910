@@ -85,7 +85,9 @@ public class FacturaLogic {
 
         //La referencia de cada factura debe ser unica
         if (persistencia.findByReferencia(facturaEntity.getReferencia()) != null) {
-            throw new BusinessLogicException("Ya existe una Factura con la referencia \"" + facturaEntity.getReferencia() + "\"");
+            if (!(persistencia.findByReferencia(facturaEntity.getReferencia()).getId() == facturaEntity.getId())) {
+                throw new BusinessLogicException("Ya existe una Factura con la referencia \"" + facturaEntity.getReferencia() + "\"");
+            }
         }
         if (facturaEntity.getComprador() == null) {
             throw new BusinessLogicException("No se puede actualizar una factura sin comprador");

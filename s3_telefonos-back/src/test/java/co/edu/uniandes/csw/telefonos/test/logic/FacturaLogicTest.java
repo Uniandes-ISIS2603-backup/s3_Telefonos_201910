@@ -288,7 +288,16 @@ public class FacturaLogicTest {
     public void updateFacturaConMismaReferenciaTest() throws BusinessLogicException {
         FacturaEntity entity = data.get(0);
         FacturaEntity pojoEntity = factory.manufacturePojo(FacturaEntity.class);
-        pojoEntity.setId(entity.getId());
+        
+        CompradorEntity compradorEntity = factory.manufacturePojo(CompradorEntity.class);
+        pojoEntity.setComprador(compradorEntity);
+
+        ProveedorEntity proveedorEntity = factory.manufacturePojo(ProveedorEntity.class);
+        pojoEntity.setProveedor(proveedorEntity);
+        
+        PublicacionEntity publicacionEntity = factory.manufacturePojo(PublicacionEntity.class);
+        pojoEntity.setPublicacion(publicacionEntity);
+        
         pojoEntity.setReferencia(entity.getReferencia());
         facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
     }
