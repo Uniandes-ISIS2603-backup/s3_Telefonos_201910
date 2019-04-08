@@ -29,6 +29,10 @@ public class SeguroDTO implements Serializable{
     */
     private Long id;
     
+    /**
+     * Proveedor asociado al seguro
+     */
+    private ProveedorDTO proveedor;
     
     /*
     Metodo constructor
@@ -49,7 +53,12 @@ public class SeguroDTO implements Serializable{
             this.id = seguroEntity.getId();
             this.monto = seguroEntity.getMonto();
             this.aseguradora = seguroEntity.getAseguradora();
-            
+            if (seguroEntity.getProveedor() != null) {
+                this.proveedor = new ProveedorDTO(seguroEntity.getProveedor());
+            }
+            else{
+                this.proveedor=null;
+            }
         }
     }
     
@@ -64,6 +73,9 @@ public class SeguroDTO implements Serializable{
         seguroEntity.setId(this.getId());
         seguroEntity.setMonto(this.getMonto());
         seguroEntity.setAseguradora(this.getAseguradora());
+        if (this.getProveedor() != null) {
+            seguroEntity.setProveedor(this.getProveedor().toEntity());
+        }
         return seguroEntity;
     }
 
@@ -107,6 +119,20 @@ public class SeguroDTO implements Serializable{
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the proveedor
+     */
+    public ProveedorDTO getProveedor() {
+        return proveedor;
+    }
+
+    /**
+     * @param proveedor the proveedor to set
+     */
+    public void setProveedor(ProveedorDTO proveedor) {
+        this.proveedor = proveedor;
     }
     
     
