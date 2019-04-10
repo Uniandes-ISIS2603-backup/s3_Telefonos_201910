@@ -48,7 +48,7 @@ public class TabletEntity extends BaseEntity implements Serializable{
     /*
     * Boolean que representa si la Tableta esta registrada o no por un Proveedor
     */
-    private boolean registrado;
+    private Boolean registrado;
     
     public TabletEntity(){
         
@@ -99,14 +99,14 @@ public class TabletEntity extends BaseEntity implements Serializable{
     /**
      * @return the registrado
      */
-    public boolean isRegistrado() {
+    public Boolean isRegistrado() {
         return registrado;
     }
 
     /**
      * @param registrado the registrado to set
      */
-    public void setRegistrado(boolean registrado) {
+    public void setRegistrado(Boolean registrado) {
         this.registrado = registrado;
     }
     

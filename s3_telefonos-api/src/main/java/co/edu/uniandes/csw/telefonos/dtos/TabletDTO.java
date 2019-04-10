@@ -93,7 +93,7 @@ public class TabletDTO implements Serializable{
     /**
      * @param registrado the registrado to set
      */
-    public void setRegistrado(boolean registrado) {
+    public void setRegistrado(Boolean registrado) {
         this.registrado = registrado;
     }
     
