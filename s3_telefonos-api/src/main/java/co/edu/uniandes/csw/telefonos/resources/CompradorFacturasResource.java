@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.telefonos.entities.FacturaEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
@@ -58,10 +59,12 @@ public class CompradorFacturasResource {
     @POST
     @Path("{facturaId: \\d+}")
     public FacturaDTO agregarFactura(@PathParam("compradorId") Long compradorId, @PathParam("facturaId") Long facturaId) {
-        if (compradorLogic.getComprador(compradorId) == null) {
-            throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
+        LOGGER.log(Level.INFO, "Inicia proceso de asociarle una factura al comprador en el resource con id = {0}", compradorId);
+        if (facturaLogic.getFactura(facturaId) == null) {
+            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(compradorFacturasLogic.addFactura(compradorId, facturaId));
+        LOGGER.log(Level.INFO, "Termina proceso de asociarle una factura al comprador en el resource con id = {0}", compradorId);
         return facturaDTO;
     }
 

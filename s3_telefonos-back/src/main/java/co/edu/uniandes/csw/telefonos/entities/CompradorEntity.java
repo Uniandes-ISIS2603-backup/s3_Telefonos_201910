@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.telefonos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,14 +60,14 @@ public class CompradorEntity extends BaseEntity implements Serializable{
     */ 
     @PodamExclude
     @OneToMany(mappedBy = "comprador",fetch = FetchType.LAZY )
-    private List<FacturaEntity> facturasDeCompra;
+    private List<FacturaEntity> facturasDeCompra = new ArrayList<FacturaEntity>();
     
      /*
     Metodos de pago asociados con un comprador
     */
     @PodamExclude
     @OneToMany(mappedBy = "comprador",fetch = FetchType.LAZY )
-    private List<MetodoDePagoEntity> metodosDePago;
+    private List<MetodoDePagoEntity> metodosDePago = new ArrayList<MetodoDePagoEntity>();
 
     public CompradorEntity(){
         
