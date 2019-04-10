@@ -37,9 +37,7 @@ public class PublicacionLogic {
     public PublicacionEntity createPublicacion(PublicacionEntity publicacionEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación la publicacion");
         // verifica que no exista una publicación que ya posea el id existente
-        if (persistence.find(publicacionEntity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe una publicacion con el id  \"" + publicacionEntity.getId() + "\"");
-        }
+       
         persistence.create(publicacionEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la publicón");
         return publicacionEntity;
