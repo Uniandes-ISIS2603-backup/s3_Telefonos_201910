@@ -52,34 +52,53 @@ public class CelularLogic {
     }
     
      /**
-     * Borrar un comprador
+     * Borrar un celular
      */
     public void deleteCelular(Long imei) {
         persistence.delete(imei);
     }
     
-    
+    /**
+     * Obtiene al lista de celulares
+     * @return lista de celulares entity
+     */
      public List<CelularEntity> getCelulares() {
        List<CelularEntity> celulares = persistence.findAll();
         return celulares;
     }
      
-     
+     /**
+      * obtiene un celular registrado por su imei
+      * @param imei del celular a obtener
+      * @return el celular obtenido entity
+      */
      public CelularEntity getCelularRegistrado (Long imei)
      {
          CelularEntity celular = persistence.find(imei);
          return celular;
      }
      
+     
+     /**
+      * Obtiene un cleular no registrado por modelo
+      * @param modelo del celular
+      * @return el celular entity obtenido
+      */
      public CelularEntity getCelularNoRegistrado (String modelo)
      {
          CelularEntity celular = persistence.findNoRegistrado(modelo);
          return celular;
      }
      
+     /**
+      * Actualiza un celular
+      * @param celular contiene los datos del celular actualizado
+      * @return el celular entity actualizado
+      * @throws BusinessLogicException 
+      */
      public CelularEntity updateCelular(CelularEntity celular) throws BusinessLogicException
      {
-         //La referencia de cada factura debe ser unica
+         
         if(persistence.findByImei(celular.getImei())!=null){
             throw new BusinessLogicException("Ya existe un Celular con el IMEI " + celular.getImei());
         }

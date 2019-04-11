@@ -30,15 +30,29 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 /**
  *
- * @author estudiante
+ * @author Daniel Babativa
  */
 public class CarritoDeComprasResource {
 
+    /**
+     * Conexión a la lógica
+     */
     @Inject
     private CarritoDeComprasLogic logica;
     
+    
+    /**
+     * Logger
+     */
     private final static Logger LOGGER = Logger.getLogger(CarritoDeComprasResource.class.getName());
 
+    
+    /**
+     * Metodo create
+     * @param carrito 
+     * @return el carrito creado
+     * @throws BusinessLogicException 
+     */
      @POST
     public CarritoDeComprasDTO createCarritoDeCompras(CarritoDeComprasDTO carrito)throws BusinessLogicException{
          CarritoDeComprasEntity entity = carrito.toEntity();
@@ -48,14 +62,22 @@ public class CarritoDeComprasResource {
     }
     
 
- 
+    /**
+     * Metodo get all
+     * @return una lista de los carritos de compras
+     */
     @GET
-    public List<CarritoDeComprasDetailDTO> getListasDeDeseos (){
+    public List<CarritoDeComprasDetailDTO> getCarritoDeCompras (){
         List<CarritoDeComprasDetailDTO> r = listEntityToDetailDTO(logica.getCarritoDeCompras());
         return r;
     }
     
-    
+    /**
+     * Metodo get by id
+     * @param carritoId el id del carrito que se quiere gettear
+     * @return el carrito que se gettea
+     * @throws WebApplicationException 
+     */
     @GET
     @Path("{carritoId: \\d+}")
     public CarritoDeComprasDetailDTO getCarritoDeCompras(@PathParam("carritoId") Long carritoId) throws WebApplicationException {
@@ -74,12 +96,12 @@ public class CarritoDeComprasResource {
     /**
      * Convierte una lista de entidades a DTO.
      *
-     * Este método convierte una lista de objetos ListaDeDeseosEntity a una lista de
-     * objetos ListaDeDeseosDetailDTO (json)
+     * Este método convierte una lista de objetos CarritoDeComprasEntity a una lista de
+     * objetos CarritoDeComprasDetailDTO (json)
      *
-     * @param entityList corresponde a la lista de listas de deseos de tipo Entity
+     * @param entityList corresponde a la lista de carritos de compras de tipo Entity
      * que vamos a convertir a DTO.
-     * @return la lista de listas de deseos en forma DTO (json)
+     * @return la lista de carritos de compras DTO (json)
      */
     private List<CarritoDeComprasDetailDTO> listEntityToDetailDTO(List<CarritoDeComprasEntity> entityList) {
         List<CarritoDeComprasDetailDTO> list = new ArrayList<>();

@@ -20,17 +20,30 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
-    
+    /**
+     * un carrito tiene muchas publicaciones
+     */
     @PodamExclude
     @ManyToMany(mappedBy = "carritoDeCompras")
     private List<PublicacionEntity> publicaciones;
     
+    
+    /**
+     * un comprador tiene un carrito
+     */
     @PodamExclude
     @OneToOne(fetch = FetchType.LAZY)
     private CompradorEntity comprador;
     
+    /**
+     * el costo total de las publicaciones del carrito
+     */
     private Double costoTotal;
     
+    
+    /**
+     * constructor by defaul
+     */
     public CarritoDeComprasEntity(){
         
     }
@@ -49,13 +62,19 @@ public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
         this.costoTotal = costoTotal;
     }
     
-    
+    /**
+     * obtiene las publicaciones
+     * @return lista de publicacionEntity
+     */
     public List<PublicacionEntity> getPublicaciones(){
         return this.publicaciones;
     }
      
     
-    
+    /**
+     * actualiza las publicaciones
+     * @param publicaciones parametro con el cual se actualiza
+     */
   public void setPublicaciones(List<PublicacionEntity> publicaciones){
         this.publicaciones = publicaciones;
     }

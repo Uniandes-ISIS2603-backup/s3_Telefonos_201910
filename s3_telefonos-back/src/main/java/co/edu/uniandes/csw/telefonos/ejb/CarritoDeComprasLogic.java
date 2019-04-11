@@ -20,10 +20,18 @@ import javax.inject.Inject;
 @Stateless
 public class CarritoDeComprasLogic {
     
+    /**
+     * persistencia
+     */
     @Inject
     private CarritoDeComprasPersistence persistence;
 
-    
+    /**
+     * Crea un carrito
+     * @param carrito que se crea
+     * @return el carrito creado entity
+     * @throws BusinessLogicException 
+     */
     public CarritoDeComprasEntity createCarritoDeCompras(CarritoDeComprasEntity carrito)throws BusinessLogicException
     {
     if(persistence.find(carrito.getId())!=null){
@@ -47,13 +55,21 @@ public class CarritoDeComprasLogic {
     }
     * @return 
     */
-  
+  /**
+   * Obtiene todos los carritos de compras
+   * @return lista de los carritosEntity 
+   */
    public List<CarritoDeComprasEntity> getCarritoDeCompras(){
          
         List<CarritoDeComprasEntity> listas = persistence.findAll();
         return listas;
     }
     
+   /**
+    * obtiene un carrito por su id
+    * @param id del carrito
+    * @return el carritoentity
+    */
     public CarritoDeComprasEntity getCarritoDeCompras(Long id){
         
         CarritoDeComprasEntity lista = persistence.find(id);     

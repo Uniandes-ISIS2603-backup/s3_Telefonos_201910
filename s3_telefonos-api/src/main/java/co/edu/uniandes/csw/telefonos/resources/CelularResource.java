@@ -33,15 +33,27 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 /**
  *
- * @author estudiante
+ * @author Daniel Babativa
  */
 public class CelularResource {
     
+    /**
+     * Conexion con la lógica
+     */
         @Inject
         private CelularLogic logica;
 
+        /**
+         * Logger
+         */
 	private final static Logger LOGGER = Logger.getLogger(CelularResource.class.getName());
 	
+        /**
+         * Metodo que crea un celular
+         * @param celular, el celular a crear
+         * @return el celular creado
+         * @throws BusinessLogicException 
+         */
 	@POST
 	public CelularDTO createCelular(CelularDTO celular) throws BusinessLogicException
 	{
@@ -49,14 +61,21 @@ public class CelularResource {
             CelularDTO r = new CelularDTO(logica.createCelular(celular.toEntity()));
             return r;    
         }
-        
+        /**
+         * Retorna todos los celulares de la app
+         * @return lista de todos los celularDTO
+         */
          @GET
     public List<CelularDTO> getCelulares(){
         List<CelularDTO> celulares = listEntityToDTO(logica.getCelulares());
         return celulares;
     }
     
-    
+    /**
+     * Retorna un celular identificado con el imei ingresado por parametro
+     * @param imei el imei del celular a encontrar
+     * @return el celular con el imei ingresado por parametro
+     */
     @GET
     @Path("{imei: \\d+}")
     public CelularDTO getCelularRegistrado(@PathParam("imei") Long imei){
@@ -68,7 +87,11 @@ public class CelularResource {
         return dTO;
     }
     
-    
+    /**
+     * Gettea un celular no registrado por su modelo
+     * @param modelo, modelo del celular a gettear
+     * @return el celular getteado
+     */
     @GET
     @Path("{modelo: \\c+}")
     public CelularDTO getCelularNoRegistrado(@PathParam("modelo") String modelo){
@@ -80,6 +103,13 @@ public class CelularResource {
         return dTO;
     }
     
+    /**
+     * Actualiza el celular con el imei ingresado por parametro con los valores del celular ingresado por parametro
+     * @param imei, del celular a actualizar
+     * @param cel, el celular con la información para actualizar
+     * @return el nuevo celular
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{imei: \\d+}")
     public CelularDTO updateCelular(@PathParam("imei") Long imei, CelularDTO cel) throws BusinessLogicException{
@@ -91,18 +121,26 @@ public class CelularResource {
         return dO;
     }
     
-
+    /**
+     * Metodo que borra un celular por imei
+     * @param imei, imei del celular a borrar
+     */
     @DELETE
     @Path("{imei: \\d+}")
-    public void deleteTablet(@PathParam("imei") Long imei, CelularDTO tablet){
+    public void deleteCelular(@PathParam("imei") Long imei, CelularDTO celular){
       CelularEntity entity = logica.getCelularRegistrado(imei);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /tablets/" + imei + " no existe.", 404);
+            throw new WebApplicationException("El recurso /celulares/" + imei + " no existe.", 404);
         }
         logica.deleteCelular(imei);
   
     }
     
+    /**
+     * Convierte una lista de CelularEntity a  una lista de CelularDTO
+     * @param listaEntidades la lista de celularEntity
+     * @return la lista de CelularDTO
+     */
     private List<CelularDTO> listEntityToDTO(List<CelularEntity> listaEntidades){
         List<CelularDTO> lista = new ArrayList<>();
         for(CelularEntity entity: listaEntidades){

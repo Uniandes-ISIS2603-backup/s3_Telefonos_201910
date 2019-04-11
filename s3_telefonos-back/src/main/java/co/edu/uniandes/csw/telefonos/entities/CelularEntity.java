@@ -19,27 +19,83 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class CelularEntity extends BaseEntity implements Serializable{
-    
+    /**
+     * Una lista de deseos tiene muchos celulares
+     */
     @PodamExclude
     @ManyToMany(fetch = FetchType.EAGER)
     private List<ListaDeDeseosEntity> listasDeDeseos = new ArrayList<>();
     
+    /**
+     * una publicacion tiene un celular
+     */
     @PodamExclude
     @OneToOne(fetch = FetchType.EAGER)
     private PublicacionEntity publicacion;
     
+    /**
+     * marca del celular
+     */
     private String marca;
     
+    
+    /**
+     * referencia del celular
+     */
     private String referencia;
     
+    /**
+     * modelo del celular
+     */
     private String modelo;
     
+    /**
+     * referencia del celular
+     */
     private Long imei;
     
-    private boolean registrado;
+    /**
+     * si esta o no el celular, true si lo está, false de lo contrario
+     */
+    private Boolean registrado;
     
+    /**
+     * constructor by default
+     */
     public CelularEntity(){
         
+    }
+     
+    /**
+     * getter
+     * @return the publicacion 
+     */
+    private PublicacionEntity getPublicacion(){
+        return this.publicacion;
+    }
+    
+    /**
+     * setter
+     * @param publicacion the publicacion to set 
+     */
+    private void setPublicacion(PublicacionEntity publicacion){
+       this.publicacion=publicacion;
+    }
+    
+    /**
+     * getter
+     * @return the lista 
+     */
+    private List<ListaDeDeseosEntity> getLista(){
+        return this.listasDeDeseos;
+    }
+    
+    /**
+     * setter
+     * @param lista the lista to set 
+     */
+    private void setLista(List<ListaDeDeseosEntity> lista){
+       this.listasDeDeseos=lista;
     }
     
     /**
@@ -101,14 +157,14 @@ public class CelularEntity extends BaseEntity implements Serializable{
     /**
      * @return the registrado
      */
-    public boolean isRegistrado() {
+    public Boolean isRegistrado() {
         return registrado;
     }
 
     /**
      * @param registrado the registrado to set
      */
-    public void setRegistrado(boolean registrado) {
+    public void setRegistrado(Boolean registrado) {
         this.registrado = registrado;
     }
     
