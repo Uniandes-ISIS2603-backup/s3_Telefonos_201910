@@ -57,10 +57,10 @@ public class ProveedorFacturasResource {
     @POST
     @Path("{facturaId: \\d+}")
     public FacturaDTO agregarFactura(@PathParam("proveedorId") Long proveedorId, @PathParam("facturaId") Long facturaId) {
-        if (proveedorLogic.getProveedor(proveedorId) == null) {
-            throw new WebApplicationException("El recurso /proveedores/" + proveedorId + " no existe.", 404);
+        if (facturaLogic.getFactura(facturaId) == null) {
+            throw new WebApplicationException("El recurso /facturas/" + proveedorId + " no existe.", 404);
         }
-        FacturaDTO facturaDTO = new FacturaDTO(proveedorFacturasLogic.addFactura(proveedorId, facturaId));
+        FacturaDTO facturaDTO = new FacturaDTO(proveedorFacturasLogic.addFactura(facturaId, proveedorId));
         return facturaDTO;
     }
 

@@ -11,6 +11,8 @@ import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.ProveedorPersistence;
 import co.edu.uniandes.csw.telefonos.persistence.SeguroPersistence;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -28,6 +30,7 @@ public class ProveedorSegurosLogic {
     private SeguroPersistence seguroPersistence;
     
     
+    private static final Logger LOGGER = Logger.getLogger(ProveedorSegurosLogic.class.getName());
     /**
      * Agregar un seguro al proveedor
      *
@@ -36,11 +39,13 @@ public class ProveedorSegurosLogic {
      * @return Seguro creado.
      */
     public SeguroEntity addSeguro( Long seguroId, Long proveedorId) {
+        LOGGER.log(Level.INFO, "eNTRO A AGREGAR EN LOGIC");
         ProveedorEntity proveedorEntity = proveedorPersistence.find(proveedorId);
         SeguroEntity seguroEntity = seguroPersistence.find(seguroId);
         List<SeguroEntity> seguros = proveedorEntity.getSeguros();
         seguros.add(seguroEntity);
         proveedorEntity.setSeguros(seguros);
+        LOGGER.log(Level.INFO, "salio de agregar en la logica");
         return seguroEntity;
     }
     

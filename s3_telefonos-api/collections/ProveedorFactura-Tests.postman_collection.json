@@ -1,13 +1,12 @@
 {
 	"info": {
-		"_postman_id": "1acf7caf-dab6-4df1-ba14-b2d88c1f6067",
-		"name": "CompradorFactura-Tests",
-		"description": "Pruebas para CompradorFacturaResource\n",
+		"_postman_id": "be99f879-9447-4026-ae0b-4eb1b449077b",
+		"name": "ProveedorFactura-Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Crear un comprador",
+			"name": "Crear un comrpador",
 			"event": [
 				{
 					"listen": "test",
@@ -15,7 +14,7 @@
 						"id": "7debf0c0-32fb-4b97-8692-947610c85206",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_cfAso\", data.id);",
+							"postman.setGlobalVariable(\"new_id_pfAso\", data.id);",
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
 						"type": "text/javascript"
@@ -34,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"usuario\":\"lvprietoCF\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"apodo\": \"Lau P\",\n\t\"correoElectronico\":\"lv.prietoCF@uniandes.edu.co\"\n}"
+					"raw": "{\n\t\"usuario\":\"lvprietoPF\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"apodo\": \"Lau P\",\n\t\"correoElectronico\":\"lv.prietoPF@uniandes.edu.co\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
@@ -61,7 +60,7 @@
 						"id": "6e242635-3df9-49f0-9cca-540a7739d8ea",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_pcfASO\", data.id);",
+							"postman.setGlobalVariable(\"new_id_ppfASO\", data.id);",
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
 						"type": "text/javascript"
@@ -80,7 +79,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"usuario\":\"lvprietocfASO\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"lv.prietocfASO@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Laura P\"\n}"
+					"raw": "{\n\t\"usuario\":\"lvprietopfASO\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"lv.prietopfASO@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Laura P\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
@@ -107,7 +106,7 @@
 						"id": "6a2d4f18-4d8f-40cb-91a0-75ca0ffc8c0a",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_pucfASO\", data.id);",
+							"postman.setGlobalVariable(\"new_id_pupfASO\", data.id);",
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
 						"type": "text/javascript"
@@ -153,7 +152,7 @@
 						"id": "41447759-63e4-4d90-a5a5-8e2bd59f0e32",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_fASO\", data.id);",
+							"postman.setGlobalVariable(\"new_id_facPASO\", data.id);",
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
 						"type": "text/javascript"
@@ -172,7 +171,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"fecha\": \"1927-03-03T00:00:00-05:00\",\n\t\"referencia\":\"R0003\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cfAso}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pcfASO}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_pucfASO}} \n\t\t}\n\t\n}"
+					"raw": "{\n\t\"fecha\": \"1927-03-03T00:00:00-05:00\",\n\t\"referencia\":\"R0007\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_pfAso}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_ppfASO}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_pupfASO}} \n\t\t}\n\t\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas",
@@ -191,12 +190,12 @@
 			"response": []
 		},
 		{
-			"name": "Crear la asociación CompradorFactura",
+			"name": "Crear una asociacion ProveedorFactura",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "3c6b4e27-f729-415d-85f1-bd5b4542a877",
+						"id": "226fbf24-65a3-4b21-b0a0-61dc43edbef1",
 						"exec": [
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
@@ -219,7 +218,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_cfAso}}/facturas/{{new_id_fASO}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_ppfASO}}/facturas/{{new_id_facPASO}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -228,25 +227,25 @@
 					"path": [
 						"s3_telefonos-api",
 						"api",
-						"compradores",
-						"{{new_id_cfAso}}",
+						"proveedores",
+						"{{new_id_ppfASO}}",
 						"facturas",
-						"{{new_id_fASO}}"
+						"{{new_id_facPASO}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un proveedor 2",
+			"name": "Crear un comprador 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "6e242635-3df9-49f0-9cca-540a7739d8ea",
+						"id": "7debf0c0-32fb-4b97-8692-947610c85206",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_pcfASO2\", data.id);",
+							"postman.setGlobalVariable(\"new_id_cpfASO\", data.id);",
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
 						"type": "text/javascript"
@@ -265,10 +264,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"usuario\":\"dfvega1cfASO\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"dfvega1cfASO@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Dani V\"\n}"
+					"raw": "{\n\t\"usuario\":\"dfvegaPF\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"apodo\": \"Lau P\",\n\t\"correoElectronico\":\"df.vegaPF@uniandes.edu.co\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -277,7 +276,7 @@
 					"path": [
 						"s3_telefonos-api",
 						"api",
-						"proveedores"
+						"compradores"
 					]
 				}
 			},
@@ -292,7 +291,7 @@
 						"id": "6a2d4f18-4d8f-40cb-91a0-75ca0ffc8c0a",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_pucfASO2\", data.id);",
+							"postman.setGlobalVariable(\"new_id_pupfASO2\", data.id);",
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
 						"type": "text/javascript"
@@ -311,7 +310,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"fechaCreacion\": \"2004-04-05T00:00:00-05:00\",\n\t\"precio\":390000,\n\t\"id\":4\n}"
+					"raw": "{\n\t\"fechaCreacion\": \"1945-03-03T00:00:00-05:00\",\n\t\"precio\":300000,\n\t\"id\":8\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/publicaciones",
@@ -338,7 +337,7 @@
 						"id": "41447759-63e4-4d90-a5a5-8e2bd59f0e32",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_fASO2\", data.id);",
+							"postman.setGlobalVariable(\"new_id_facPASO2\", data.id);",
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
 						"type": "text/javascript"
@@ -357,7 +356,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"fecha\": \"1927-03-03T00:00:00-05:00\",\n\t\"referencia\":\"R0004\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cfAso}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_pcfASO2}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_pucfASO2}} \n\t\t}\n\t\n}"
+					"raw": "{\n\t\"fecha\": \"1945-03-03T00:00:00-05:00\",\n\t\"referencia\":\"R0008\",\n\t\"comprador\": { \n\t\t\"id\": {{new_id_cpfASO}} \n\t\t},\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_ppfASO}} \n\t\t},\n\t\"publicacion\": { \n\t\t\"id\": {{new_id_pupfASO2}} \n\t\t}\n\t\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/facturas",
@@ -376,12 +375,12 @@
 			"response": []
 		},
 		{
-			"name": "Crear la asociación CompradorFactura 2",
+			"name": "Crear una asociacion ProveedorFactura 2",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "d36ab158-17d2-47d7-84d3-700913ab44df",
+						"id": "226fbf24-65a3-4b21-b0a0-61dc43edbef1",
 						"exec": [
 							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
 						],
@@ -404,7 +403,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_cfAso}}/facturas/{{new_id_fASO2}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_ppfASO}}/facturas/{{new_id_facPASO2}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -413,22 +412,22 @@
 					"path": [
 						"s3_telefonos-api",
 						"api",
-						"compradores",
-						"{{new_id_cfAso}}",
+						"proveedores",
+						"{{new_id_ppfASO}}",
 						"facturas",
-						"{{new_id_fASO2}}"
+						"{{new_id_facPASO2}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener una factura asociada a un comprador",
+			"name": "Obtener una factura asociada a un proveedor",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "c3763736-a355-47c7-8bf9-35b612a2ebf3",
+						"id": "02871a3c-a72b-4f3d-bf92-ec67096499e8",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
@@ -440,20 +439,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_cfAso}}/facturas/{{new_id_fASO}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_ppfASO}}/facturas/{{new_id_facPASO}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -462,22 +454,22 @@
 					"path": [
 						"s3_telefonos-api",
 						"api",
-						"compradores",
-						"{{new_id_cfAso}}",
+						"proveedores",
+						"{{new_id_ppfASO}}",
 						"facturas",
-						"{{new_id_fASO}}"
+						"{{new_id_facPASO}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener todas las facturas de un comprador",
+			"name": "Obtener todas las facturas de un proveedor",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "c2fd0ecf-8d0c-407b-9f7d-adeff8fb73ce",
+						"id": "02871a3c-a72b-4f3d-bf92-ec67096499e8",
 						"exec": [
 							"console.log(responseBody);",
 							"var data = JSON.parse(responseBody);",
@@ -489,20 +481,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_cfAso}}/facturas",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_ppfASO}}/facturas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -511,8 +496,8 @@
 					"path": [
 						"s3_telefonos-api",
 						"api",
-						"compradores",
-						"{{new_id_cfAso}}",
+						"proveedores",
+						"{{new_id_ppfASO}}",
 						"facturas"
 					]
 				}
@@ -520,15 +505,15 @@
 			"response": []
 		},
 		{
-			"name": "Obtener todas las facturas de un comprador que no existe",
+			"name": "Obtener todas las facturas de un proveedor que no existe",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "7745ac3f-d08c-403a-b772-5ba8e1ecaa5a",
+						"id": "3d2082bb-ff91-432b-b7cf-b9399d66eb47",
 						"exec": [
 							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /compradores/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /proveedores/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -536,20 +521,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/0/facturas",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/0/facturas/",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -558,21 +536,22 @@
 					"path": [
 						"s3_telefonos-api",
 						"api",
-						"compradores",
+						"proveedores",
 						"0",
-						"facturas"
+						"facturas",
+						""
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener una factura que no existe de un comprador",
+			"name": "Obtener un factura que no existe de un proveedor",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "ced4cd78-9aae-4d69-ba05-071b299009cc",
+						"id": "f4880c5e-7eb7-4655-a82f-58c3bb388a83",
 						"exec": [
 							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;"
 						],
@@ -582,20 +561,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_cfAso}}/facturas/0",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_ppfASO}}/facturas/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -604,8 +576,8 @@
 					"path": [
 						"s3_telefonos-api",
 						"api",
-						"compradores",
-						"{{new_id_cfAso}}",
+						"proveedores",
+						"{{new_id_ppfASO}}",
 						"facturas",
 						"0"
 					]

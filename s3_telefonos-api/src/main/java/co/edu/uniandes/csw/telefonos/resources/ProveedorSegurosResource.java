@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.telefonos.entities.SeguroEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
@@ -57,10 +58,12 @@ public class ProveedorSegurosResource {
     @POST
     @Path("{seguroId: \\d+}")
     public SeguroDTO agregarSeguro(@PathParam("proveedorId") Long proveedorId, @PathParam("seguroId") Long seguroId) {
-        if (proveedorLogic.getProveedor(proveedorId) == null) {
-            throw new WebApplicationException("El recurso /proveedores/" + proveedorId + " no existe.", 404);
+        LOGGER.log(Level.INFO, "Entro a agregar en resource");
+        if (seguroLogic.getSeguro(seguroId) == null) {
+            throw new WebApplicationException("El recurso /seguros/" + seguroId + " no existe.", 404);
         }
-        SeguroDTO seguroDTO = new SeguroDTO(proveedorSegurosLogic.addSeguro(proveedorId, seguroId));
+        SeguroDTO seguroDTO = new SeguroDTO(proveedorSegurosLogic.addSeguro(seguroId, proveedorId));
+        LOGGER.log(Level.INFO, "Salio de agregar en resource");
         return seguroDTO;
     }
 
