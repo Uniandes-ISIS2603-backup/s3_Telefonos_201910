@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.telefonos.entities.CompradorEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -122,6 +123,7 @@ public class CompradorResource {
      */
     @Path("{compradorId: \\d+}/facturas")
     public Class<CompradorFacturasResource> getCompradorFacturaResource(@PathParam("compradorId") Long compradorId) {
+        LOGGER.log(Level.INFO, "Entra al metodo correcto");
         if (compradorLogic.getComprador(compradorId) == null) {
             throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
         }

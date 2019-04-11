@@ -63,7 +63,7 @@ public class CompradorFacturasResource {
         if (facturaLogic.getFactura(facturaId) == null) {
             throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
         }
-        FacturaDTO facturaDTO = new FacturaDTO(compradorFacturasLogic.addFactura(compradorId, facturaId));
+        FacturaDTO facturaDTO = new FacturaDTO(compradorFacturasLogic.addFactura( facturaId,compradorId));
         LOGGER.log(Level.INFO, "Termina proceso de asociarle una factura al comprador en el resource con id = {0}", compradorId);
         return facturaDTO;
     }
