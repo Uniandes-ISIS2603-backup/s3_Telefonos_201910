@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "a521c975-d136-41c4-8cf8-62c134be8573",
+		"name": "TabletResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd16e889-ee0f-4a87-a470-6989bc947cbe",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
