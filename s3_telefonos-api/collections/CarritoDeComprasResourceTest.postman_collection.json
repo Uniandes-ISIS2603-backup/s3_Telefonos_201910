@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "2efa7bac-049b-4ce0-9bb2-a8bf7877af8b",
+		"name": "CarritoDeComprasResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80bbbf84-68bc-450f-a690-9d9735053077",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code===200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"carritosDeCompras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80bbbf84-68bc-450f-a690-9d9735053077",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code===200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"carritosDeCompras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80bbbf84-68bc-450f-a690-9d9735053077",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code===200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"carritosDeCompras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80bbbf84-68bc-450f-a690-9d9735053077",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code===200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"carritosDeCompras"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
