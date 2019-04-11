@@ -6,7 +6,56 @@
 	},
 	"item": [
 		{
-			"name": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets",
+			"name": "Crear una tablet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd16e889-ee0f-4a87-a470-6989bc947cbe",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_ref_c\", data.referencia);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"marca\": \"Simply Right clearLAX\",\n        \"modelo\": \"Viper\",\n        \"referencia\": \"gjkfdl\",\n        \"registrado\":true\n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las tablets",
 			"event": [
 				{
 					"listen": "test",
@@ -47,6 +96,268 @@
 						"s3_telefonos-api",
 						"api",
 						"tablets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una tablet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4ba24c29-bf27-4aae-b77a-72c5b9c0c940",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GET\"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/{{new_ref_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets",
+						"{{new_ref_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener tablet inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd008ab7-ed7f-4922-936f-1a8849894c6a",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tablets/a no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/a",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets",
+						"a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una tablet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "386399b5-2433-44dd-a636-572f2edf12c8",
+						"exec": [
+							"console.log(responseBody);\r",
+							"tests[\"No genera error en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"marca\": \"Simply Right clearLAX\",\n        \"modelo\": \"Modelo Nuevo\",\n        \"referencia\": \"gjkfdl\",\n        \"registrado\":true\n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/{{new_ref_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets",
+						"{{new_ref_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una tablet que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64026913-24ec-45bd-9da2-f197dc1dd23f",
+						"exec": [
+							"tests[\"No actualiza con referencia que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tablets/a no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"modelo\":\"nuevo modelo\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/a",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets",
+						"a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una tablet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0aa52ec6-8931-4ac7-b5c2-dbf85a86b713",
+						"exec": [
+							"tests[\"No genera error en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/{{new_ref_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets",
+						"{{new_ref_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar tablet inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5397c159-44cf-419c-85a9-94db0267d2d2",
+						"exec": [
+							"tests[\"No borra con referencia que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tablets/a no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/a",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets",
+						"a"
 					]
 				}
 			},

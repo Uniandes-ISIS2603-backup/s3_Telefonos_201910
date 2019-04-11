@@ -99,7 +99,7 @@ public class TabletEntity extends BaseEntity implements Serializable{
     /**
      * @return the registrado
      */
-    public Boolean isRegistrado() {
+    public Boolean getRegistrado() {
         return registrado;
     }
 

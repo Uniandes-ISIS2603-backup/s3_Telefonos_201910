@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "08b83e09-3c06-46e3-99f0-3cf59fa33795",
+		"name": "ListaDeDeseosTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una lista de deseos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "84346319-6374-4005-84f7-120b0e9b1b8d",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_ldd\", data.referencia);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"identificador\":5,\n\t\"costoEstimado\":400000\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"listasDeDeseos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las listas de deseos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af5cc792-f61b-4e87-884c-74dfa2ef61eb",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"listasDeDeseos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una lista de deseos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6995bdbc-e6cb-4b6b-8259-236040d16139",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GET\"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/{{new_id_ldd}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"listasDeDeseos",
+						"{{new_id_ldd}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una lista de deseos inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dada7900-563f-4241-839c-401d17918bfb",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /listasDeDeseos/88 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/88",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"listasDeDeseos",
+						"88"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una lista de deseos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e449a04-0e22-4ffb-8ace-7568e80facf7",
+						"exec": [
+							"console.log(responseBody);\r",
+							"tests[\"No genera error en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"identificador\":5,\n\t\"costoEstimado\":500000\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/{{new_id_ldd}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"tablets",
+						"{{new_id_ldd}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una lista que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b5d8cd16-9106-4976-9823-4d5de0e008db",
+						"exec": [
+							"tests[\"No actualiza con identificador que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /listasDeDeseos/88 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"costoEstimado\":600000\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/88",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"listasDeDeseos",
+						"88"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

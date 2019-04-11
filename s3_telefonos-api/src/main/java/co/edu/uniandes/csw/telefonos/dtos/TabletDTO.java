@@ -86,7 +86,7 @@ public class TabletDTO implements Serializable{
     /**
      * @return the registrado
      */
-    public Boolean isRegistrado() {
+    public Boolean getRegistrado() {
         return registrado;
     }
 
@@ -111,7 +111,7 @@ public class TabletDTO implements Serializable{
             this.marca = entity.getMarca();
             this.modelo = entity.getModelo();
             this.referencia = entity.getReferencia();
-            this.registrado = entity.isRegistrado();
+            this.registrado = entity.getRegistrado();
         }
     }
     
