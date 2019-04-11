@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "84f47756-3191-49b6-993e-d2e4111d3c1d",
+		"name": "ProveedorSeguro-Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e242635-3df9-49f0-9cca-540a7739d8ea",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_PSASO\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"lvprietops\",\n\t\"contrasenia\": \"Hola Mundo\",\n\t\"correoElectronico\":\"lv.prietops@uniandes.edu.co\",\n\t\"raiting\": 4,\n\t\"nombre\": \"Laura P\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un seguro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19d1816c-34e7-4439-adf4-41ac688641ef",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_sASO\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"monto\":1800000,\n\t\"aseguradora\":\"Prosegur\",\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_PSASO}} \n\t\t}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/seguros",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"seguros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un seguro 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19d1816c-34e7-4439-adf4-41ac688641ef",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_sASO2\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"monto\":3400000,\n\t\"aseguradora\":\"Liberty\",\n\t\"proveedor\": { \n\t\t\"id\": {{new_id_PSASO}} \n\t\t}\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/seguros",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"seguros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una asociacion ProveedorSeguro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fe166ca-f962-4ed3-9fad-7f58baacc211",
+						"exec": [
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_PSASO}}/seguros/{{new_id_sASO}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_PSASO}}",
+						"seguros",
+						"{{new_id_sASO}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una asociacion ProveedorSeguro2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "72901f51-a762-4cdc-a18f-c30aa8b1e4e3",
+						"exec": [
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_PSASO}}/seguros/{{new_id_sASO2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_PSASO}}",
+						"seguros",
+						"{{new_id_sASO2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un seguro asociado a un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06e85200-a7b1-48d6-8a8f-91c42c77f362",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GET\"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_PSASO}}/seguros/{{new_id_sASO2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_PSASO}}",
+						"seguros",
+						"{{new_id_sASO2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los seguros asociado a un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7022798d-e51d-437a-be62-8c8ee95b1ecd",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el GET\"]= responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_PSASO}}/seguros",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_PSASO}}",
+						"seguros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los seguros de un proveedor que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "78681975-0f84-4a90-8340-08e4b83badc7",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /proveedores/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/0/seguros",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"0",
+						"seguros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un seguro que no existe de un proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d67367f4-1b31-46f3-b923-e45cb0840363",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/proveedores/{{new_id_PSASO}}/seguros/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"proveedores",
+						"{{new_id_PSASO}}",
+						"seguros",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

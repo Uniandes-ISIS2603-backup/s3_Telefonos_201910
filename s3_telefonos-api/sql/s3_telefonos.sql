@@ -13,8 +13,6 @@ delete from CarritoDeComprasEntity;
 delete from CompradorEntity;
 
 
-
-
 insert into CompradorEntity (id, usuario, apodo, contrasenia, correoElectronico) values (1,'cwyre0', 'Courtenay', 'tkJSdCMK', 'cminthorpe0@ebay.co.uk');
 insert into CompradorEntity (id, usuario, apodo, contrasenia, correoElectronico) values (2,'rschieferstein1', 'Rhody', '5OcnXwibE15H', 'rhayselden1@goo.gl');
 insert into CompradorEntity (id, usuario, apodo, contrasenia, correoElectronico) values (3,'aheight2', 'Arch', 'vgWQVCe7', 'agarstang2@artisteer.com');
