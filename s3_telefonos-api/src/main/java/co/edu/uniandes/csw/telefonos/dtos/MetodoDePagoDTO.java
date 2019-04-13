@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.telefonos.dtos;
 
 import co.edu.uniandes.csw.telefonos.entities.MetodoDePagoEntity;
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Level;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -43,7 +45,9 @@ public class MetodoDePagoDTO implements Serializable{
         this.fecha = metodoEntity.getFecha();
         this.codigoVerificacion = metodoEntity.getCodigoVerificacion();
         this.id = metodoEntity.getId();
+        if(metodoEntity.getComprador()!=null){
         this.comprador = new CompradorDTO(metodoEntity.getComprador());
+        }
         }
     }
 
@@ -109,8 +113,10 @@ public class MetodoDePagoDTO implements Serializable{
         entidad.setBanco(this.banco);
         entidad.setFecha(this.fecha);
         entidad.setTipo(this.tipo);
-        entidad.setFecha(this.fecha);
-        entidad.setComprador(this.getComprador().toEntity() );
+        entidad.setCodigoVerificacion(this.codigoVerificacion);
+        entidad.setId(this.id);
+        if(this.getComprador() != null){
+        entidad.setComprador(this.getComprador().toEntity() );}
         return entidad;
     }
       @Override
