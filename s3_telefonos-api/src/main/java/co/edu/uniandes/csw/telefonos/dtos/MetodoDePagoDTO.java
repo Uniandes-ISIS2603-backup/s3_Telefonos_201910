@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.telefonos.dtos;
 
 import co.edu.uniandes.csw.telefonos.entities.MetodoDePagoEntity;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Level;
