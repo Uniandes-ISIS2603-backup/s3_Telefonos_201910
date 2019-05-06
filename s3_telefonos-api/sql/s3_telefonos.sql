@@ -12,7 +12,6 @@ delete from ProveedorEntity;
 delete from CarritoDeComprasEntity;
 delete from CompradorEntity;
 
-
 insert into CompradorEntity (id, usuario, apodo, contrasenia, correoElectronico) values (1,'cwyre0', 'Courtenay', 'tkJSdCMK', 'cminthorpe0@ebay.co.uk');
 insert into CompradorEntity (id, usuario, apodo, contrasenia, correoElectronico) values (2,'rschieferstein1', 'Rhody', '5OcnXwibE15H', 'rhayselden1@goo.gl');
 insert into CompradorEntity (id, usuario, apodo, contrasenia, correoElectronico) values (3,'aheight2', 'Arch', 'vgWQVCe7', 'agarstang2@artisteer.com');
@@ -49,24 +48,24 @@ insert into ListaDeDeseosEntity (id, identificador, costoEstimado, comprador_id)
 insert into ListaDeDeseosEntity (id, identificador, costoEstimado, comprador_id) values (4, 4, 265382.82, 4);
 insert into ListaDeDeseosEntity (id, identificador, costoEstimado, comprador_id) values (5, 5,402231.38, 5);
 
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (1, 'Stanton-Wunsch', 3531, 1,CURRENT_TIMESTAMP, 'Brown brocket', 'jcb');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (2, 'Pacocha Inc', 355201, 2, CURRENT_TIMESTAMP, 'Greater kudu', 'jcb');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (3, 'Zulauf, Kirlin and Beier', 356903, 3, CURRENT_TIMESTAMP, 'Bushbuck', 'jcb');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (4, 'Homenick-Hermann', 4917227, 4,CURRENT_TIMESTAMP, 'Sally lightfoot crab', 'visa-electron');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (5, 'Kerluke Inc', 35472631, 5, CURRENT_TIMESTAMP, 'Penguin, fairy', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (1, 'Stanton-Wunsch', 3531, 1,'8/20/2020', 'Brown brocket', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (2, 'Pacocha Inc', 355201, 2, '8/20/2021', 'Greater kudu', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (3, 'Zulauf, Kirlin and Beier', 356903, 3, '5/6/2021', 'Bushbuck', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (4, 'Homenick-Hermann', 4917227, 4,'4/29/2021', 'Sally lightfoot crab', 'visa-electron');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (5, 'Kerluke Inc', 35472631, 5, '3/27/2021', 'Penguin, fairy', 'jcb');
 
 
 
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (1, CURRENT_TIMESTAMP, null, 372639.03, 4, 1);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (2, CURRENT_TIMESTAMP, null, 295281.08, 5, 2);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (3, CURRENT_TIMESTAMP, null, 108340.20, 2, 3);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (4, CURRENT_TIMESTAMP, null, 321040.51, 1, 4);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (5, CURRENT_TIMESTAMP, null, 272382.42, 2, 5);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (6, CURRENT_TIMESTAMP, null, 152958.56, 5, 6);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (7, CURRENT_TIMESTAMP, null, 239676.21, 2, 7);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (8, CURRENT_TIMESTAMP, null, 557632.32, 4, 8);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (9, CURRENT_TIMESTAMP, null, 259022.8, 2, 9);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (10, CURRENT_TIMESTAMP, null, 307387.65, 5, 10);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (1, '8/20/2020', null, 372639.03, 4, 1);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (2, '8/20/2020', null, 295281.08, 5, 2);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (3, '8/20/2020', null, 108340.20, 2, 3);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (4, '8/20/2020', null, 321040.51, 1, 4);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (5, '8/20/2020', null, 272382.42, 2, 5);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (6, '8/20/2020', null, 152958.56, 5, 6);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (7, '8/20/2020', null, 239676.21, 2, 7);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (8, '8/20/2020', null, 557632.32, 4, 8);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (9, '8/20/2020', null, 259022.8, 2, 9);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (10, '8/20/2020', null, 307387.65, 5, 10);
 
 
 
@@ -96,12 +95,12 @@ insert into CelularEntity (id, marca, modelo, referencia, imei, registrado, publ
 insert into CelularEntity (id, marca, modelo, referencia, imei, registrado, publicacion_id) values (4, 'bareMinerals bareSkin Pure Brightening Serum Foundation Broad Spectrum SPF 20', '1 Series', '98132-732', 29, 0, 9);
 insert into CelularEntity (id, marca, modelo, referencia, imei, registrado, publicacion_id) values (5, 'Overwhelmed', 'Celica', '50845-0053', 21, 0, 10);
 
-insert into CelularEntity_Listadedeseosentity (celulares_id, listasdedeseos_id) values (4, 1);
+/*insert into CelularEntity_Listadedeseosentity (celulares_id, listasdedeseos_id) values (4, 1);
 insert into CelularEntity_Listadedeseosentity (celulares_id, listasdedeseos_id) values (5, 3);
 insert into CelularEntity_Listadedeseosentity (celulares_id, listasdedeseos_id) values (1, 5);
 insert into CelularEntity_Listadedeseosentity (celulares_id, listasdedeseos_id) values (3, 4);
 insert into CelularEntity_Listadedeseosentity (celulares_id, listasdedeseos_id) values (2, 2);
-
+*/
 
 insert into SeguroEntity (id, aseguradora, monto, proveedor_id) values (1, 'Hayes-Krajcik', 848442.62, 4);
 insert into SeguroEntity (id, aseguradora, monto, proveedor_id) values (2, 'Reinger-Franecki', 354828.48, 4);
@@ -109,9 +108,9 @@ insert into SeguroEntity (id, aseguradora, monto, proveedor_id) values (3, 'Schi
 insert into SeguroEntity (id, aseguradora, monto, proveedor_id) values (4, 'Hudson Inc', 1070992.18, 3);
 insert into SeguroEntity (id, aseguradora, monto, proveedor_id) values (5, 'Conn-Ondricka', 485782.91, 4);
 
-insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (5, 3);
+/*insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (5, 3);
 insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (5, 4);
 insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (2, 1);
 insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (1, 3);
 insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (1, 5);
-
+*/
