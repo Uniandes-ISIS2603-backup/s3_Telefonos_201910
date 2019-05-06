@@ -26,18 +26,29 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
-/**
- *
- * @author rj.gonzalez10
- */
+
 @Path("metodosDePago")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
+
+/**
+ *
+ * @author rj.gonzalez10
+ */
+
 public class MetodoDePagoResource {
     private static final Logger LOGGER = Logger.getLogger(MetodoDePagoResource.class.getName());
     @Inject
     private MetodoDePagoLogic metodoDePagoLogic;
+    
+     @GET
+    public List<MetodoDePagoDTO> obtenerMetodosDePago() {
+        LOGGER.info("metodoDePagoResource getMetodosDePago: input: void");
+        List<MetodoDePagoDTO> listaMetodoDePago = listEntity2DTO(metodoDePagoLogic.getMetodosDePago());
+         LOGGER.log(Level.INFO, "MetodoDePagoResource getMetodosDePago: output: {0}", listaMetodoDePago);
+        return listaMetodoDePago;
+    }
     
      @POST
     public MetodoDePagoDTO createMetodoDePago(MetodoDePagoDTO metodo) throws BusinessLogicException {
@@ -48,14 +59,8 @@ public class MetodoDePagoResource {
         LOGGER.log(Level.INFO, "MetodoDePagoResource createMetodoDePago: output: {0}", nuevoMetodoDePagoDTO);
         return nuevoMetodoDePagoDTO;
     }
-     @GET
-    public List<MetodoDePagoDTO> getEditorials() {
-        LOGGER.info("MetodoDePagoResource getMetodosDePago: input: void");
-        List<MetodoDePagoDTO> listaMetodosDePago = listEntity2DTO(metodoDePagoLogic.getMetodosDePago());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaMetodosDePago);
-        return listaMetodosDePago;
-    }
-   
+    
+  
     
     @GET
     @Path("{metodosDePagoId: \\d+}")
@@ -97,7 +102,7 @@ public class MetodoDePagoResource {
     }
 
     
-  
+  /**
     private List<MetodoDePagoDTO> listEntity2DTO(List<MetodoDePagoEntity> entityList) {
         List<MetodoDePagoDTO> list = new ArrayList<>();
         for (MetodoDePagoEntity entity : entityList) {
@@ -105,5 +110,15 @@ public class MetodoDePagoResource {
         }
         return list;
     }
+    * */
+    private List<MetodoDePagoDTO> listEntity2DTO(List<MetodoDePagoEntity> entityList) {
+        List<MetodoDePagoDTO> list = new ArrayList<>();
+        for (MetodoDePagoEntity entity : entityList) {
+            list.add(new MetodoDePagoDTO(entity));
+        }
+        return list;
+    
+    
+}
   
 }

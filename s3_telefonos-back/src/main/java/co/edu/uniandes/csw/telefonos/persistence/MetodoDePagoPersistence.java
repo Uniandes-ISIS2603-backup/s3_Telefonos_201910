@@ -6,13 +6,15 @@
 package co.edu.uniandes.csw.telefonos.persistence;
 
 import co.edu.uniandes.csw.telefonos.entities.MetodoDePagoEntity;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+/**
 
 /**
  *
@@ -35,10 +37,8 @@ public class MetodoDePagoPersistence {
         LOGGER.log(Level.INFO, "termina la creación de un nuevo método de pago");
         return metodoDePagoEntity;
     }
-     public List<MetodoDePagoEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todos los metodos de pago");
-        
-        TypedQuery query = em.createQuery("select u from MetodoDePagoEntity u", MetodoDePagoEntity.class);
+    public List<MetodoDePagoEntity> findAll() {
+        TypedQuery<MetodoDePagoEntity> query = em.createQuery("select u from MetodoDePagoEntity u", MetodoDePagoEntity.class);
         return query.getResultList();
     }
 	
