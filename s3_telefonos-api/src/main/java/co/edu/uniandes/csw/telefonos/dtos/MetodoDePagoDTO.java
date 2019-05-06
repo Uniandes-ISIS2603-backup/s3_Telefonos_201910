@@ -82,7 +82,7 @@ public class MetodoDePagoDTO implements Serializable{
         this.fecha = fecha;
     }
 
-    public int getCodigoVerificacion() {
+    public Integer getCodigoVerificacion() {
         return codigoVerificacion;
     }
 
