@@ -47,7 +47,7 @@ public class ListaDeDeseosDTO implements Serializable{
     /**
      * @param costoEstimado the costoEstimado to set
      */
-    public void setCostoEstimado(double costoEstimado) {
+    public void setCostoEstimado(Double costoEstimado) {
         this.costoEstimado = costoEstimado;
     }
 

@@ -54,7 +54,7 @@ public class TabletResource {
     
     
     @GET
-    @Path("{referencia: \\d+}")
+    @Path("{referencia}")
     public TabletDTO getTablet(@PathParam("referencia") String referencia){
       TabletEntity tabletEntity = tabletLogic.getTablet(referencia);
       if(tabletEntity == null){
@@ -71,7 +71,7 @@ public class TabletResource {
         if (tabletLogic.getTablet(referencia) == null) {
             throw new WebApplicationException("El recurso /tablets/" + referencia + " no existe.", 404);
         }
-        TabletDTO tabletDTO = new TabletDTO(tabletLogic.updateTablet(tabletLogic.getTablet(referencia).getId(), tablet.toEntity()));
+        TabletDTO tabletDTO = new TabletDTO(tabletLogic.updateTablet(tabletLogic.getTablet(referencia).getReferencia(), tablet.toEntity()));
         return tabletDTO;
     }
     

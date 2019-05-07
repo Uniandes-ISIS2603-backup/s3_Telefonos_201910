@@ -58,7 +58,7 @@ public class ListaDeDeseosCelularResource {
     @POST
     @Path("{celularIMEI: \\d+}")
     public ListaDeDeseosDetailDTO addCelular(@PathParam("celularIMEI") Long listaId, @PathParam("celularIMEI") Long celularIMEI) throws BusinessLogicException {
-        if (celularLogic.getCelularRegistrado(listaId)==null) {
+        if (celularLogic.getCelularRegistrado(celularIMEI)==null) {
             throw new WebApplicationException("El recurso /celulares/" + celularIMEI + " no existe.", 404);
         }
         ListaDeDeseosDetailDTO listaDetailDTO = new ListaDeDeseosDetailDTO(listaCelularLogic.agregarCelular(celularIMEI, listaId));

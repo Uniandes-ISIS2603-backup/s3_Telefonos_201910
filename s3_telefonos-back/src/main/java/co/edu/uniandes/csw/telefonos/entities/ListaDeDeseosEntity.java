@@ -24,11 +24,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
-    @ManyToMany(mappedBy = "listasDeDeseos", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "listasDeDeseos", fetch = FetchType.LAZY)
     private List<TabletEntity> tablets = new ArrayList<TabletEntity>();
     
     @PodamExclude
-    @ManyToMany(mappedBy = "listasDeDeseos", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "listasDeDeseos", fetch = FetchType.LAZY)
     private List<CelularEntity> celulares = new ArrayList<CelularEntity>();
     
     /*
@@ -38,7 +38,7 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     @OneToOne(fetch = FetchType.LAZY)
     private CompradorEntity comprador;
     
-    private double costoEstimado;
+    private Double costoEstimado;
     
     private Long identificador;
 
@@ -52,14 +52,14 @@ public class ListaDeDeseosEntity extends BaseEntity implements Serializable{
     /**
      * @return the costoEstimado
      */
-    public double getCostoEstimado() {
+    public Double getCostoEstimado() {
         return costoEstimado;
     }
 
     /**
      * @param costoEstimado the costoEstimado to set
      */
-    public void setCostoEstimado(double costoEstimado) {
+    public void setCostoEstimado(Double costoEstimado) {
         this.costoEstimado = costoEstimado;
     }
 

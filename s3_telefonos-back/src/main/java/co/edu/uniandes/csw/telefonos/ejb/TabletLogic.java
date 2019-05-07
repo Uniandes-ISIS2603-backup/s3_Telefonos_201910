@@ -54,7 +54,7 @@ public class TabletLogic {
     }
     
 
-    public TabletEntity updateTablet(Long tabletId, TabletEntity tabletEntity) throws BusinessLogicException {
+    public TabletEntity updateTablet(String tabletId, TabletEntity tabletEntity) throws BusinessLogicException {
         
         //La referencia de cada factura debe ser unica
         if(persistence.findByReferencia(tabletEntity.getReferencia())!=null){

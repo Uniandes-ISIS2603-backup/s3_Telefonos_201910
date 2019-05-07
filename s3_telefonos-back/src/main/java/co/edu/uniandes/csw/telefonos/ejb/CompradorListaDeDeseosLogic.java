@@ -30,19 +30,22 @@ public class CompradorListaDeDeseosLogic {
     private CompradorPersistence compradorPersistence;
     
     
-    /**
-     * Borrar una lista de deseos de un comprador. 
+   /**
+     * Agregar una lista de deseos al comprador
      *
-     * @param compradorId El comprador que se desea borrar de la lista de deseos.
+     * @param compradorId El id del comprador en el cual se va a guardar la
+     * lista de deseos
+     * @param listaId El id de la lista de deseos que se va a guardar
+     * @return La lista de deseos creada.
      */
-    public void removeListaDeDeseos(Long compradorId) {
-
-        CompradorEntity compradorEntity = compradorPersistence.find(compradorId);       
-        ListaDeDeseosEntity listaEntity = listaPersistence.find(compradorEntity.getListaDeDeseos().getId());
-        listaPersistence.delete(compradorEntity.getListaDeDeseos().getId());
-        compradorEntity.setListaDeDeseos(null);
-        listaEntity.setComprador(null);
-        
-}
+    public ListaDeDeseosEntity addLista(Long listaId, Long compradorId)throws BusinessLogicException {
+        CompradorEntity compradorEntity = compradorPersistence.find(compradorId);
+        ListaDeDeseosEntity listaEntity = listaPersistence.find(listaId);
+        if(compradorEntity.getListaDeDeseos()==null){
+            throw new BusinessLogicException("El comprador con id "+compradorId+" ya tiene una lista de deseos asociada.");
+        }
+        compradorEntity.setListaDeDeseos(listaEntity);
+        return listaPersistence.find(listaId);
+    }
     
 }
