@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -62,6 +63,18 @@ public class CompradorListaDeDeseosResource {
         return listaDTO;
     }
     
+    /**
+     * Busca y devuelve la lista de deseos del comprador.
+     *
+     * @param compradorId Identificador del comprador que se esta buscando.
+     * Este debe ser una cadena de dígitos.
+     * @return JSONArray {@link CeluarDTO} - La lista de deseos del comprador buscado
+     */
+    @GET
+    public ListaDeDeseosDetailDTO getListaDeDeseos(@PathParam("compradorId") Long compradorId) {
+        ListaDeDeseosDetailDTO listaDTO = new ListaDeDeseosDetailDTO(compradorListaLogic.getListaDeDeseos(compradorId));
+        return listaDTO;
+    }
     
 
     

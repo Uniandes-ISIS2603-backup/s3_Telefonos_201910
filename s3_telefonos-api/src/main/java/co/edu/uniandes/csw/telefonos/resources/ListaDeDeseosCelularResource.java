@@ -47,7 +47,7 @@ public class ListaDeDeseosCelularResource {
      * Guarda un celular dentro de una lista de deseos con la informacion que recibe el
      * la URL. Se devuelve el celular que se guarda en la lista.
      *
-     * @param listaId Identificador de la editorial que se esta
+     * @param listaId Identificador de la lista que se esta
      * actualizando. Este debe ser una cadena de dígitos.
      * @param celularIMEI IMEI del celular que se desea guardar. Este debe
      * ser una cadena de dígitos.
@@ -57,7 +57,7 @@ public class ListaDeDeseosCelularResource {
      */
     @POST
     @Path("{celularIMEI: \\d+}")
-    public ListaDeDeseosDetailDTO addCelular(@PathParam("celularIMEI") Long listaId, @PathParam("celularIMEI") Long celularIMEI) throws BusinessLogicException {
+    public ListaDeDeseosDetailDTO addCelular(@PathParam("listaId") Long listaId, @PathParam("celularIMEI") Long celularIMEI) throws BusinessLogicException {
         if (celularLogic.getCelularRegistrado(celularIMEI)==null) {
             throw new WebApplicationException("El recurso /celulares/" + celularIMEI + " no existe.", 404);
         }

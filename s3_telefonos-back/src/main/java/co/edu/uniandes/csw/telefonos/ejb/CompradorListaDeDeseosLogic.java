@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.ListaDeDeseosPersistence;
 import co.edu.uniandes.csw.telefonos.persistence.CompradorPersistence;
 import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -46,6 +47,16 @@ public class CompradorListaDeDeseosLogic {
         }
         compradorEntity.setListaDeDeseos(listaEntity);
         return listaPersistence.find(listaId);
+    }
+    
+            /**
+     * Retorna la lista de deseos asociada a un comprador
+     *
+     * @param compradorId El ID del comprador buscado
+     * @return La lista de deseos asociada al comprador buscado.
+     */
+    public ListaDeDeseosEntity getListaDeDeseos(Long compradorId) {
+        return compradorPersistence.find(compradorId).getListaDeDeseos();
     }
     
 }

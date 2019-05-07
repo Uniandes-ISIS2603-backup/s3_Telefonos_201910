@@ -53,8 +53,8 @@ public class ListaDeDeseosTabletResource {
      * Error de lógica que se genera cuando no se encuentra la tablet.
      */
     @POST
-    @Path("{tabletId: \\d+}")
-    public ListaDeDeseosDetailDTO addTablet(@PathParam("tabletId") Long listaId, @PathParam("booksId") String tabletRef) throws BusinessLogicException {
+    @Path("{tabletId}")
+    public ListaDeDeseosDetailDTO addTablet(@PathParam("listaId") Long listaId, @PathParam("tabletId") String tabletRef) throws BusinessLogicException {
         if (tabletLogic.getTablet(tabletRef) == null) {
             throw new WebApplicationException("El recurso /tablets/" + tabletRef + " no existe.", 404);
         }
@@ -91,7 +91,7 @@ public class ListaDeDeseosTabletResource {
      * Error de lógica que se genera cuando no se encuentra la tablet en la lista de deseos.
      */
     @GET
-    @Path("{tabletRef: \\d+}")
+    @Path("{tabletRef}")
     public TabletDTO getTablet(@PathParam("listaId") Long listaId, @PathParam("tabletRef") String tabletRef) throws BusinessLogicException {
         if (tabletLogic.getTablet(tabletRef) == null) {
             throw new WebApplicationException("El recurso /listasDeDeseos/" + listaId + "/tablets/" + tabletRef + " no existe.", 404);
