@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.telefonos.dtos;
 
 import co.edu.uniandes.csw.telefonos.entities.MetodoDePagoEntity;
-
 import java.io.Serializable;
 import java.util.Date;
-import java.util.logging.Level;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -28,10 +26,10 @@ public class MetodoDePagoDTO implements Serializable{
     private Date fecha;
     //código de verificación metodo de pago
     private Integer codigoVerificacion;                                 
-    //id
-    private Long id;
     //Comprador
     private CompradorDTO comprador;
+     //id
+    private Long id;
     
     public MetodoDePagoDTO(){
     
@@ -44,10 +42,10 @@ public class MetodoDePagoDTO implements Serializable{
         this.tipo = metodoEntity.getTipo();
         this.fecha = metodoEntity.getFecha();
         this.codigoVerificacion = metodoEntity.getCodigoVerificacion();
-        this.id = metodoEntity.getId();
         if(metodoEntity.getComprador()!=null){
         this.comprador = new CompradorDTO(metodoEntity.getComprador());
         }
+        this.id = metodoEntity.getId();
         }
     }
 
@@ -83,7 +81,7 @@ public class MetodoDePagoDTO implements Serializable{
         this.fecha = fecha;
     }
 
-    public int getCodigoVerificacion() {
+    public Integer getCodigoVerificacion() {
         return codigoVerificacion;
     }
 

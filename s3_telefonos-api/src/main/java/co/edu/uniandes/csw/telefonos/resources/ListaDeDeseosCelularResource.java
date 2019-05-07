@@ -114,8 +114,10 @@ public class ListaDeDeseosCelularResource {
      */
     private List<CelularDTO> celularesListEntity2DTO(List<CelularEntity> entityList) {
         List<CelularDTO> list = new ArrayList();
+        if(entityList!=null){
         for (CelularEntity entity : entityList) {
             list.add(new CelularDTO(entity));
+        }
         }
         return list;
     }
@@ -128,8 +130,10 @@ public class ListaDeDeseosCelularResource {
      */
     private List<CelularEntity> celularesListDTO2Entity(List<CelularDTO> dtos) {
         List<CelularEntity> list = new ArrayList<>();
+        if(dtos!=null){
         for (CelularDTO dto : dtos) {
             list.add(dto.toEntity());
+        }
         }
         return list;
 }

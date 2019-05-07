@@ -32,8 +32,8 @@ import javax.ws.rs.core.MediaType;
  * @author Laura Valentina Prieto Jimenez
  */
 @Path("compradores")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Produces("application/json")
+@Consumes("application/json")
 @RequestScoped
 public class CompradorResource {
 
