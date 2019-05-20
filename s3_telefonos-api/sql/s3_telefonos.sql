@@ -48,24 +48,24 @@ insert into ListaDeDeseosEntity (id, identificador, costoEstimado, comprador_id)
 insert into ListaDeDeseosEntity (id, identificador, costoEstimado, comprador_id) values (4, 4, 265382.82, 4);
 insert into ListaDeDeseosEntity (id, identificador, costoEstimado, comprador_id) values (5, 5,402231.38, 5);
 
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (1, 'Stanton-Wunsch', 3531, 1,CURRENT_TIMESTAMP, 'Brown brocket', 'jcb');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (2, 'Pacocha Inc', 355201, 2, CURRENT_TIMESTAMP, 'Greater kudu', 'jcb');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (3, 'Zulauf, Kirlin and Beier', 356903, 3,CURRENT_TIMESTAMP, 'Bushbuck', 'jcb');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (4, 'Homenick-Hermann', 4917227, 4,CURRENT_TIMESTAMP, 'Sally lightfoot crab', 'visa-electron');
-insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (5, 'Kerluke Inc', 35472631, 5,CURRENT_TIMESTAMP, 'Penguin, fairy', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (1, 'Stanton-Wunsch', 3531, 1,CURRENT_DATE, 'Brown brocket', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (2, 'Pacocha Inc', 355201, 2, CURRENT_DATE, 'Greater kudu', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (3, 'Zulauf, Kirlin and Beier', 356903, 3,CURRENT_DATE, 'Bushbuck', 'jcb');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (4, 'Homenick-Hermann', 4917227, 4,CURRENT_DATE, 'Sally lightfoot crab', 'visa-electron');
+insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fecha, nombre, tipo) values (5, 'Kerluke Inc', 35472631, 5,CURRENT_DATE, 'Penguin, fairy', 'jcb');
 
 
 
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (1, CURRENT_TIMESTAMP, null, 372639.03, 4, 1);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (2, CURRENT_TIMESTAMP, null, 295281.08, 5, 2);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (3, CURRENT_TIMESTAMP, null, 108340.20, 2, 3);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (4, CURRENT_TIMESTAMP, null, 321040.51, 1, 4);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (5, CURRENT_TIMESTAMP, null, 272382.42, 2, 5);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (6, CURRENT_TIMESTAMP, null, 152958.56, 5, 6);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (7, CURRENT_TIMESTAMP, null, 239676.21, 2, 7);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (8, CURRENT_TIMESTAMP, null, 557632.32, 4, 8);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (9, CURRENT_TIMESTAMP, null, 259022.8, 2, 9);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (10, CURRENT_TIMESTAMP, null, 307387.65, 5, 10);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (1, CURRENT_DATE, null, 372639.03, 4, 1);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (2, CURRENT_DATE, null, 295281.08, 5, 2);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (3, CURRENT_DATE, null, 108340.20, 2, 3);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (4, CURRENT_DATE, null, 321040.51, 1, 4);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (5, CURRENT_DATE, null, 272382.42, 2, 5);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (6, CURRENT_DATE, null, 152958.56, 5, 6);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (7, CURRENT_DATE, null, 239676.21, 2, 7);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (8, CURRENT_DATE, null, 557632.32, 4, 8);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (9, CURRENT_DATE, null, 259022.8, 2, 9);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (10, CURRENT_DATE, null, 307387.65, 5, 10);
 
 
 
