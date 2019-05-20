@@ -56,16 +56,16 @@ insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fec
 
 
 
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (1, CURRENT_DATE, null, 372639.03, 4, 1);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (2, CURRENT_DATE, null, 295281.08, 5, 2);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (3, CURRENT_DATE, null, 108340.20, 2, 3);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (4, CURRENT_DATE, null, 321040.51, 1, 4);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (5, CURRENT_DATE, null, 272382.42, 2, 5);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (6, CURRENT_DATE, null, 152958.56, 5, 6);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (7, CURRENT_DATE, null, 239676.21, 2, 7);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (8, CURRENT_DATE, null, 557632.32, 4, 8);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (9, CURRENT_DATE, null, 259022.8, 2, 9);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id) values (10, CURRENT_DATE, null, 307387.65, 5, 10);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (1, CURRENT_DATE, null, 372639.03, 4, 1, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (2, CURRENT_DATE, null, 295281.08, 5, 2, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (3, CURRENT_DATE, null, 108340.20, 2, 3, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (4, CURRENT_DATE, null, 321040.51, 1, 4, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (5, CURRENT_DATE, null, 272382.42, 2, 5, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (6, CURRENT_DATE, null, 152958.56, 5, 6, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (7, CURRENT_DATE, null, 239676.21, 2, 7, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (8, CURRENT_DATE, null, 557632.32, 4, 8, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (9, CURRENT_DATE, null, 259022.8, 2, 9, 0);
+insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (10, CURRENT_DATE, null, 307387.65, 5, 1, 0);
 
 
 
