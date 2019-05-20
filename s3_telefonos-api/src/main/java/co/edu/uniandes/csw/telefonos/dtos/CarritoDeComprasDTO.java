@@ -17,6 +17,8 @@ public class CarritoDeComprasDTO implements Serializable{
          * Suma del costo de las publicaciones carrito de compras
          */
 	private Double costoTotal;
+        
+        private Long id;
 	
         /**
          * constructor by default
@@ -32,6 +34,7 @@ public class CarritoDeComprasDTO implements Serializable{
          */
         public CarritoDeComprasDTO(CarritoDeComprasEntity carrito){
             if(carrito!=null){
+                this.id = carrito.getId();
                 this.costoTotal = carrito.getCostoTotal();
             }
 	}
@@ -50,7 +53,7 @@ public class CarritoDeComprasDTO implements Serializable{
          * @param costoTotal el nuevo costo total del carrito de compras
          */
 	public void setCostoTotal(Double costoTotal)
-	{
+	{         
 		this.costoTotal = costoTotal;
 	}
         
@@ -61,6 +64,21 @@ public class CarritoDeComprasDTO implements Serializable{
 	public CarritoDeComprasEntity toEntity(){
             CarritoDeComprasEntity carrito = new CarritoDeComprasEntity();
             carrito.setCostoTotal(this.costoTotal);
+            carrito.setId(this.id);
             return carrito;
         }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

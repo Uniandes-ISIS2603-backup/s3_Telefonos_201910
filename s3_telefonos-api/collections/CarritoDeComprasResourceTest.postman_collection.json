@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2efa7bac-049b-4ce0-9bb2-a8bf7877af8b",
+		"_postman_id": "8be4cb10-8960-43c7-b7b5-0cda5680f3a1",
 		"name": "CarritoDeComprasResourceTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,13 +26,12 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/json",
-						"type": "text",
-						"disabled": true
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\"id\":0}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/carritosDeCompras",

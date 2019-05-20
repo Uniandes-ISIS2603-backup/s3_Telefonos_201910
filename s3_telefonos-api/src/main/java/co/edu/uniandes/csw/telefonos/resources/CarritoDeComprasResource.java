@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.telefonos.dtos.CarritoDeComprasDTO;
 import co.edu.uniandes.csw.telefonos.dtos.CarritoDeComprasDetailDTO;
 import co.edu.uniandes.csw.telefonos.ejb.CarritoDeComprasLogic;
 import co.edu.uniandes.csw.telefonos.entities.CarritoDeComprasEntity;
-import co.edu.uniandes.csw.telefonos.entities.ListaDeDeseosEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +17,19 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-
-@Path("carritosDeCompras")
-@Produces("aplication/json")
-@Consumes("aplication/json")
-@RequestScoped
 /**
  *
  * @author Daniel Babativa
  */
+@Path("carritosDeCompras")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
 public class CarritoDeComprasResource {
 
     /**
