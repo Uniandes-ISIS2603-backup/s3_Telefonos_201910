@@ -31,6 +31,11 @@ public class CarritoDeComprasPersistence {
     private Integer costoTotal; 
     
     /**
+     * id del carrito de compras
+     */
+    private Long id;
+    
+    /**
      * crea un carrito
      * @param carritoDeComprasEntity carrito a crear
      * @return carrito creado
