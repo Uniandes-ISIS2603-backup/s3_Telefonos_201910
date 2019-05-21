@@ -8,9 +8,9 @@ package co.edu.uniandes.csw.telefonos.ejb;
 import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.CelularPersistence;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  *
@@ -41,11 +41,12 @@ public class CelularLogic {
         
         /**
          * HACER ROBADOS
-         */
+        
         if((Math.random()%2)!=0)
         {
             throw new BusinessLogicException("El celular con el IMEI " + celular.getImei() + " está reportado como robado.");
         }
+         */
         
         celular = persistence.create(celular);
         return celular;

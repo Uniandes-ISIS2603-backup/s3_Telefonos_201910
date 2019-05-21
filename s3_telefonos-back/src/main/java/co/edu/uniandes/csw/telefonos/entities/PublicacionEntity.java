@@ -32,6 +32,8 @@ public class PublicacionEntity extends BaseEntity implements Serializable {
     private ArrayList<String> imagenes;
     //precio del producto ofrecido
     private Double precio;
+    //booleano que define si la publicación se encuentra vendida
+    private Boolean vendido;
     //celular que esta asociado a la publicación, tiene que ser null en caso de que la publicación ya tenga asociada 
     @PodamExclude
     @OneToOne(mappedBy = "publicacion",
@@ -97,7 +99,13 @@ public class PublicacionEntity extends BaseEntity implements Serializable {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+     public Boolean getVendido() {
+        return vendido;
+    }
 
+    public void setVendido(Boolean vendido) {
+        this.vendido = vendido;
+    }
     public List<CarritoDeComprasEntity> getCarritoDeCompras() {
         return carritoDeCompras;
     }

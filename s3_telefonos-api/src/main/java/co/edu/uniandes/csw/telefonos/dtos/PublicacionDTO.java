@@ -21,6 +21,8 @@ public class PublicacionDTO implements Serializable{
     private ArrayList<String> imagenes; 
     //precio del objeto que esta siendo puesto en venta
     private Double precio;
+    //Boolean que modela si la publicación ya fue vendida
+    private Boolean vendido;
     //id
     private Long id;
     
@@ -33,6 +35,7 @@ public class PublicacionDTO implements Serializable{
        this.fechaCreacion = publicacionEntity.getFechaCreacion();
        this.imagenes = publicacionEntity.getImagenes();
        this.precio = publicacionEntity.getPrecio();
+       this.vendido = publicacionEntity.getVendido();
        this.id = publicacionEntity.getId();
    }
        
@@ -60,7 +63,13 @@ public class PublicacionDTO implements Serializable{
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+     public Boolean getVendido() {
+        return vendido;
+    }
 
+    public void setVendido(Boolean vendido) {
+        this.vendido = vendido;
+    }
     public Long getId() {
         return id;
     }
@@ -75,6 +84,7 @@ public class PublicacionDTO implements Serializable{
         entidad.setFechaCreacion(this.fechaCreacion);
         entidad.setImagenes(this.imagenes);
         entidad.setPrecio(this.precio);
+        entidad.setVendido(this.vendido);
         entidad.setId(this.id);
         return entidad;
     }

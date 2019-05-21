@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.telefonos.resources;
-
 import co.edu.uniandes.csw.telefonos.dtos.MetodoDePagoDTO;
 import co.edu.uniandes.csw.telefonos.ejb.MetodoDePagoLogic;
-import co.edu.uniandes.csw.telefonos.ejb.PublicacionLogic;
 import co.edu.uniandes.csw.telefonos.entities.MetodoDePagoEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.ArrayList;

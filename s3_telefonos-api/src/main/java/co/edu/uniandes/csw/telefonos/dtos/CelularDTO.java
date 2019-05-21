@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
 import java.io.Serializable;
 
 public class CelularDTO implements Serializable {
+        private Long id;
         /**
          * Marca del celular
          */
@@ -51,6 +52,7 @@ public class CelularDTO implements Serializable {
          */
         public CelularDTO(CelularEntity celular){
             if(celular!=null){
+                this.id = celular.getId();
                 this.imei = celular.getImei();
                 this.marca = celular.getMarca();
                 this.modelo = celular.getModelo();
@@ -128,16 +130,16 @@ public class CelularDTO implements Serializable {
          * Retorna si el celular está registrado o no, true si lo está, false de lo contrario
          * @return registrado
          */
-	public boolean isRegistrado() {
-		return registrado;
+	public Boolean getRegistrado() {
+		return this.registrado;
 	}
         
         /**
          * Actualiza el estado de registrado del celular
          * @param registrado , el nuevo estado de registrado
          */
-	public void setRegistrado(boolean registrado) {
-		this.registrado = registrado;
+	public void setRegistrado(Boolean registrado) {
+            this.registrado = registrado;
 	}
 	
 	/**
@@ -146,12 +148,29 @@ public class CelularDTO implements Serializable {
          */
  public CelularEntity toEntity(){
             CelularEntity celular = new CelularEntity();
-            celular.setImei(this.imei);
-            celular.setMarca(this.marca);
-            celular.setModelo(this.modelo);
-            celular.setReferencia(this.referencia);
-            celular.setRegistrado(this.registrado);
+            celular.setId(this.getId());
+            celular.setImei(this.getImei());
+            celular.setMarca(this.getMarca());
+            celular.setModelo(this.getModelo());
+            celular.setReferencia(this.getReferencia());
+            celular.setRegistrado(this.getRegistrado());
             return celular;
         }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+ 
 }  
 
