@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.telefonos.ejb.ListaDeDeseosLogic;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -76,6 +77,29 @@ public class CompradorListaDeDeseosResource {
         return listaDTO;
     }
     
-
+    /**
+     * Devuelve el Resource que asocia lista de deseos con tablets
+     * @param listaId Identificador de la lista
+     */
+    @Path("{listaId: \\d+}/tablets")
+    public Class<ListaDeDeseosTabletResource> getListaDeDeseosTabletResource(@PathParam("listaId") Long listaId){
+        if (listaDeDeseosLogic.getListaDeDeseos(listaId) == null) {
+            throw new WebApplicationException("El recurso /compradores/" + listaId + "/listasDeDeseos no existe.", 404);
+        }
+        return ListaDeDeseosTabletResource.class;
+    }
+    
+    /**
+     * Devuelve el Resource que asocia lista de deseos con celulares
+     * @param listaId Identificador de la lista
+     */
+    @Path("{listaId: \\d+}/celulares")
+    public Class<ListaDeDeseosCelularResource> getListaDeDeseosCelularResource(@PathParam("listaId") Long listaId){
+        if (listaDeDeseosLogic.getListaDeDeseos(listaId) == null) {
+            throw new WebApplicationException("El recurso /compradores/" + listaId + "/listasDeDeseos no existe.", 404);
+        }
+        return ListaDeDeseosCelularResource.class;
+    }
+    
     
 }

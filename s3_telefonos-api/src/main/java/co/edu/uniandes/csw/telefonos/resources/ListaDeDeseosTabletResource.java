@@ -44,7 +44,7 @@ public class ListaDeDeseosTabletResource {
      * Guarda una tablet dentro de una lista de deseos con la informacion que recibe el
      * la URL. Se devuelve la tablet que se guarda en la lista.
      *
-     * @param listaId Identificador de la editorial que se esta
+     * @param listaId Identificador de la lista que se esta
      * actualizando. Este debe ser una cadena de dígitos.
      * @param tabletRef Referencia de la tablet que se desea guardar. Este debe
      * ser una cadena de dígitos.

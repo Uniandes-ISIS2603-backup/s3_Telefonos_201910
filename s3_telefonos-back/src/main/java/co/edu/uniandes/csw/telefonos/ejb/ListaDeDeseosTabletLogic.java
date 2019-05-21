@@ -33,28 +33,29 @@ public class ListaDeDeseosTabletLogic {
      * Agregar una tablet a la lista de deseos
      *
      * @param tabletReferencia la referencia de la tablet a guardar
-     * @param ListaId El id de la lista de deseos en la cual se va a guardar la
+     * @param listaId El id de la lista de deseos en la cual se va a guardar la
      * tablet.
      * @return La lista de deseos con la tablet agregada.
      */
        public ListaDeDeseosEntity agregarTableta(String tabletReferencia, Long listaId)throws BusinessLogicException{
           ListaDeDeseosEntity listaEntity = listaPersistence.find(listaId);
           TabletEntity tabletEntity = tabletPersistence.findByReferencia(tabletReferencia);
-        ArrayList<TabletEntity> tablets = (ArrayList<TabletEntity>) listaEntity.getTablets();
-        ArrayList<CelularEntity> celulares = (ArrayList<CelularEntity>) listaEntity.getCelulares();
+        List<TabletEntity> tablets = (List<TabletEntity>) listaEntity.getTablets();
+        List<CelularEntity> celulares = (List<CelularEntity>) listaEntity.getCelulares();
         if(tablets.size()+celulares.size()>=10){
             throw new BusinessLogicException("No se pudo registrar la tableta en la lista de deseos. Solo se pueden tener 10 dispositivos como maximo");
         }
         tablets.add(tabletEntity);
         listaEntity.setTablets(tablets);
-        return listaEntity;
+        listaPersistence.update(listaEntity);
+        return listaPersistence.find(listaId);
     
     }
        
        /**
      * Retorna todas las tablets asociadas a una lista de deseos
      *
-     * @param lidtaId El ID de la lista buscada
+     * @param listaId El ID de la lista buscada
      * @return La lista de tablets de la lista de deseos.
      */
     public List<TabletEntity> getTablets(Long listaId) {
@@ -65,7 +66,7 @@ public class ListaDeDeseosTabletLogic {
      * Borra una tableta de la lista de deseos
      *
      * @param tabletReferencia la referencia de la tableta a remover
-     * @param ListaId El id de la lista de deseos en la cual se va a eliminar la tablet
+     * @param listaId El id de la lista de deseos en la cual se va a eliminar la tablet
      * @return la lista de deseos con la tablet removida.
      */
        public ListaDeDeseosEntity removerTableta(String tabletReferencia, Long listaId) throws BusinessLogicException{
@@ -91,7 +92,7 @@ public class ListaDeDeseosTabletLogic {
      * Retorna una tablet asociada a una lista de deseos
      *
      * @param listaId El id de la lista a buscar.
-     * @param tabletId El id de la tablet a buscar
+     * @param tabletRef El id de la tablet a buscar
      * @return La tablet encontrada dentro de la lista de deseos
      * @throws BusinessLogicException Si la tablet no se encuentra en la lista
      */
