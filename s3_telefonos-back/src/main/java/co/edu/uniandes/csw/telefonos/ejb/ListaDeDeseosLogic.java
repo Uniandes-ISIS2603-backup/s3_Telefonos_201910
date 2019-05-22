@@ -62,7 +62,7 @@ public class ListaDeDeseosLogic {
     
     public ListaDeDeseosEntity getListaDeDeseos(Long identificador){
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la lista de deseos con identificador = {0}", identificador);
-        ListaDeDeseosEntity lista = persistence.findByIdentificador(identificador);
+        ListaDeDeseosEntity lista = persistence.find(identificador);
         if(lista == null){
             LOGGER.log(Level.SEVERE, "La lista de deseos con el identificador = {0} no existe", identificador);
         }

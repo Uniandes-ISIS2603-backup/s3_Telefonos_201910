@@ -15,7 +15,8 @@
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_ref_c\", data.referencia);",
-							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;",
+							""
 						],
 						"type": "text/javascript"
 					}

@@ -77,8 +77,8 @@ public class TabletResource {
     
 
     @DELETE
-    @Path("{referencia: \\d+}")
-    public void deleteTablet(@PathParam("referencia") String referencia, TabletDTO tablet){
+    @Path("{referencia}")
+    public void deleteTablet(@PathParam("referencia") String referencia){
       TabletEntity entity = tabletLogic.getTablet(referencia);
         if (entity == null) {
             throw new WebApplicationException("El recurso /tablets/" + referencia + " no existe.", 404);

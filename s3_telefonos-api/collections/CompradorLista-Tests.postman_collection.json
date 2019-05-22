@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "1a829d65-27a5-4ea6-88ac-c0a5f65b42fd",
+		"name": "CompradorLista-Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un comprador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef5aebcd-fa17-44c5-bed0-cfc4e7d439a3",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_clAso\", data.id);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"usuario\":\"dazinga\",\n\t\"contrasenia\": \"yo\",\n\t\"apodo\": \"Sapo\",\n\t\"correoElectronico\":\"yosoylagorda@mineducacion.gov.co\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una lista de deseos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "16330a5a-3ce9-49ba-900a-1d599dbbd25f",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_lclASO\", data.identificador);",
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"costoEstimado\":0,\n\t\"identificador\":10,\n\t\"tablets\":[],\n\t\"celulares\":[]\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"listasDeDeseos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtiene asociacion Comprador-ListaDeDeseos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7669e8d6-917d-4396-9698-6cbc4d122b3a",
+						"exec": [
+							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/compradores/{{new_id_clAso}}/listasDeDeseos/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s3_telefonos-api",
+						"api",
+						"compradores",
+						"{{new_id_clAso}}",
+						"listasDeDeseos",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -6,52 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Crear una lista de deseos",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "84346319-6374-4005-84f7-120b0e9b1b8d",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_ldd\", data.referencia);",
-							"tests[\"No genera error en el POST\"] = responseCode.code ==200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"identificador\":5,\n\t\"costoEstimado\":400000\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_telefonos-api",
-						"api",
-						"listasDeDeseos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Obtener todas las listas de deseos",
 			"event": [
 				{
@@ -112,7 +66,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/{{new_id_ldd}}",
+					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/1",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -122,11 +76,88 @@
 						"s3_telefonos-api",
 						"api",
 						"listasDeDeseos",
-						"{{new_id_ldd}}"
+						"1"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Obtener una lista de deseos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"s3_telefonos-api",
+								"api",
+								"listasDeDeseos",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Payara Server  4.1.2.174 #badassfish"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (Payara Server  4.1.2.174 #badassfish Java/Oracle Corporation/1.8)"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "origin, content-type, accept, authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "1209600"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 May 2019 13:14:53 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "350"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"listaDeDeseosDetailDTO\",\n    \"costoEstimado\": 489407.14,\n    \"identificador\": 1,\n    \"celulares\": [\n        {\n            \"imei\": 29,\n            \"marca\": \"bareMinerals bareSkin Pure Brightening Serum Foundation Broad Spectrum SPF 20\",\n            \"modelo\": \"1 Series\",\n            \"referencia\": \"98132-732\",\n            \"registrado\": false\n        }\n    ],\n    \"tablets\": [\n        {\n            \"marca\": \"Amoxicillin\",\n            \"modelo\": \"430\",\n            \"referencia\": \"54868-3105\",\n            \"registrado\": true\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Obtener una lista de deseos inexistente",
@@ -149,98 +180,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": ""
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/88",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_telefonos-api",
-						"api",
-						"listasDeDeseos",
-						"88"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Editar una lista de deseos",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9e449a04-0e22-4ffb-8ace-7568e80facf7",
-						"exec": [
-							"console.log(responseBody);\r",
-							"tests[\"No genera error en el PUT\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"identificador\":5,\n\t\"costoEstimado\":500000\n}"
-				},
-				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/tablets/{{new_id_ldd}}",
-					"protocol": "http",
-					"host": [
-						"{{ip}}"
-					],
-					"port": "{{puerto}}",
-					"path": [
-						"s3_telefonos-api",
-						"api",
-						"tablets",
-						"{{new_id_ldd}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Editar una lista que no existe",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "b5d8cd16-9106-4976-9823-4d5de0e008db",
-						"exec": [
-							"tests[\"No actualiza con identificador que no existe\"] = responseCode.code === 404;\r",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /listasDeDeseos/88 no existe.\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"costoEstimado\":600000\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s3_telefonos-api/api/listasDeDeseos/88",
