@@ -37,9 +37,11 @@ public class CarritoDeComprasDetailDTO extends CarritoDeComprasDTO{
     {
         super(carritoEntity);
         if (carritoEntity != null) {
-            publicaciones = new ArrayList<PublicacionDTO>();
+            if(carritoEntity.getPublicaciones()!=null){
+                publicaciones = new ArrayList<PublicacionDTO>();
             for (PublicacionEntity entityPublicacion : carritoEntity.getPublicaciones()) {
                 publicaciones.add(new PublicacionDTO(entityPublicacion));
+            }
             }
         }
     }

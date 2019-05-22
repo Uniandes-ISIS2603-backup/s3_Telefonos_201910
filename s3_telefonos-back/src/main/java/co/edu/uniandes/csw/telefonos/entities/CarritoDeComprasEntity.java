@@ -25,7 +25,7 @@ public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
      */
     @PodamExclude
     @ManyToMany(mappedBy = "carritoDeCompras")
-    private List<PublicacionEntity> publicaciones;
+    private List<PublicacionEntity> publicaciones = new ArrayList<PublicacionEntity>();
     
     
     /**
@@ -40,10 +40,7 @@ public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
      */
     private Double costoTotal;
     
-    /**
-     * el identificador del carrito de compras
-     */
-    private Long id;
+    
     
     /**
      * constructor by default
@@ -98,13 +95,6 @@ public class CarritoDeComprasEntity extends BaseEntity implements Serializable{
     }
     
     
-    public Long getId()
-    {
-        return this.id;
-    }
-    
-    public void setId(Long id){
-        this.id=id;
-    }
+ 
     
 }

@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
 import co.edu.uniandes.csw.telefonos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.telefonos.persistence.CarritoDeComprasPersistence;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -26,18 +27,20 @@ public class CarritoDeComprasLogic {
     @Inject
     private CarritoDeComprasPersistence persistence;
 
+    
+    private static final Logger LOGGER = Logger.getLogger(CarritoDeComprasLogic.class.getName());
     /**
      * Crea un carrito
      * @param carrito que se crea
      * @return el carrito creado entity
      * @throws BusinessLogicException 
      */
-    public CarritoDeComprasEntity createCarritoDeCompras(CarritoDeComprasEntity carrito)throws BusinessLogicException
-    {
-    if(persistence.find(carrito.getId())!=null){
-            throw new BusinessLogicException("Ya existe un carrito de compras con el ID "+carrito.getId());
+     public CarritoDeComprasEntity createCarritoDeCompras(CarritoDeComprasEntity carrito)throws BusinessLogicException{
+        
+        if(persistence.find(carrito.getId())!=null){
+            throw new BusinessLogicException("Ya existe un carrito de compras con el identificador \""+carrito.getId());
         }
-    carrito = persistence.create(carrito);
+        carrito = persistence.create(carrito);
         return carrito;
     }
     
@@ -61,8 +64,8 @@ public class CarritoDeComprasLogic {
    */
    public List<CarritoDeComprasEntity> getCarritoDeCompras(){
          
-        List<CarritoDeComprasEntity> listas = persistence.findAll();
-        return listas;
+        List<CarritoDeComprasEntity> carritos = persistence.findAll();
+        return carritos;
     }
     
    /**
@@ -72,8 +75,8 @@ public class CarritoDeComprasLogic {
     */
     public CarritoDeComprasEntity getCarritoDeCompras(Long id){
         
-        CarritoDeComprasEntity lista = persistence.find(id);     
-        return lista;
+        CarritoDeComprasEntity carrito = persistence.find(id);     
+        return carrito;
     }
 
 }

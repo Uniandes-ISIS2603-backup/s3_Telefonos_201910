@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.telefonos.persistence;
 
 import co.edu.uniandes.csw.telefonos.entities.CarritoDeComprasEntity;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,23 +27,16 @@ public class CarritoDeComprasPersistence {
     @PersistenceContext(unitName = "telefonosPU")
     protected EntityManager em;
     
-    /**
-     * costo total del carrito
-     */
-    private Integer costoTotal; 
-    
-    /**
-     * id del carrito de compras
-     */
-    private Long id;
-    
+    private static final Logger LOGGER = Logger.getLogger(CarritoDeComprasPersistence.class.getName());
     /**
      * crea un carrito
      * @param carritoDeComprasEntity carrito a crear
      * @return carrito creado
      */
     public CarritoDeComprasEntity create (CarritoDeComprasEntity carritoDeComprasEntity){
+         LOGGER.log(Level.INFO, "Creando un carrito de compras");
         em.persist(carritoDeComprasEntity);
+        LOGGER.log(Level.INFO, "Saliendo de crear un carrito de compras nuevo");
         return carritoDeComprasEntity;
     }
     
@@ -51,6 +46,7 @@ public class CarritoDeComprasPersistence {
      * @return el carritoEntity que se obtiene
      */
     public CarritoDeComprasEntity find (Long carritoDeComprasId){
+        LOGGER.log(Level.INFO, "Consultando lista de deseos con id={0}", carritoDeComprasId);
         return em.find(CarritoDeComprasEntity.class, carritoDeComprasId);
     }
     
@@ -59,7 +55,8 @@ public class CarritoDeComprasPersistence {
      * @return lista de carritoEntity
      */
     public List<CarritoDeComprasEntity> findAll(){
-        TypedQuery<CarritoDeComprasEntity> query = em.createQuery("select u from CelularEntity u", CarritoDeComprasEntity.class);
+        
+        TypedQuery<CarritoDeComprasEntity> query = em.createQuery("select u from CarritoDeComprasEntity u", CarritoDeComprasEntity.class);
         return query.getResultList();
     }
     
@@ -69,6 +66,7 @@ public class CarritoDeComprasPersistence {
      * @return el carritoEntity actualizado
      */
     public CarritoDeComprasEntity update(CarritoDeComprasEntity carritoDeComprasEntity) {
+        LOGGER.log(Level.INFO, "Actualizando carrito de compras con id = {0}", carritoDeComprasEntity.getId());
         return em.merge(carritoDeComprasEntity);
     }
 
@@ -82,4 +80,6 @@ public class CarritoDeComprasPersistence {
         CarritoDeComprasEntity carritoDeComprasEntity = em.find(CarritoDeComprasEntity.class, carritoDeComprasId);
         em.remove(carritoDeComprasEntity);
     }
+    
+  
 }

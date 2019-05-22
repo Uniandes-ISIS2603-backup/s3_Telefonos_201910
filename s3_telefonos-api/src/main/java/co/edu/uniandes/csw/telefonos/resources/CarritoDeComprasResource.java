@@ -65,7 +65,7 @@ public class CarritoDeComprasResource {
      * @return una lista de los carritos de compras
      */
     @GET
-    public List<CarritoDeComprasDetailDTO> getCarritoDeCompras (){
+    public List<CarritoDeComprasDetailDTO> getCarritosDeCompras (){
         List<CarritoDeComprasDetailDTO> r = listEntityToDetailDTO(logica.getCarritoDeCompras());
         return r;
     }
@@ -88,7 +88,13 @@ public class CarritoDeComprasResource {
         return detailDTO;
 }
    
-    
+     @Path("{listaId: \\d+}/tablets")
+    public Class<CarritoDeComprasPublicacionResource> getCarritoDeComprasPublicacionResource(@PathParam("carritoId") Long carritoId) {
+        if (logica.getCarritoDeCompras(carritoId) == null) {
+            throw new WebApplicationException("El recurso /listasDeDeseos/" + carritoId + " no existe.", 404);
+        }
+        return CarritoDeComprasPublicacionResource.class;
+}
     
     
     /**
