@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.telefonos.resources;
 
 import co.edu.uniandes.csw.telefonos.dtos.CarritoDeComprasDTO;
+import co.edu.uniandes.csw.telefonos.dtos.CarritoDeComprasDetailDTO;
 import co.edu.uniandes.csw.telefonos.dtos.CompradorDetailDTO;
 import co.edu.uniandes.csw.telefonos.ejb.CarritoDeComprasLogic;
 import co.edu.uniandes.csw.telefonos.ejb.CompradorCarritoDeComprasLogic;
@@ -14,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -37,11 +39,15 @@ public class CompradorCarritoDeComprasResource {
     @Inject 
     private CarritoDeComprasLogic carritoDeComprasLogic;
     
-   
+    @GET
+    public CarritoDeComprasDetailDTO getCarritoDeCompras(@PathParam("compradorId") Long compradorId) {
+        CarritoDeComprasDetailDTO listaDTO = new CarritoDeComprasDetailDTO(compradorCarritoLogic.getCarritoDeCompras(compradorId));
+        return listaDTO;
+    }
     
     
      @PUT
-    public void vaciarListaDeDeseos(Long idComprador){
+    public void vaciarCarritoDeCompras(Long idComprador){
         if(compradorLogic.getComprador(idComprador) == null){
             throw new WebApplicationException("El recurso /compradores/" + idComprador + " no existe.", 404);
         }

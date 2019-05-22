@@ -43,6 +43,8 @@ public class CompradorCarritoDeComprasLogic {
         
 }
     
-    
+     public CarritoDeComprasEntity getCarritoDeCompras(Long compradorId) {
+        return compradorPersistence.find(compradorId).getCarritoDeCompras();
+    }
     
 }

@@ -155,6 +155,14 @@ public class CompradorResource {
         }
         return CompradorListaDeDeseosResource.class;
     }
+    
+      @Path("{compradorId: \\d+}/carritosDeCompras")
+    public Class<CompradorCarritoDeComprasResource> getCompradorCarritoDeComprasResource(@PathParam("compradorId") Long compradorId) {
+        if (compradorLogic.getComprador(compradorId) == null) {
+            throw new WebApplicationException("El recurso /compradores/" + compradorId + " no existe.", 404);
+        }
+        return CompradorCarritoDeComprasResource.class;
+    }
 
     /**
      * Convierte una lista de entidades a DTO.
