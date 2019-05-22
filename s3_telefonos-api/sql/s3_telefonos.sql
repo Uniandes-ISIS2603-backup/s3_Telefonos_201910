@@ -1,3 +1,4 @@
+/*delete from images; */
 delete from TabletEntity_ListaDeDeseosEntity;
 delete from SeguroEntity;
 delete from CelularEntity_ListaDeDeseosEntity;
@@ -56,16 +57,16 @@ insert into MetodoDePagoEntity (id, banco, codigoverificacion, comprador_id, fec
 
 
 
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (1, CURRENT_DATE, null, 372639.03, 4, 1, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (2, CURRENT_DATE, null, 295281.08, 5, 2, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (3, CURRENT_DATE, null, 108340.20, 2, 3, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (4, CURRENT_DATE, null, 321040.51, 1, 4, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (5, CURRENT_DATE, null, 272382.42, 2, 5, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (6, CURRENT_DATE, null, 152958.56, 5, 6, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (7, CURRENT_DATE, null, 239676.21, 2, 7, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (8, CURRENT_DATE, null, 557632.32, 4, 8, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (9, CURRENT_DATE, null, 259022.8, 2, 9, 0);
-insert into PublicacionEntity (id, fechacreacion, imagenes, precio, proveedor_id, factura_id, vendido) values (10, CURRENT_DATE, null, 307387.65, 5, 1, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (1, CURRENT_DATE, 372639.03, 4, 1, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (2, CURRENT_DATE, 295281.08, 5, 2, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (3, CURRENT_DATE, 108340.20, 2, 3, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (4, CURRENT_DATE, 321040.51, 1, 4, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (5, CURRENT_DATE, 272382.42, 2, 5, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (6, CURRENT_DATE, 152958.56, 5, 6, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (7, CURRENT_DATE, 239676.21, 2, 7, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (8, CURRENT_DATE, 57632.32, 4, 8, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (9, CURRENT_DATE, 259022.8, 2, 9, 0);
+insert into PublicacionEntity (id, fechacreacion, precio, proveedor_id, factura_id, vendido) values (10, CURRENT_DATE, 307387.65, 5, 1, 0);
 
 
 
@@ -114,3 +115,11 @@ insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) val
 insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (1, 3);
 insert into TabletEntity_ListadedeseosEntity (tablets_id, listasdedeseos_id) values (1, 5);
 
+
+/*Esta intancia se utilizá para poblar la tabla que modela las imagenes, pero poor erroes externos genera conflictos...*/
+/**
+insert into images(publicacionentity_id,imagenes) values(1,'https://imgur.com/gallery/XbUhelN');
+insert into images(publicacionentity_id,imagenes) values(1,'https://imgur.com/gallery/Xb');
+insert into images(publicacionentity_id,imagenes) values(1,'https://imgur.com/gallery/Xbws');
+
+*/

@@ -86,7 +86,7 @@ public class PublicacionPersistence {
     public void delete(Long publicacionId) {
         LOGGER.log(Level.INFO, "Borrando publicacion con id = {0}", publicacionId);
         // Se hace uso de mismo método que esta explicado en public PublicacionEntity find(Long id) para obtener la publicacion a borrar.
-        PublicacionEntity entity = em.find(PublicacionEntity.class, publicacionId);
+        PublicacionEntity entity = em.find(PublicacionEntity.class, publicacionId); 
         em.remove(entity);
         LOGGER.log(Level.INFO, "Saliendo de borrar la publicacion con id = {0}", publicacionId);
     }

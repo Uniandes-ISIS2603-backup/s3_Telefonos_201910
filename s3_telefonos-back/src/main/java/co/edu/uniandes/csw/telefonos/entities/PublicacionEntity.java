@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -29,7 +31,11 @@ public class PublicacionEntity extends BaseEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
     //arreglo de imagenes que se van a  usar en el post
-    private ArrayList<String> imagenes;
+    
+    @ElementCollection 
+    @CollectionTable(name = "images")
+    @PodamExclude
+    private List<String> imagenes;
     //precio del producto ofrecido
     private Double precio;
     //booleano que define si la publicación se encuentra vendida
@@ -84,11 +90,11 @@ public class PublicacionEntity extends BaseEntity implements Serializable {
         this.tablet = tablet;
     }
 
-    public ArrayList<String> getImagenes() {
+    public List<String> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(ArrayList<String> imagenes) {
+    public void setImagenes(List<String> imagenes) {
         this.imagenes = imagenes;
     }
 

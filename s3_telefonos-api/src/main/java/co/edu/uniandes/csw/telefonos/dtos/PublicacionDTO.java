@@ -7,8 +7,8 @@ package co.edu.uniandes.csw.telefonos.dtos;
 
 import co.edu.uniandes.csw.telefonos.entities.PublicacionEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,7 +18,7 @@ public class PublicacionDTO implements Serializable{
     //fecha de creación de la publicación
     private Date fechaCreacion;
     //arreglo de imagenes que se van a  usar en el post
-    private ArrayList<String> imagenes; 
+    private List<String> imagenes; 
     //precio del objeto que esta siendo puesto en venta
     private Double precio;
     //Boolean que modela si la publicación ya fue vendida
@@ -49,11 +49,11 @@ public class PublicacionDTO implements Serializable{
         this.fechaCreacion = fechaCreacion;
     }
 
-    public ArrayList<String> getImagenes() {
+    public List<String> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(ArrayList<String> imagenes) {
+    public void setImagenes(List<String> imagenes) {
         this.imagenes = imagenes;
     }
     public Double getPrecio() {
