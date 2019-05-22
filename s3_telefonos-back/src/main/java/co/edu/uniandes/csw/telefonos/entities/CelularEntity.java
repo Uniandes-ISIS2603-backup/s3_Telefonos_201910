@@ -66,37 +66,8 @@ public class CelularEntity extends BaseEntity implements Serializable{
         
     }
      
-    /**
-     * getter
-     * @return the publicacion 
-     */
-    private PublicacionEntity getPublicacion(){
-        return this.publicacion;
-    }
     
-    /**
-     * setter
-     * @param publicacion the publicacion to set 
-     */
-    private void setPublicacion(PublicacionEntity publicacion){
-       this.publicacion=publicacion;
-    }
-    
-    /**
-     * getter
-     * @return the lista 
-     */
-    private List<ListaDeDeseosEntity> getLista(){
-        return this.listasDeDeseos;
-    }
-    
-    /**
-     * setter
-     * @param lista the lista to set 
-     */
-    private void setLista(List<ListaDeDeseosEntity> lista){
-       this.listasDeDeseos=lista;
-    }
+   
     
     /**
      * @return the marca

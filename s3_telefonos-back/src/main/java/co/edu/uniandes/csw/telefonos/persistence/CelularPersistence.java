@@ -50,7 +50,18 @@ public class CelularPersistence {
      * @return celular encontrado
      */
     public CelularEntity findByImei (Long celularsImei){
-        return em.find(CelularEntity.class, celularsImei);
+        TypedQuery query=em.createQuery("Select e From CelularEntity e where e.imei = :imei", CelularEntity.class);
+        query = query.setParameter("referencia", celularsImei);
+        List<CelularEntity> mismaReferencia = query.getResultList();
+        CelularEntity resultado;
+        if(mismaReferencia == null){
+            resultado=null;
+        }else if(mismaReferencia.isEmpty()){
+            resultado = null;
+        }else{
+            resultado=mismaReferencia.get(0);
+        }
+        return resultado;
     }
     
     /**

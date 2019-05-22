@@ -13,7 +13,7 @@ import co.edu.uniandes.csw.telefonos.entities.CelularEntity;
 import java.io.Serializable;
 
 public class CelularDTO implements Serializable {
-        private Long id;
+
         /**
          * Marca del celular
          */
@@ -52,7 +52,6 @@ public class CelularDTO implements Serializable {
          */
         public CelularDTO(CelularEntity celular){
             if(celular!=null){
-                this.id = celular.getId();
                 this.imei = celular.getImei();
                 this.marca = celular.getMarca();
                 this.modelo = celular.getModelo();
@@ -148,7 +147,6 @@ public class CelularDTO implements Serializable {
          */
  public CelularEntity toEntity(){
             CelularEntity celular = new CelularEntity();
-            celular.setId(this.getId());
             celular.setImei(this.getImei());
             celular.setMarca(this.getMarca());
             celular.setModelo(this.getModelo());
@@ -157,19 +155,7 @@ public class CelularDTO implements Serializable {
             return celular;
         }
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ 
 
  
 }  

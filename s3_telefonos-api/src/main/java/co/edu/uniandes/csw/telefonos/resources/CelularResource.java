@@ -95,7 +95,7 @@ public class CelularResource {
      * @return el celular getteado
      */
     @GET
-    @Path("{modelo: \\c+}")
+    @Path("{modelo}")
     public CelularDTO getCelularNoRegistrado(@PathParam("modelo") String modelo) {
         CelularEntity entity = logica.getCelularNoRegistrado(modelo);
         if (entity == null) {
