@@ -91,7 +91,7 @@ public class CarritoDeComprasResource {
      @Path("{listaId: \\d+}/tablets")
     public Class<CarritoDeComprasPublicacionResource> getCarritoDeComprasPublicacionResource(@PathParam("carritoId") Long carritoId) {
         if (logica.getCarritoDeCompras(carritoId) == null) {
-            throw new WebApplicationException("El recurso /listasDeDeseos/" + carritoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /carritosDeCompras/" + carritoId + " no existe.", 404);
         }
         return CarritoDeComprasPublicacionResource.class;
 }
