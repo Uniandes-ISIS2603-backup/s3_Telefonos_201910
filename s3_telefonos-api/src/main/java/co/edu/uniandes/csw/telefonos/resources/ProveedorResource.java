@@ -80,6 +80,23 @@ public class ProveedorResource {
         return proveedorDetailDTO;
     }
 
+         /**
+     * Obtiene el comprador con username
+     *
+     * @param username Usuario del comprador
+     * @return Comprador con Usuario usernamen
+     */
+    @GET
+    @Path("{proveedorUsername}")
+    public ProveedorDetailDTO obtenerProveedorUsername(@PathParam("proveedorUsername") String usuario) {
+        ProveedorEntity proveedorEntity = proveedorLogic.getProveedorUsuario(usuario);
+        if (proveedorEntity == null) {
+            throw new WebApplicationException("El recurso /proveedores/" + usuario + " no existe.", 404);
+        }
+        ProveedorDetailDTO proveedorDetailDTO = new ProveedorDetailDTO(proveedorEntity);
+        return proveedorDetailDTO;
+    }
+    
     /**
      * Actualiza un proveedor con identificador id
      *

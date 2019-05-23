@@ -67,6 +67,18 @@ public class ProveedorLogic {
         ProveedorEntity proveedorEntity = persistencia.find(proveedorId);
         return proveedorEntity;
     }
+    
+          /**
+     *
+     * Obtener un proveedor por medio de su usuario
+     *
+     * @param proveedorUser: usuario del proveedor para ser buscado.
+     * @return el proveedor solicitado por medio de su id.
+     */
+    public ProveedorEntity getProveedorUsuario(String username) {
+       ProveedorEntity proveedorEntity = persistencia.findByUsername(username);
+        return proveedorEntity;
+    }
 
     /**
      *

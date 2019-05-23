@@ -65,6 +65,24 @@ public class CompradorResource {
         return compradorDTO;
     }
 
+     /**
+     * Obtiene el comprador con username
+     *
+     * @param username Usuario del comprador
+     * @return Comprador con Usuario usernamen
+     */
+    @GET
+    @Path("{compradorUsername}")
+    public CompradorDetailDTO obtenerCompradorUsername(@PathParam("compradorUsername") String usuario) {
+        CompradorEntity compradorEntity = compradorLogic.getCompradorUsuario(usuario);
+        if (compradorEntity == null) {
+            throw new WebApplicationException("El recurso /compradores/" + usuario + " no existe.", 404);
+        }
+        CompradorDetailDTO compradorDetailDTO = new CompradorDetailDTO(compradorEntity);
+        return compradorDetailDTO;
+    }
+    
+    
     /**
      * Obtiene el comprador con identificador id
      *

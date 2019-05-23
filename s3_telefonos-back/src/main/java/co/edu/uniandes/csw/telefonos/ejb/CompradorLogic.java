@@ -67,6 +67,18 @@ public class CompradorLogic {
         return compradorEntity;
     }
     
+     /**
+     *
+     * Obtener un comprador por medio de su usuario
+     *
+     * @param compradorUser: usuario del comprador para ser buscado.
+     * @return el comprador solicitado por medio de su id.
+     */
+    public CompradorEntity getCompradorUsuario(String username) {
+       CompradorEntity compradorEntity = persistencia.findByUsuario(username);
+        return compradorEntity;
+    }
+    
     /**
      *
      * Actualizar un comprador.
